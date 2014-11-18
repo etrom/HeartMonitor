@@ -24,14 +24,31 @@ exports.index = function(req, res) {
  * Creates a new user
  */
 exports.create = function (req, res, next) {
+  /*
+  var bars = req.body.bars;
+  delete req.body.bars;
+  */
+  console.log(req.body, 'req.body')
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
   newUser.save(function(err, user) {
+    console.log('user', user)
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
   });
+  /*
+  async.each(bars, function(bar, done) {
+    Bar.create(bar, done);
+  }, function() {
+    newUser.save(function(err, user) {
+    if (err) return validationError(res, err);
+      var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
+      res.json({ token: token });
+    });
+  })
+  */
 };
 
 /**
@@ -39,7 +56,7 @@ exports.create = function (req, res, next) {
  */
 exports.show = function (req, res, next) {
   var userId = req.params.id;
-
+console.log(req.params, 'the params')
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
@@ -47,6 +64,26 @@ exports.show = function (req, res, next) {
   });
 };
 
+//find user by email
+exports.findExisting = function (req, res, next) {
+  User.find({email: req.body.email}, function (err, partner) {
+  if(err) { return handleError(res, err); }
+    if(partner.length < 1) {
+      return res.json(200);
+    }
+     res.json(200, partner);
+  });
+};
+
+
+////update reqFrom request
+exports.updateRequest = function(req,res){
+  User.findOneAndUpdate({ _id:req.params.id},{requests: true, reqFrom: req.params.reqFrom}, function(err,user) {
+    // , reqFrom: req.params.
+    if(err) {return res.send(500, err)};
+    res.json(200, user);
+  })
+};
 /**
  * Deletes a user
  * restriction: 'admin'

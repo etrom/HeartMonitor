@@ -13,6 +13,11 @@ angular.module('barsApp')
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl'
       })
+      .state('partnerInvite', {
+        url: '/signup/:signUpId',
+        templateUrl: 'app/account/signup/signup.html',
+        controller: 'SignupCtrl'
+      })
       .state('settings', {
         url: '/settings',
         templateUrl: 'app/account/settings/settings.html',

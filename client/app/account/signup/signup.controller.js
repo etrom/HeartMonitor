@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location, $window) {
+  .controller('SignupCtrl', function ($scope, $stateParams, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -12,11 +12,22 @@ angular.module('barsApp')
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
+          partner: $stateParams.signUpId,
+          bars: [{name:'Social', barInterval: 1},
+           {name:'Romance', barInterval: 1},
+            {name:'Entertainment', barInterval: 7},
+           {name:'Intimacy', barInterval: 14},
+            {name:'Alone Time', barInterval: 14}]
         })
+        .then(function() {
+          Auth.getCurrentUser().$promise.then(function(data) {
+            $scope.currentUser = data;
+            })
+          })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          $location.path('/home');
         })
         .catch( function(err) {
           err = err.data;

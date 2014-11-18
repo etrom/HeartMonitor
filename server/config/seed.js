@@ -42,8 +42,37 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
+  }, {
+    provider: 'local',
+    email: 'elaine@gmail.com',
+    name: 'Elaine',
+    password: 'elaine',
+    bars: [{name:'Social', depInterval: 1},
+           {name:'Romance', depInterval: 1},
+            {name:'Entertainment', depInterval: 7},
+           {name:'Intimacy', depInterval: 14},
+            {name:'Alone Time', depInterval: 14}]
+
+  },{
+    provider: 'local',
+    email: 'corey@gmail.com',
+    name: 'Corey',
+    password: 'corey',
+    bars: [{name:'Social', depInterval: 1},
+           {name:'Romance', depInterval: 1},
+            {name:'Entertainment', depInterval: 7},
+           {name:'Intimacy', depInterval: 14},
+            {name:'Alone Time', depInterval: 14}]
+
   }, function() {
       console.log('finished populating users');
     }
   );
 });
+
+
+
+
+
+
+

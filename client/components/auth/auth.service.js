@@ -28,6 +28,7 @@ angular.module('barsApp')
           $cookieStore.put('token', data.token);
           currentUser = User.get();
           deferred.resolve(data);
+          console.log(currentUser);
           return cb();
         }).
         error(function(err) {

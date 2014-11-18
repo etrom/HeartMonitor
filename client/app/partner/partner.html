@@ -1,0 +1,35 @@
+<p>
+
+<div class="col-sm-12">
+
+  <p class="alert alert-success" role="alert" width="20%" ng-show="message">{{message}}</br>
+    <button class="btn btn primary" ng-show="invite" ng-click="sendInvite()"> Invite {{emailInvite}} </button>
+  </p>
+  <div class="col-lg-6 pull-right" ng-hide="submitted">
+
+    <button class="btn btn-success pull-right" ng-hide="hasPartner" type="button"  ng-click=" clicked = !clicked ">add a partner + </button>
+
+    <div class="procedure-details" ng-show="clicked"  >
+      <form ng-show="clicked">
+        <input type="text" name='partnerEmail' class="form-control pull-right" placeholder="enter your partners email" ng-model="partnerEmail">
+
+        <button class="btn btn-primary pull-right"  ng-click="requestPartner(partnerEmail)">Submit</button>
+
+      </form>
+
+    </div>
+  </div>
+  <!--  -->
+  <div ng-show="hasPartner">
+    <h1 class="page-header">{{partner.name}}'s bars:</h1>
+    <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bar in partnerBars">
+      <li><a href="#">{{bar.name}}</a>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped " role="progressbar" aria-valuenow="{{bar.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: {{bar.fulfillment}}%">
+            <span class="sr-only">45% Complete</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -5,21 +5,52 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
+var barSchema = new Schema ({
+    name: String,
+    depInterval: Number,
+    fulfillment: {
+      type: Number,
+      default: 100
+    },
+    reminded: {
+      type: Boolean,
+      default: false
+    }
+});
+
+var actionRequestSchema = new Schema ({
+  barName: String,
+  increment: Number,
+  accepted: Boolean
+});
+
 var UserSchema = new Schema({
   name: String,
+  reqFrom: String,
+  requests: Boolean,
   email: { type: String, lowercase: true },
   role: {
     type: String,
     default: 'user'
   },
+  bars: [barSchema],
+  actionRequests: [actionRequestSchema],
   hashedPassword: String,
   provider: String,
   salt: String,
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  partner: {
+    type: Schema.ObjectId,
+    ref: 'UserSchema'
+  }
+
 });
+
+
+
 
 /**
  * Virtuals
@@ -147,3 +178,4 @@ UserSchema.methods = {
 };
 
 module.exports = mongoose.model('User', UserSchema);
+
