@@ -1,0 +1,27 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Messages</h1>
+    </div>
+      <div class="col-sm-12">
+        <!-- && !barName -->
+        <div ng-show="!partner" class="addPartner" >
+
+            <p>{{ reqFrom }} would like to add you as a partner </p>
+
+            <button class="btn btn-lg btn-primary" ng-click="partnerDecision(true)" >Accept</button>
+            <button class="btn btn-lg btn-danger" ng-click="partnerDecision(false)" >Deny</button>
+        </div>
+
+        <div ng-show="partner" class="addPoints">
+          <p>{{ partner.name }} would like to add points to your {{barName}} bar </p>
+
+          <button class="btn btn-lg btn-primary" ng-click="updateBarPercent(true)" >Accept</button>
+          <button class="btn btn-lg btn-danger" ng-click="updateBarPercent(false)" >Deny</button>
+        </div>
+
+    </div>
+  </div>
+</div>

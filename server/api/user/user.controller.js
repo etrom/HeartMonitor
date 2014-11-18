@@ -64,17 +64,53 @@ console.log(req.params, 'the params')
   });
 };
 
+exports.showWholeUser = function (req, res, next) {
+  var userId = req.params.id;
+console.log(req.params, 'the params')
+  User.findById(userId, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.send(401);
+    res.json(user);
+  });
+};
+
 //find user by email
 exports.findExisting = function (req, res, next) {
+
   User.find({email: req.body.email}, function (err, partner) {
-  if(err) { return handleError(res, err); }
+    if(err) { return handleError(res, err); }
+    User.findOneAndUpdate({ _id:partner[0]._id},{requests: true, reqFrom: req.params.id}, function(err,user) {
+        if(err) {return res.send(500, err)};
+    });
     if(partner.length < 1) {
       return res.json(200);
     }
      res.json(200, partner);
+
   });
 };
 
+
+
+//add a partner
+exports.addPartner = function(req,res) {
+  if (req.body.acceptance) {
+    User.findOneAndUpdate({ _id:req.params.id},{requests: false, reqFrom: '', partner: req.params.reqFrom}, function(err,user) {
+      if(err) {return res.send(500, err)};
+    });
+    User.findOneAndUpdate({ _id:req.params.reqFrom},{requests: false, reqFrom: '', partner: req.params.id}, function(err,user) {
+      if(err) {return res.send(500, err)};
+      console.log('success')
+      res.json(200, user);
+    });
+  } else {
+    User.findOneAndUpdate({ _id:req.params.id},{requests: false, reqFrom: '', partner: {}}, function(err,user) {
+      if(err) {return res.send(500, err)};
+
+        res.json(200, user);
+    });
+  }
+};
 
 ////update reqFrom request
 exports.updateRequest = function(req,res){
