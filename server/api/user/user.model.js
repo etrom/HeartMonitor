@@ -15,7 +15,8 @@ var barSchema = new Schema ({
     reminded: {
       type: Boolean,
       default: false
-    }
+    },
+    remindedDate: Date
 });
 
 var actionRequestSchema = new Schema ({

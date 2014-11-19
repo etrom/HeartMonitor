@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('SignupCtrl', function ($scope, $stateParams, Auth, $location, $window) {
+  .controller('SignupCtrl', function ($scope, $stateParams, $http, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
+    $scope.currentUser = Auth.getCurrentUser();
 
     $scope.register = function(form) {
       $scope.submitted = true;
@@ -19,6 +20,16 @@ angular.module('barsApp')
             {name:'Entertainment', barInterval: 7},
            {name:'Intimacy', barInterval: 14},
             {name:'Alone Time', barInterval: 14}]
+        }).
+        then(function() {
+          Auth.getCurrentUser().$promise.then(function(data) {
+            $scope.user = data;
+            console.log($scope.user, 'user')
+            ////this sets partner instantly instead of checking for acceptance
+            if ($stateParams.signUpId) {
+              $http.post('/api/users/' + $scope.user._id + '/confirmPartner/' + $stateParams.signUpId, {acceptance: true});
+            }
+          })
         })
         .then(function() {
           Auth.getCurrentUser().$promise.then(function(data) {

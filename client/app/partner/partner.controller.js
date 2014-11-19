@@ -10,7 +10,6 @@ angular.module('barsApp')
     $scope.currentUser.$promise.then(function(user) {
       if (user.partner) {
         $http.get('/api/users/whole/' + user.partner).success(function(partner){
-          console.log(partner)
             $scope.partner = partner;
             $scope.hasPartner = true;
         })
@@ -28,6 +27,7 @@ angular.module('barsApp')
           if(data[0]) {
             $scope.message = "request sent";
           } else {
+            $scope.invite = true;
             //if they do not tell them the user does not exist
             $scope.message = 'user does not exist';
             var email = $scope.partnerEmail;
@@ -45,11 +45,23 @@ angular.module('barsApp')
         });
       }
 
-        $scope.checkHasPartner = function() {
+      $scope.uniqueUrl = '/signup/'+ $scope.currentUser._id;
 
+      $scope.sendInvite = function(){
+        $http.post('api/emails/send', {email: $scope.partnerEmail, reqFrom: $scope.currentUser._id,
+                                      reqFromName:$scope.currentUser.name, url: $scope.uniqueUrl }).
+          success(function(data, status, headers, config) {
+            $scope.message = "request sent";
+            $scope.invite = false;
+            $scope.submitted = true;
+           }).
+          error(function(data, status, headers, config) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          });
 
-
-        }
+          $scope.partner = '';
+      };
 
 
 
