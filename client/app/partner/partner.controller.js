@@ -48,7 +48,7 @@ angular.module('barsApp')
       $scope.uniqueUrl = '/signup/'+ $scope.currentUser._id;
 
       $scope.sendInvite = function(){
-        $http.post('api/emails/send', {email: $scope.partnerEmail, reqFrom: $scope.currentUser._id,
+        $http.post('api/emails/', {email: $scope.partnerEmail, reqFrom: $scope.currentUser._id,
                                       reqFromName:$scope.currentUser.name, url: $scope.uniqueUrl }).
           success(function(data, status, headers, config) {
             $scope.message = "request sent";

@@ -3,23 +3,7 @@ var User = require('../api/user/user.model');
 var async = require('async');
 
 
-// Bar.find(function (err, bars) {
-//   console.log(bars);
-//   if (barinterval === 7 ) {
-//     var oneWeek = new CronJob('* 0-23 * * * 0-6', function(){
-//         // Runs every day (sun through sat)
-//         // on hours 0 - 23
-//         // subtracts .6 and hour -- bar will deplete completely  in 7 days
-//         // Bar.find({ _id:req.params.id},{fulfillment: req.body.fulfillment - .60 }, function(err,user) {
-//       })
-//       }, function () {
-//         // This function is executed when the job stops
-//       },
-//       true /* Start the job right now */,
-//       timeZone /* Time zone of this job. */
-//     );
-//   }
-// });
+
 
 ///depeletes by .60 every hour === 100% depeletion in 7 days
 module.exports = function() {
@@ -38,7 +22,12 @@ module.exports = function() {
               if (full <= 0){
                   full = 0;
               }
+
               user.bars[i].fulfillment = full;
+
+              // if (full <= 45){
+              //   user.bars[i].remindedDate = new Date()
+              // }
               if (i === length-1) {
                 user.save(function(err, user, numModified) {
                 });
