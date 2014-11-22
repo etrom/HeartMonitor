@@ -6,6 +6,7 @@ var config = require('../../config/environment');
 var auth = require('../../auth/auth.service');
 
 var router = express.Router();
+router.post('/bar/:id', auth.isAuthenticated(), controller.addPercent)
 router.post('/findExisting/:id', auth.isAuthenticated(), controller.findExisting)
 router.get('/', auth.hasRole('admin'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('BarCtrl', function ($scope, Auth, $log) {
+  .controller('BarCtrl', function ($scope, Auth, $http, $log) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.bars = $scope.currentUser.bars;
     $scope.test = 'keep your voice down';
@@ -28,4 +28,16 @@ angular.module('barsApp')
         $scope.status.isopen = !$scope.status.isopen;
         // console.log($scope.status)
       };
+
+
+      // increase fulfillment #'s
+        $scope.addPercent = function(barName, num){
+          console.log($scope.currentUser._id, 'user');
+          console.log(barName, 'name');
+          console.log(num, 'num')
+          $http.post('/api/users/bar/' + $scope.currentUser._id, { barName: barName, fulfillment: num});
+          console.log('added');
+
+        }
+
   });
