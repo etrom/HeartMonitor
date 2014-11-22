@@ -133,6 +133,50 @@ exports.destroy = function(req, res) {
   });
 };
 
+//add bar percentage
+exports.addPercent = function(req, res){
+  console.log(req.body, 'body');
+  var name = req.body.barName;
+  console.log(name, 'var name')
+  User.findById(req.params.id, function(err,user) {
+    console.log(user, 'user object')
+    if(err) {return res.send(500, err)};
+    console.log(name, 'inside var name');
+    console.log(user.bars.name, 'user.bars.name')
+    for(var i=0; i < user.bars.length; i++){
+      if (req.body.fulfillment === 10 && user.bars[i].name === name){
+        user.bars[i].fulfillment += 10;
+        if (user.bars[i].fulfillment > 100){
+          user.bars[i].fulfillment = 100;
+        }
+      }
+
+        console.log(user.bars[i]);
+
+      if (req.body.fulfillment === 30){
+        user.bars[i].fulfillment += 30;
+        if (user.bars[i].fulfillment > 100){
+          user.bars[i].fulfillment = 100;
+          console.log(user.bars[i]);
+        }
+        console.log(user.bars[i]);
+      }
+       if (req.body.fulfillment === 50){
+        user.bars[i].fulfillment += 50;
+        if (user.bars[i].fulfillment > 100){
+          user.bars[i].fulfillment = 100;
+          console.log(user.bars[i]);
+        }
+        console.log(user.bars[i]);
+      }
+      user.bars[i].reminded = false;
+    }
+      user.save();
+      res.json(200, user);
+    });
+};
+
+
 /**
  * Change a users password
  */

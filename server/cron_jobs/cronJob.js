@@ -7,6 +7,9 @@ var async = require('async');
 
 ///depeletes by .60 every hour === 100% depeletion in 7 days
 module.exports = function() {
+// runs every second for testing purposes
+  // var cron = new CronJob('* * * * * *', function(){
+//runs every hour
   var cron = new CronJob('0 0 * * * *', function(){
     User.find(function (err, user) {
       async.each(user, function(user, doneOneUser) {
@@ -19,12 +22,13 @@ module.exports = function() {
               var full = user.bars[i].fulfillment;
               full = full.toFixed(3);
               full -= 0.01 * 60; //depleting .01 every second
+
               if (full <= 0){
                   full = 0;
               }
 
               user.bars[i].fulfillment = full;
-
+              console.log(user.bars[i].fulfillment, 'cron running');
               // if (full <= 45){
               //   user.bars[i].remindedDate = new Date()
               // }
