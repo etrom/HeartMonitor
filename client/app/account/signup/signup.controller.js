@@ -5,6 +5,7 @@ angular.module('barsApp')
     $scope.user = {};
     $scope.errors = {};
     $scope.currentUser = Auth.getCurrentUser();
+    $scope.user.email = $stateParams.invitedEmail; // invited partner's email
 
     $scope.register = function(form) {
       $scope.submitted = true;

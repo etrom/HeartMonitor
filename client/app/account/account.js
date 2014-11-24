@@ -14,7 +14,7 @@ angular.module('barsApp')
         controller: 'SignupCtrl'
       })
       .state('partnerInvite', {
-        url: '/signup/:signUpId',
+        url: '/signup/:signUpId/:invitedEmail',
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl'
       })

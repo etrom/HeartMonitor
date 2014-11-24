@@ -21,7 +21,7 @@ exports.sendRequest = function(req, res) {
     // An example users object with formatted email function
       var locals = {
         email: 'elaine.trombley3@gmail.com',
-        link: 'http://localhost:9000' + req.body.url,
+        link: 'http://localhost:9000' + req.body.url + '/' + req.body.email,
         name: {
           first: req.body.reqFromName,
           last: 'Mia',
