@@ -169,7 +169,9 @@ exports.addPercent = function(req, res){
         }
         console.log(user.bars[i]);
       }
-      user.bars[i].reminded = false;
+      if (user.bars[i].fulfillment >= 65){
+          user.reminded = false;
+        }
     }
       user.save();
       res.json(200, user);
