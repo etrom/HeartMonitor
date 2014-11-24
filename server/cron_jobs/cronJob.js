@@ -16,7 +16,7 @@ module.exports = function() {
   var cron = new CronJob('* * * * * *', function() {
     //runs every hour
     // var cron = new CronJob('0 0 * * * *', function(){
-    User.find(function (err, user) {
+    User.find().populate('partner').exec(function (err, user) {
       async.each(user, function(user, doneOneUser) {
         // var interval = user.bar.depInterval;
         // -= 0.005 * 60  14 days depletion
@@ -26,13 +26,12 @@ module.exports = function() {
           var full = user.bars[i].fulfillment;
           full = full.toFixed(3);
           full -= 0.01 * 60; //depleting .01 every second
-            if(full <= 45) {
-              var uniqueUrl = '/reminder/' + user.partner
+            if(user.partner && full <= 45) {
+              var uniqueUrl = '/reminder/' + user.partner._id
               emailTemplates(templatesDir, function(err, template) {
                 if (err) {
                   console.log(err, 'error');
                 } else {
-                  console.log('we are in the else')
                   // An example users object with formatted email function
                   var locals = {
                     link: 'http://localhost:9000' + uniqueUrl ,

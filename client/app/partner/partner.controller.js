@@ -8,11 +8,13 @@ angular.module('barsApp')
     $scope.hasPartner = false;
 
     $scope.currentUser.$promise.then(function(user) {
+      console.log('user partner', user.partner)
       if (user.partner) {
-        $http.get('/api/users/whole/' + user.partner).success(function(partner){
-            $scope.partner = partner;
+        console.log('im a partaner')
+        // $http.get('/api/users/whole/' + user.partner).success(function(partner){
+            $scope.partner = user.partner;
             $scope.hasPartner = true;
-        })
+        // })
       }
     })
 
