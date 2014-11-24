@@ -11,12 +11,7 @@ var barSchema = new Schema ({
     fulfillment: {
       type: Number,
       default: 100
-    },
-    reminded: {
-      type: Boolean,
-      default: false
-    },
-    remindedDate: Date
+    }
 });
 
 var actionRequestSchema = new Schema ({
@@ -36,6 +31,11 @@ var UserSchema = new Schema({
   },
   bars: [barSchema],
   actionRequests: [actionRequestSchema],
+  reminded: {
+      type: Boolean,
+      default: false
+    },
+  remindedDate: Date,
   hashedPassword: String,
   provider: String,
   salt: String,
@@ -44,8 +44,8 @@ var UserSchema = new Schema({
   google: {},
   github: {},
   partner: {
-    type: Schema.ObjectId,
-    ref: 'UserSchema'
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 
 });
