@@ -45,7 +45,7 @@ User.find({}).remove(function() {
     password: 'admin'
   }, {
     provider: 'local',
-    email: 'elaine@gmail.com',
+    email: 'elaine.trombley3@gmail.com',
     name: 'Elaine',
     password: 'elaine',
     bars: [{name:'Social', depInterval: 1},

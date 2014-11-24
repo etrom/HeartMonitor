@@ -43,10 +43,7 @@ var UserSchema = new Schema({
   twitter: {},
   google: {},
   github: {},
-  partner: {
-    type: Schema.ObjectId,
-    ref: 'UserSchema'
-  }
+  partner:[UserSchema]
 
 });
 

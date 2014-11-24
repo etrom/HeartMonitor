@@ -13,8 +13,9 @@ angular.module('barsApp')
         $scope.decision = decision;
         $http.post('/api/users/'+ $scope.currentUser._id + '/confirmPartner/' + $scope.currentUser.reqFrom, {acceptance: decision}).
         success(function(data) {
-            $http.get('/api/users/' + scope.currentUser._id).success(function(data){
-                $scope.currentUser = data;
+            $http.get('/api/users/' + data._id).success(function(user){
+                $scope.currentUser = user;
+                console.log(user, 'messages controller user')
                 $window.location.href= '/home';
             })
         }).
