@@ -20,6 +20,17 @@ angular.module('barsApp')
 
     $scope.plusButtonPressed = '';
 
+    // refresh the bars (900000 = 15 minutes)
+    setInterval(function(){
+      $http.get('/api/users/bar/' + $scope.currentUser._id)
+        .success(function(data, status, headers, config) {
+          $scope.bars = data;
+      })
+      for(var i=0, len=$scope.bars.length; i<len; i++) {
+        $scope.bars[i].fulfillment += 0; 
+      };
+    },900000)
+
     // values for the points dropdown button
     $scope.dropdown = [
       {text: '<i class="fa fa-plus"></i>&nbsp;10', click: 'addPercent(10)'},

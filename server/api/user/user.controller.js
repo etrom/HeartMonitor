@@ -74,6 +74,18 @@ console.log(req.params, 'the params')
   });
 };
 
+// getBars
+
+exports.getBars = function (req, res, next) {
+  var userId = req.params.id;
+console.log(req.params, 'the params')
+  User.findById(userId, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.send(401);
+    res.json(user.bars);
+  });
+};
+
 //find user by email
 exports.findExisting = function (req, res, next) {
 
