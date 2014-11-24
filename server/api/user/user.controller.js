@@ -144,32 +144,16 @@ exports.addPercent = function(req, res){
     console.log(name, 'inside var name');
     console.log(user.bars.name, 'user.bars.name')
     for(var i=0; i < user.bars.length; i++){
-      if (req.body.fulfillment === 10 && user.bars[i].name === name){
-        user.bars[i].fulfillment += 10;
+      if (user.bars[i].name === name){
+        user.bars[i].fulfillment += parseInt(req.body.fulfillment);
         if (user.bars[i].fulfillment > 100){
           user.bars[i].fulfillment = 100;
         }
+        i = user.bars.length;
       }
-
-        console.log(user.bars[i]);
-
-      if (req.body.fulfillment === 30){
-        user.bars[i].fulfillment += 30;
-        if (user.bars[i].fulfillment > 100){
-          user.bars[i].fulfillment = 100;
-          console.log(user.bars[i]);
-        }
-        console.log(user.bars[i]);
-      }
-       if (req.body.fulfillment === 50){
-        user.bars[i].fulfillment += 50;
-        if (user.bars[i].fulfillment > 100){
-          user.bars[i].fulfillment = 100;
-          console.log(user.bars[i]);
-        }
-        console.log(user.bars[i]);
-      }
+      console.log(user.bars[i]);
       user.bars[i].reminded = false;
+
     }
       user.save();
       res.json(200, user);
