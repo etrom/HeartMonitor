@@ -23,10 +23,16 @@ module.exports = function() {
         // -= 0.01 * 60 7 days depletion
         // ]-= 1.25 * 60 depletes 1.25 every sec really fast/ test case
         for(var i = 0, length = user.bars.length; i < length; i++) {
+
           var full = user.bars[i].fulfillment;
           full = full.toFixed(3);
           full -= 0.01 * 60; //depleting .01 every second
-            if(user.partner && full <= 45) {
+            if(user.partner && full <= 45 && user.reminded === false) {
+              user.reminded = true;
+              user.dateReminded = Date.now();
+              user.save();
+              console.log('reminded', user.reminded)
+              console.log('date', user.dateReminded)
               var uniqueUrl = '/reminder/' + user.partner._id
               emailTemplates(templatesDir, function(err, template) {
                 if (err) {

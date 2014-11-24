@@ -56,7 +56,7 @@ User.find({}).remove(function() {
 
   },{
     provider: 'local',
-    email: 'corey@gmail.com',
+    email: 'evalve15@gmail.com',
     name: 'Corey',
     password: 'corey',
     bars: [{name:'Social', depInterval: 1},
@@ -65,29 +65,31 @@ User.find({}).remove(function() {
            {name:'Intimacy', depInterval: 14},
             {name:'Alone Time', depInterval: 14}]
 
-  },{
-    provider: 'local',
-    email: 'martin@gmail.com',
-    name: 'Martin',
-    password: 'martin',
-    bars: [{name:'Social', depInterval: 1},
-           {name:'Romance', depInterval: 1},
-            {name:'Entertainment', depInterval: 7},
-           {name:'Intimacy', depInterval: 14},
-            {name:'Alone Time', depInterval: 14}]
+  },
+  // {
+  //   provider: 'local',
+  //   email: 'martin@gmail.com',
+  //   name: 'Martin',
+  //   password: 'martin',
+  //   bars: [{name:'Social', depInterval: 1},
+  //          {name:'Romance', depInterval: 1},
+  //           {name:'Entertainment', depInterval: 7},
+  //          {name:'Intimacy', depInterval: 14},
+  //           {name:'Alone Time', depInterval: 14}]
 
-  },{
-    provider: 'local',
-    email: 'sara@gmail.com',
-    name: 'Sara',
-    password: 'sara',
-    bars: [{name:'Social', depInterval: 1},
-           {name:'Romance', depInterval: 1},
-            {name:'Entertainment', depInterval: 7},
-           {name:'Intimacy', depInterval: 14},
-            {name:'Alone Time', depInterval: 14}]
+  // },{
+  //   provider: 'local',
+  //   email: 'sara@gmail.com',
+  //   name: 'Sara',
+  //   password: 'sara',
+  //   bars: [{name:'Social', depInterval: 1},
+  //          {name:'Romance', depInterval: 1},
+  //           {name:'Entertainment', depInterval: 7},
+  //          {name:'Intimacy', depInterval: 14},
+  //           {name:'Alone Time', depInterval: 14}]
 
-  }, function() {
+  // },
+  function() {
       console.log('finished populating users');
     }
   );
