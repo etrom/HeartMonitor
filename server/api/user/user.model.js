@@ -7,6 +7,7 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var barSchema = new Schema ({
     name: String,
+    // NOTE: depInterval value represents the number of days it takes for a bar to deplete.
     depInterval: Number,
     fulfillment: {
       type: Number,
