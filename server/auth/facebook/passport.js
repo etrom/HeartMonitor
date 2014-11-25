@@ -24,6 +24,7 @@ exports.setup = function (User, config) {
             provider: 'facebook',
             facebook: profile._json,
             profilePic: 'https://graph.facebook.com/' + profile._json.id + '/picture?width=300',
+            // NOTE: depInterval value represents the number of days it takes for a bar to deplete.
             bars: [{name:'Social', depInterval: 1},
                     {name:'Romance', depInterval: 1},
                     {name:'Entertainment', depInterval: 7},
