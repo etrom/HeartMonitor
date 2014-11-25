@@ -18,15 +18,16 @@ module.exports = function() {
   var depleteBars = new CronJob('0 0 * * * *', function(){
     User.find().populate('partner').exec(function (err, user) {
       async.each(user, function(user, doneOneUser) {
-        // var interval = user.bar.depInterval;
-        // -= 0.005 * 60  14 days depletion
-        // -= 0.01 * 60 7 days depletion
-        // ]-= 1.25 * 60 depletes 1.25 every sec really fast/ test case
+        // depInterval passed in will represent the number of days a bar will
+        //    take to fully deplete.
+        // The product of cron job interval and number of days will provide
+        //    subtrahend, therefore changes to the frequency of the 
+        //    cron job will require changing one of the muliplicands.
         for(var i = 0, length = user.bars.length; i < length; i++) {
 
           var full = user.bars[i].fulfillment;
           full = full.toFixed(3);
-          full -= 0.01 * 60; //depleting .01 every second
+          full -= 100 / (user.bars[i].depInterval*24); 
             if(user.partner && full <= 45 && user.reminded === false) {
               user.reminded = true;
               user.dateReminded = Date.now();
