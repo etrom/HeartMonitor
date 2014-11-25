@@ -46,7 +46,8 @@ var UserSchema = new Schema({
   partner: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  profilePic: String
 
 });
 
