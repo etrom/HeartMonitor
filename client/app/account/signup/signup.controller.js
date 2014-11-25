@@ -16,11 +16,11 @@ angular.module('barsApp')
           email: $scope.user.email,
           password: $scope.user.password,
           partner: $stateParams.signUpId,
-          bars: [{name:'Social', barInterval: 1},
-           {name:'Romance', barInterval: 1},
-            {name:'Entertainment', barInterval: 7},
-           {name:'Intimacy', barInterval: 14},
-            {name:'Alone Time', barInterval: 14}]
+          bars: [{name:'Social', depInterval: 1},
+           {name:'Romance', depInterval: 1},
+            {name:'Entertainment', depInterval: 7},
+           {name:'Intimacy', depInterval: 14},
+            {name:'Alone Time', depInterval: 14}]
         }).
         then(function() {
           Auth.getCurrentUser().$promise.then(function(data) {

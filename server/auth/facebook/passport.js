@@ -24,11 +24,11 @@ exports.setup = function (User, config) {
             provider: 'facebook',
             facebook: profile._json,
             profilePic: 'https://graph.facebook.com/' + profile._json.id + '/picture?width=300',
-            bars: [{name:'Social', barInterval: 1},
-                    {name:'Romance', barInterval: 1},
-                    {name:'Entertainment', barInterval: 7},
-                    {name:'Intimacy', barInterval: 14},
-                    {name:'Alone Time', barInterval: 14}]
+            bars: [{name:'Social', depInterval: 1},
+                    {name:'Romance', depInterval: 1},
+                    {name:'Entertainment', depInterval: 7},
+                    {name:'Intimacy', depInterval: 14},
+                    {name:'Alone Time', depInterval: 14}]
           });
           user.save(function(err) {
             if (err) done(err);
