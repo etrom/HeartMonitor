@@ -68,7 +68,6 @@ angular.module('barsApp')
 
         function(Blob){
           $scope.chosenPic = true
-          console.log(Blob.url + '+.jpg', 'theblob')
           $scope.profilePicUrl = Blob.url + '+.jpg'
 
         }
@@ -91,7 +90,6 @@ angular.module('barsApp')
    });
 
    $scope.launchEditor = function(id, src) {
-               debugger;
     featherEditor.launch({
       image: id,
       url: $scope.profilePicUrl,
