@@ -1,7 +1,26 @@
 <div class="container" >
   <div class="row">
     <div class="col-sm-6">
-      <img src="{{currentUser.profilePic}}" width="200px">
+      <div>
+        <div ng-mouseenter="showIcon = true" ng-mouseleave="showIcon = false" id='injection_site'>
+          <!-- When you have no photo show blank pic and add a picture button -->
+          <a ng-hide="chosenPic" ng-click="editProfilePic()" ><span ng-show="showIcon" ng-hide"chosenPic" class="glyphicon glyphicon-pencil"></span></a>
+          <img ng-hide="chosenPic" class="userImage" src="{{profilePicUrl}}" width="125px" height="125px">
+          <!-- After you have photo show edit picture button -->
+          <a ng-show="chosenPic" ng-click="launchEditor('image1', '{{profilePicUrl}}')" ><span ng-show="showIcon" ng-show"chosenPic" class="glyphicon glyphicon-pencil"></span></a>
+          <img ng-show="chosenPic" class="userImage" id='image1' src="{{profilePicUrl}}" width="125px" height="125px"/>
+
+        </div>
+<!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
+
+      </div>
+
+<!--       <div>
+        <div ng-mouseenter="showIcon = true" ng-mouseleave="showIcon = false">
+          <a ng-click="launchEditor('image1', 'http://images.aviary.com/imagesv5/feather_default.jpg')" ><span ng-show="showIcon" class="glyphicon glyphicon-pencil"></span></a>
+        <!-- {{currentUser.profilePic}} -->
+
+
       <h1 class="page-header">My bars:</h1>
       <div>{{bar}}</div>
       <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bar in bars">
