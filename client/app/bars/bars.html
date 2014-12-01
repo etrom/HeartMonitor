@@ -1,19 +1,20 @@
 <div class="container" >
   <div class="row">
     <div class="col-sm-6">
-      <div>
-        <div ng-mouseenter="showIcon = true" ng-mouseleave="showIcon = false" id='injection_site'>
-          <!-- When you have no photo show blank pic and add a picture button -->
-          <a ng-hide="chosenPic" ng-click="editProfilePic()" ><span ng-show="showIcon" ng-hide"chosenPic" class="glyphicon glyphicon-pencil"></span></a>
-          <img ng-hide="chosenPic" class="userImage" src="{{profilePicUrl}}" width="125px" height="125px">
-          <!-- After you have photo show edit picture button -->
-          <a ng-show="chosenPic" ng-click="launchEditor('image1', '{{profilePicUrl}}')" ><span ng-show="showIcon" ng-show"chosenPic" class="glyphicon glyphicon-pencil"></span></a>
-          <img ng-show="chosenPic" class="userImage" id='image1' src="{{profilePicUrl}}" width="125px" height="125px"/>
-
-        </div>
+          <div class="imgContainer" ng-mouseenter="showIcon = true" ng-mouseleave="showIcon = false" >
+            <!-- When you have no photo show blank pic and add a picture button -->
+            <a ng-hide="chosenPic" ng-click="editProfilePic()" >
+              <span ng-show="showIcon" ng-hide"chosenPic" class="glyphicon glyphicon-pencil"></span>
+              <img ng-hide="chosenPic" class="userImage" src="{{profilePicUrl}}" width="125px" height="125px">
+            </a>
+            <!-- After you have photo show edit picture button -->
+            <a ng-show="chosenPic" ng-click="launchEditor('image1', '{{profilePicUrl}}')" >
+              <span ng-show="showIcon" ng-show"chosenPic" class="glyphicon glyphicon-pencil"></span>
+              <img ng-show="chosenPic" class="userImage" id='image1' src="{{profilePicUrl}}" width="125px" height="125px"/>
+            </a>
+          </div>
 <!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
 
-      </div>
 
 <!--       <div>
         <div ng-mouseenter="showIcon = true" ng-mouseleave="showIcon = false">
@@ -29,7 +30,7 @@
             <div ng-mouseenter="show = true" ng-mouseleave="show = false"class="progress-bar progress-bar-success progress-bar-striped " role="progressbar" aria-valuenow="{{bars.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: {{bar.fulfillment}}%"><span ng-show="show">{{bar.fulfillment.toFixed()}}%</span>
             </div>
           </div>
-           <button type="button" class="btn btn-primary" bs-dropdown="dropdown" ng-click="plusButtonClicked(bar.name)">+</button>
+           <button type="button" class="btn btn-primary" bs-dropdown="dropdown">+</button>
            <button type="button" class="close" ng-click="deleteBar(bar)">&times;</button>
         </li>
       </ul>

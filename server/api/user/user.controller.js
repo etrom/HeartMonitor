@@ -64,16 +64,6 @@ console.log(req.params, 'the params')
   });
 };
 
-exports.showWholeUser = function (req, res, next) {
-  var userId = req.params.id;
-console.log(req.params, 'the params')
-  User.findById(userId, function (err, user) {
-    if (err) return next(err);
-    if (!user) return res.send(401);
-    res.json(user);
-  });
-};
-
 // getBars
 
 exports.getBars = function (req, res, next) {
@@ -134,6 +124,15 @@ exports.updateRequest = function(req,res){
     res.json(200, user);
   })
 };
+
+
+exports.updateProfilePic = function(req,res){
+  User.findOneAndUpdate({ _id:req.params.id},{profilePic: req.body.profilePic}, function(err,user) {
+    // , reqFrom: req.params.
+    if(err) {return res.send(500, err)};
+    res.json(200, user);
+  })
+};
 /**
  * Deletes a user
  * restriction: 'admin'
@@ -154,14 +153,14 @@ exports.addPercent = function(req, res){
     console.log(user, 'user object')
     if(err) {return res.send(500, err)};
     console.log(name, 'inside var name');
-    console.log(user.bars.name, 'user.bars.name')
     for(var i=0; i < user.bars.length; i++){
       if (user.bars[i].name === name){
+        console.log(user.bars[i].name, 'name')
+        console.log(user.bars[i].fulfillment, 'fulfillment')
         user.bars[i].fulfillment += parseInt(req.body.fulfillment);
         if (user.bars[i].fulfillment > 100){
           user.bars[i].fulfillment = 100;
         }
-        i = user.bars.length;
       }
       if (user.bars[i].fulfillment >= 65){
           user.reminded = false;
