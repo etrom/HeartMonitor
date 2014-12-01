@@ -11,13 +11,10 @@ var User = require('../user/user.model');
 
 
 exports.sendRequest = function(req, res) {
-  console.log('got here', req.body);
   emailTemplates(templatesDir, function(err, template) {
-
     if (err) {
       console.log(err, 'error');
     } else {
-      console.log('we are in the else')
     // An example users object with formatted email function
       var locals = {
         email: 'elaine.trombley3@gmail.com',
@@ -45,7 +42,7 @@ exports.sendRequest = function(req, res) {
           if (err) {
             console.log(err);
           } else {
-            console.log(responseStatus.message);
+            res.json(200, 'Message sent');
           }
         });
       }
@@ -68,7 +65,7 @@ exports.sendRequest = function(req, res) {
                   if (err) {
                     console.log(err);
                   } else {
-                    console.log(responseStatus.message);
+                    res.json(200, 'Message sent');
                   }
                 });
               }

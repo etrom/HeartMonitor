@@ -2,14 +2,16 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 exports.setup = function (User, config) {
+  console.log('FB_User', User);
   passport.use(new FacebookStrategy({
       clientID: config.facebook.clientID,
       clientSecret: config.facebook.clientSecret,
       callbackURL: config.facebook.callbackURL
     },
+
     function(accessToken, refreshToken, profile, done) {
       User.findOne({
-        'facebook.id': profile.id
+        'facebook.id': profile.id,
       },
       function(err, user) {
         if (err) {
