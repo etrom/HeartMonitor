@@ -1,31 +1,38 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('PartnerCtrl', function ($scope, Auth, $http) {
+  .controller('PartnerCtrl', function ($scope, Auth, $http, $modal) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.partnerEmail = '';
     $scope.invite = false;
     $scope.hasPartner = false;
+    $scope.clicked= false;
+
+    $scope.addFB = function() {
+      $scope.clicked = true;
+    }
+    
 
     $scope.currentUser.$promise.then(function(user) {
-      console.log('user partner', user.partner)
       if (user.partner) {
-        console.log('im a partaner')
         // $http.get('/api/users/whole/' + user.partner).success(function(partner){
             $scope.partner = user.partner;
             $scope.hasPartner = true;
         // })
+      } else {
+        if ($scope.currentUser.facebook.significant_other) {
+          $scope.fbPartnerPic = 'https://graph.facebook.com/' + $scope.currentUser.facebook.significant_other.id + '/picture?width=200';
+          var myModal = $modal({scope: $scope, template: "/app/partner/fbModal.html", title: '<i class="fa fa-facebook-square"></i> You have a significant other on Facebook', content: 'Would like to add ' + $scope.currentUser.facebook.significant_other.name + ' as your Heart Bar Partner?', show: true});
+        }
       }
     })
 
 
     $scope.requestPartner = function(){
-        console.log($scope.partnerEmail);
         $http.post('/api/users/findExisting/'+ $scope.currentUser._id, {email: $scope.partnerEmail}).
         success(function(data, status, headers, config) {
 
           //if they exist in the database send the request
-          console.log(data, 'data')
           if(data[0]) {
             $scope.message = "request sent";
           } else {
@@ -33,23 +40,18 @@ angular.module('barsApp')
             //if they do not tell them the user does not exist
             $scope.message = 'user does not exist';
             var email = $scope.partnerEmail;
-            $scope.inviteButton(email);
-
           }
-          $scope.partnerEmail = '';
-          // socket.syncUpdates('message', $scope.message);
-
         }).
         error(function(data, status, headers, config) {
-
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
         });
       }
 
       $scope.uniqueUrl = '/signup/'+ $scope.currentUser._id;
 
-      $scope.sendInvite = function(){
+      $scope.sendInvite = function(fbEmail){
+        if (fbEmail) {
+          $scope.partnerEmail = fbEmail;
+        }
         $http.post('api/emails/', {email: $scope.partnerEmail, reqFrom: $scope.currentUser._id,
                                       reqFromName:$scope.currentUser.name, url: $scope.uniqueUrl }).
           success(function(data, status, headers, config) {
@@ -58,11 +60,9 @@ angular.module('barsApp')
             $scope.submitted = true;
            }).
           error(function(data, status, headers, config) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
           });
 
-          $scope.partner = '';
+          $scope.partnerEmail = '';
       };
 
 
