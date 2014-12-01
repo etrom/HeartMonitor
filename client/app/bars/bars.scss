@@ -1,11 +1,28 @@
 .userImage {
     border-radius: 100%;
     margin-top: 5%;
-
+    margin-right: auto;
+    // margin-left: auto;
+    &:hover {
+        background:#000;
+        opacity:0.5;
+    }
 }
 
+.imgContainer{
+    margin-left: 35%;
+    border-radius: 100%;
+    margin-top: 5%;
+}
+.glyphicon-pencil {
+    display: block;
 
-.userImage:hover{
-
+    top: 75px;
+    right: 50%;
+    color: white;
+    font-size: 3em;
+    &:hover {
+        cursor: pointer;
+    }
 }
 

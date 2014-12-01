@@ -15,9 +15,17 @@ angular.module('barsApp')
 
   .controller('BarCtrl', function ($scope, Auth, $http, $log) {
     $scope.currentUser = Auth.getCurrentUser();
-    $scope.bars = $scope.currentUser.bars;
-    $scope.plusButtonPressed = '';
-    $scope.profilePicUrl = "http://bandarito.ph/assets/uploads/profile_image/default.jpg";
+    // $scope.bars = $scope.currentUser.bars;
+
+    $scope.currentUser.$promise.then(function(user) {
+    $scope.bars = user.bars;
+      if (user.profilePic) {
+        $scope.profilePicUrl = user.profilePic;
+      }
+      else {
+        $scope.profilePicUrl = "http://bandarito.ph/assets/uploads/profile_image/default.jpg";
+      }
+    })
 
     // refresh the bars (900000 = 15 minutes)
     setInterval(function(){
@@ -25,33 +33,25 @@ angular.module('barsApp')
         .success(function(data, status, headers, config) {
           $scope.bars = data;
       })
-      for(var i=0, len=$scope.bars.length; i<len; i++) {
-        $scope.bars[i].fulfillment += 0;
-      };
+      // for(var i=0, len=$scope.bars.length; i<len; i++) {
+      //   $scope.bars[i].fulfillment += 0;
+      // };
     },900000)
 
     // values for the points dropdown button
     $scope.dropdown = [
-      {text: '<i class="fa fa-plus"></i>&nbsp;10', click: 'addPercent(10)'},
-      {text: '<i class="fa fa-plus"></i>&nbsp;20', click: 'addPercent(20)'},
-      {text: '<i class="fa fa-plus"></i>&nbsp;30', click: 'addPercent(30)'}
+      {text: '<i class="fa fa-plus"></i>&nbsp;10', click: 'addPercent(10, bar.name)'},
+      {text: '<i class="fa fa-plus"></i>&nbsp;20', click: 'addPercent(20, bar.name)'},
+      {text: '<i class="fa fa-plus"></i>&nbsp;30', click: 'addPercent(30, bar.name)'}
     ];
 
-    // determine and record which bar's plus dropdown has been accessed
-    $scope.plusButtonClicked = function(barName) {
-      console.log('ding', barName);
-      $scope.plusButtonPressed = barName;
-    }
 
     // increase fulfillment #'s
-    $scope.addPercent = function(num){
-      console.log($scope.currentUser._id, 'user');
-      console.log($scope.plusButtonPressed, 'name');
-      console.log(num, 'num')
-      $http.post('/api/users/bar/' + $scope.currentUser._id, { barName: $scope.plusButtonPressed, fulfillment: num});
-      console.log('added');
+    $scope.addPercent = function(num, barName){
+      $scope.barClicked = barName;
+      $http.post('/api/users/bar/' + $scope.currentUser._id, { barName: $scope.barClicked, fulfillment: num});
       for(var i=0, len=$scope.bars.length; i<len; i++) {
-        if($scope.bars[i].name == $scope.plusButtonPressed ) {
+        if($scope.bars[i].name == $scope.barClicked ) {
           $scope.bars[i].fulfillment += num;
           i = len;
         }
@@ -68,8 +68,8 @@ angular.module('barsApp')
 
         function(Blob){
           $scope.chosenPic = true
-          console.log(Blob.url + '+.jpg', 'theblob')
           $scope.profilePicUrl = Blob.url + '+.jpg'
+          $http.post('/api/users/profilePic/' + $scope.currentUser._id, { profilePic: $scope.profilePicUrl});
 
         }
       );
@@ -91,7 +91,6 @@ angular.module('barsApp')
    });
 
    $scope.launchEditor = function(id, src) {
-               debugger;
     featherEditor.launch({
       image: id,
       url: $scope.profilePicUrl,

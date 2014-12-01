@@ -21,13 +21,13 @@
   </div>
   <!--  -->
   <div ng-show="hasPartner">
+    <img ng-hide="chosenPic" class="partnerImage" src="{{partner.profilePic}}" width="125px" height="125px"></a>
     <h1 class="page-header">{{partner.name}}'s bars:</h1>
     <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bar in partner.bars">
       <li><a href="#">{{bar.name}}</a>
         <div class="progress">
-          <div class="progress-bar progress-bar-success progress-bar-striped " role="progressbar" aria-valuenow="{{bar.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: {{bar.fulfillment}}%">
-            <span class="sr-only">45% Complete</span>
-          </div>
+           <div ng-mouseenter="show = true" ng-mouseleave="show = false"class="progress-bar progress-bar-success progress-bar-striped " role="progressbar" aria-valuenow="{{bars.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: {{bar.fulfillment}}%"><span ng-show="show">{{bar.fulfillment.toFixed()}}%</span>
+            </div>
         </div>
       </li>
     </ul>
