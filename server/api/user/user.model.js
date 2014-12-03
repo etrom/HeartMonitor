@@ -48,7 +48,10 @@ var UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  profilePic: String
+  profilePic: String,
+  quizNumber: {type: Number, default: 1},
+  quizCurrent: [],
+  quizResponse: []
 
 });
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, $window) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {

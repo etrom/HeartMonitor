@@ -18,4 +18,5 @@ router.post('/profilePic/:id', controller.updateProfilePic);
 router.post('/', controller.create);
 router.post('/:id/confirmPartner/:reqFrom', auth.isAuthenticated(), controller.addPartner)
 router.post('/:id/requestPartner/:reqFrom', auth.isAuthenticated(), controller.updateRequest)
+router.post('/:id/quiz/', auth.isAuthenticated(), controller.saveQuiz)
 module.exports = router;
