@@ -14,6 +14,7 @@ var path = require('path'),
 module.exports = function() {
   // runs every second for testing purposes
   // var depleteBars = new CronJob('* * * * * *', function() {
+
     //runs every hour
   var depleteBars = new CronJob('0 0 * * * *', function(){
     User.find().populate('partner').exec(function (err, user) {
@@ -21,20 +22,20 @@ module.exports = function() {
         // depInterval passed in will represent the number of days a bar will
         //    take to fully deplete.
         // The product of cron job interval and number of days will provide
-        //    subtrahend, therefore changes to the frequency of the 
+        //    subtrahend, therefore changes to the frequency of the
         //    cron job will require changing one of the muliplicands.
         for(var i = 0, length = user.bars.length; i < length; i++) {
 
           var full = user.bars[i].fulfillment;
           full = full.toFixed(3);
-          full -= 100 / (user.bars[i].depInterval*24); 
+          full -= 100 / (user.bars[i].depInterval*24);
             if(user.partner && full <= 45 && user.reminded === false) {
               user.reminded = true;
               user.dateReminded = Date.now();
               user.save();
               console.log('reminded', user.reminded)
               console.log('date', user.dateReminded)
-              var uniqueUrl = '/reminder/' + user.partner._id
+              var uniqueUrl = '/login/lowBars/'+ user._id +'/' + user.bars[i].name
               emailTemplates(templatesDir, function(err, template) {
                 if (err) {
                   console.log(err, 'error');
@@ -43,8 +44,7 @@ module.exports = function() {
                   var locals = {
                     link: 'http://localhost:9000' + uniqueUrl ,
                     name: {
-                      first: user.partner.name,
-                      last: 'Mia',
+                      first: user.partner.name
                     }
                   };
                     // Send a single email
@@ -126,7 +126,7 @@ depleteBars.start();
 
 
 // var weeklyStatusEmail = new CronJob('* * * * * *', function() {
-    //runs at 11:45 every we
+    //runs at 11:45 every wed
   var weeklyStatusEmail = new CronJob('00 45 11 * * 3', function(){
     User.find().populate('partner').exec(function (err, user) {
       async.each(user, function(user, doneOneUser) {
@@ -153,7 +153,7 @@ depleteBars.start();
                       trans.sendMail({
                         from: 'HeartBars <heartbarsmailer@gmail.com>',
                         to: user.partner.email,
-                        subject: user.name +"s Bars are getting low ♥",
+                        subject: user.partner.name +", here is your weekly HeartBars Breakdown ♥",
                         html: html,
                         generateTextFromHTML: true,
                         text: text

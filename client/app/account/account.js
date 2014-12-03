@@ -30,4 +30,15 @@ angular.module('barsApp')
         controller: 'SettingsCtrl',
         authenticate: true
       })
+      .state('surveyLogin', {
+        url: '/login/lowBars/:userId/:barName',
+        templateUrl: 'app/account/login/login.html',
+        controller: 'LoginCtrl'
+      })
+      .state('barUpdate', {
+        url: '/messages/barsSurveyUpdate/:userId/:barName',
+        templateUrl: 'app/surveys/surveys.html',
+        controller: 'SurveysCtrl',
+        authenticate: true
+      })
   });

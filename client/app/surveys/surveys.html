@@ -1,0 +1,24 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+        <form class="bar-form nav-stacked ">
+             <h1>Oh no! Your partners {{currentBar}} bar is getting low!</h1>
+
+              <h4>Here are some ways you can increase it</h4>
+            <div class="list-group">
+              <li  class="list-group-item active blue">
+                Get ideas or choose something you've done recently and add to your partners bar
+              </li>
+              <li class="list-group-item list" ng-click="barPercentRequest(10)"><span class="badge">+ 10%</span>Plan a double date</li>
+              <li class="list-group-item list"><span class="badge">+ 30%</span>Attend a casual party or gathering</li>
+              <li class="list-group-item list"><span class="badge">+ 50%</span>Attend a wedding or work event</li>
+              <li class="list-group-item list"><span class="badge">+ 50%</span>Go on vacation with friends or family</li>
+            </div>
+        </form>
+    </div>
+
+  </div>
+</div>
