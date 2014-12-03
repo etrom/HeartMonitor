@@ -21,7 +21,9 @@ var actionRequestSchema = new Schema ({
   accepted: {
     type: Boolean,
     default: false
-    }
+    },
+  dateSent: Date,
+  dateAccepted: Date
 });
 
 

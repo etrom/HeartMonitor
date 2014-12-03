@@ -37,8 +37,34 @@ angular.module('barsApp')
       })
       .state('barUpdate', {
         url: '/messages/barsSurveyUpdate/:userId/:barName',
-        templateUrl: 'app/surveys/surveys.html',
-        controller: 'SurveysCtrl',
-        authenticate: true
+        views: {
+          "" : {
+                templateUrl: 'app/surveys/surveys.html',
+                controller: 'SurveysCtrl',
+                authenticate : true
+              },
+
+          'nwQuiz@barUpdate' : {
+                controller: 'QuizCtrl',
+                templateUrl: 'app/quiz/quiz.html',
+                authenticate: true
+              }
+        }
+        // templateUrl: 'app/surveys/surveys.html',
+        // controller: 'SurveysCtrl',
+        // authenticate: true
       })
+      // .state('quiz', {
+      //   url: '/quiz',
+      //   templateUrl: 'app/quiz/quiz.html',
+      //   controller: 'QuizCtrl'
+      // })
+      // .state('quizResponse', {
+      //   url: '/quizResponse/:id',
+      //   ,
+      //   controller: 'QuizCtrl',
+      //   authenticate: true
+      // })
+
+
   });
