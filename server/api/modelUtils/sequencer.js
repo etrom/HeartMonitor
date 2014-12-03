@@ -1,5 +1,7 @@
-module.exports = function(mongoose) {
-  var Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+
+function makeSequencer (mongooseInstance) {
+  var Schema = mongooseInstance.Schema;
   var CountersSchema = new Schema({
     _id: {
       type: String,
@@ -12,7 +14,7 @@ module.exports = function(mongoose) {
   }, {
     versionKey: false
   });
-  var Counters = mongoose.model('Counters', CountersSchema);
+  var Counters = mongooseInstance.model('Counters', CountersSchema);
 
   var getNext = function(collection, callback) {
     var query = {
@@ -32,9 +34,15 @@ module.exports = function(mongoose) {
     });
   }
 
-  return {
-    getNext: getNext
-  }
+  return getNext;
 }
+
+
+
+var getNext = makeSequencer(mongoose); // this makes the getNext function
+
+module.exports = {
+  getNext: getNext
+};
 
 

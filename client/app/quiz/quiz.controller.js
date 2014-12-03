@@ -28,8 +28,9 @@ angular.module('barsApp')
 
     $scope.save = function(){
       $scope.uniqueUrl = '/quizResponse/'+ $scope.currentUser._id;
-      $http.post('api/users/' + $scope.currentUser._id + '/quiz/', {quizCurrent: $scope.quiz }).
+      $http.post('api/historys/', {user: $scope.currentUser._id, type: 'NW', historyObj: $scope.quiz }).
         success(function(data, status, headers, config) {
+          console.log(data);
           $http.post('api/emails/sendQuizRequest/', {email: $scope.currentUser.partner.email, reqFrom: $scope.currentUser._id,
                                     reqFromName:$scope.currentUser.name, url: $scope.uniqueUrl, 
                                     profilePic: $scope.currentUser.profilePic }).
