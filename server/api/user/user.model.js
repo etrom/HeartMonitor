@@ -58,7 +58,9 @@ var UserSchema = new Schema({
   profilePic: String,
   quizNumber: {type: Number, default: 1},
   quizCurrent: [],
-  quizResponse: []
+  quizResponse: [],
+  nwQuizNumber: {type: Number, default: 1},
+  fbQuizNumber: {type: Number, default: 1}
 
 });
 
