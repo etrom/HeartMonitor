@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('QuizCtrl', function ($scope, Auth, $http, $stateParams) {
+  .controller('QuizCtrl', function ($scope, Auth, $http) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.quiz = [];
-    $scope.message = "When you complete the quiz below, we will send the quiz WITHOUT your answers to {{currentUser.partner.name}}.  Once {{currentUser.partner.name}} guesses your responses, we will share your combined answers with both of you!";
-    $scope.partnersQuizID = $stateParams;
-    // consol.log($stateParams);
-    console.log($scope.partnersQuizID, 'ID');
+    // $scope.message = "When you complete the quiz below, we will send the quiz WITHOUT your answers to {{currentUser.partner.name}}.  Once {{currentUser.partner.name}} guesses your responses, we will share your combined answers with both of you!";
+    // $scope.partnersQuizID = $stateParams;
+    // // consol.log($stateParams);
+    // console.log($scope.partnersQuizID, 'ID');
 
     $scope.currentUser.$promise.then(function(user) {
       $http.get('/api/quizs/num/'+ $scope.currentUser.quizNumber).
