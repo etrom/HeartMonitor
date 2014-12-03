@@ -1,0 +1,24 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Heart Bars</h1>
+    <p class="lead"></p>
+    <img src="assets/images/hearbars_logo_orig.png" width="10%" alt="lovebar">
+  </div>
+</header>
+
+<div class="container" >
+  <div>
+    <h3>QUIZ TIME!</h3>
+    <p>{{message}}</p>
+    <p>HAVE FUN !</p>
+  </div>
+  <form name="quizForm" novalidate>
+    <div class="form-group" ng-repeat="question in quiz">
+      <label>{{question[0]}}</label>
+      <input type="text" class="from-control" name="answer" ng-model="question[1]" required>
+    </div>
+    <button ng:click="save()"
+             ng:disabled="quizForm.$invalid">Submit</button>
+  </from>
+</div>

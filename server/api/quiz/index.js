@@ -1,17 +1,16 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./email.controller');
+var controller = require('./quiz.controller');
 
 var router = express.Router();
 
-router.post('/', controller.sendRequest);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
-// router.post('/', controller.create);
+router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
-router.post('/sendQuizRequest/', controller.sendQuizRequest);
+router.get('/num/:seq', controller.showQuiz);
 
 module.exports = router;

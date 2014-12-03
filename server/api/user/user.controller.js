@@ -28,12 +28,10 @@ exports.create = function (req, res, next) {
   var bars = req.body.bars;
   delete req.body.bars;
   */
-  console.log(req.body, 'req.body')
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
   newUser.save(function(err, user) {
-    console.log('user', user)
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token });
@@ -56,7 +54,6 @@ exports.create = function (req, res, next) {
  */
 exports.show = function (req, res, next) {
   var userId = req.params.id;
-console.log(req.params, 'the params')
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
@@ -68,7 +65,6 @@ console.log(req.params, 'the params')
 
 exports.getBars = function (req, res, next) {
   var userId = req.params.id;
-console.log(req.params, 'the params')
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
@@ -97,14 +93,12 @@ exports.findExisting = function (req, res, next) {
 
 //add a partner
 exports.addPartner = function(req,res) {
-  console.log(req.body.acceptance, 'is accepted?')
   if (req.body.acceptance) {
     User.findOneAndUpdate({ _id:req.params.id},{requests: false, reqFrom: '', partner: req.params.reqFrom}, function(err,user) {
       if(err) {return res.send(500, err)};
     });
     User.findOneAndUpdate({ _id:req.params.reqFrom},{requests: false, reqFrom: '', partner: req.params.id}, function(err,user) {
       if(err) {return res.send(500, err)};
-      console.log('success')
       res.json(200, user);
     });
   } else {
@@ -171,17 +165,11 @@ exports.destroy = function(req, res) {
 
 //add bar percentage
 exports.addPercent = function(req, res){
-  console.log(req.body, 'body');
   var name = req.body.barName;
-  console.log(name, 'var name')
   User.findById(req.params.id, function(err,user) {
-    console.log(user, 'user object')
     if(err) {return res.send(500, err)};
-    console.log(name, 'inside var name');
     for(var i=0; i < user.bars.length; i++){
       if (user.bars[i].name === name){
-        console.log(user.bars[i].name, 'name')
-        console.log(user.bars[i].fulfillment, 'fulfillment')
         user.bars[i].fulfillment += parseInt(req.body.fulfillment);
         if (user.bars[i].fulfillment > 100){
           user.bars[i].fulfillment = 100;
@@ -190,14 +178,25 @@ exports.addPercent = function(req, res){
       if (user.bars[i].fulfillment >= 65){
           user.reminded = false;
         }
-
-
     }
       user.save();
       res.json(200, user);
     });
 };
 
+exports.saveQuiz = function(req,res) {
+  var userId = req.user._id;
+  User.findById(userId, function (err, user) {
+    if (err) { return handleError(res, err); }
+    user.quizCurrent = req.body.quizCurrent;
+    user.save(function (err) {
+          if (err) {
+            return handleError(res, err);
+          }
+          return res.json(200, user);
+        });
+  });
+};
 
 /**
  * Change a users password
