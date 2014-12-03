@@ -18,8 +18,13 @@ var barSchema = new Schema ({
 var actionRequestSchema = new Schema ({
   barName: String,
   increment: Number,
-  accepted: Boolean
+  accepted: {
+    type: Boolean,
+    default: false
+    }
 });
+
+
 
 var UserSchema = new Schema({
   name: String,

@@ -16,6 +16,7 @@ router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/profilePic/:id', controller.updateProfilePic);
 router.post('/', controller.create);
+router.post('/requests', auth.isAuthenticated(), controller.updateBarRequest);
 router.post('/:id/confirmPartner/:reqFrom', auth.isAuthenticated(), controller.addPartner)
 router.post('/:id/requestPartner/:reqFrom', auth.isAuthenticated(), controller.updateRequest)
 module.exports = router;
