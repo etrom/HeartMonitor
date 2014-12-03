@@ -36,10 +36,7 @@ angular.module('barsApp')
         controller: 'LoginCtrl'
       })
       .state('barUpdate', {
-        url: [
-        '/messages/barsSurveyUpdate/:userId/:barName',
-        '/survey'
-        ],
+        url: '/messages/barsSurveyUpdate/:userId/:barName',
         views: {
           "" : {
                 templateUrl: 'app/surveys/surveys.html',
