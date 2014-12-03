@@ -18,6 +18,11 @@ var barSchema = new Schema ({
 var actionRequestSchema = new Schema ({
   barName: String,
   increment: Number,
+  actionType: String,
+  instance:{
+    type: Schema.Types.ObjectId,
+    ref: 'History'
+  }
   accepted: {
     type: Boolean,
     default: false

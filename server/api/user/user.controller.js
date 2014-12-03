@@ -116,8 +116,10 @@ exports.updateBarRequest = function(req,res){
   User.findOne({ _id:req.body.userId}, function(err,user) {
     console.log(user, 'user')
     var new_req = {
+      //add type when it exists
       barName: req.body.barName,
-      increment: req.body.increment
+      increment: req.body.increment,
+      dateSent: Date.now()
     };
 
     user.actionRequests.push(new_req);
