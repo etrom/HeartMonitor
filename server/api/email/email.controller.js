@@ -15,97 +15,40 @@ exports.sendRequest = function(req, res) {
     if (err) {
       console.log(err, 'error');
     } else {
-    // An example users object with formatted email function
+      // An example users object with formatted email function
       var locals = {
         email: 'elaine.trombley3@gmail.com',
         link: 'http://localhost:9000' + req.body.url + '/' + req.body.email,
         name: {
           first: req.body.reqFromName,
-          last: 'Mia',
-
+          last: 'Mia'
         }
       };
 
-    // Send a single email
-    template('welcome', locals, function(err, html, text) {
-      if (err) {
-        console.log(err);
-      } else {
-        trans.sendMail({
-          from: 'HeartBars <heartbarsmailer@gmail.com>',
-          to: req.body.email,
-          subject: req.body.reqFromName +' has invited you to join HeartBars ♥',
-          html: html,
-          generateTextFromHTML: true,
-          text: text
-        }, function(err, responseStatus) {
-          if (err) {
-            console.log(err);
-          } else {
-            res.json(200, 'Message sent');
-          }
-        });
-      }
-    });
-
-      var Render = function(locals) {
-            this.locals = locals;
-            this.send = function(err, html, text) {
-              if (err) {
-                console.log(err);
-              } else {
-                transportBatch.sendMail({
-                  from: 'Spicy Meatball'+ req.body.email,
-                  to: locals.email,
-                  subject: 'Mangia gli spaghetti con polpette!',
-                  html: html,
-                  generateTextFromHTML: true,
-                  text: text
-                }, function(err, responseStatus) {
-                  if (err) {
-                    console.log(err);
-                  } else {
-                    res.json(200, 'Message sent');
-                  }
-                });
-              }
-            };
-            this.batch = function(batch) {
-              batch(this.locals, templatesDir, this.send);
-            };
-          };
-
-          // Load the template and send the emails
-          // template('welcome', true, function(err, batch) {
-          //   for(var user in users) {
-          //     var render = new Render(users[user]);
-          //     render.batch(batch);
-          //   }
-          // });
+      // Send a single email
+      template('welcome', locals, function(err, html, text) {
+        if (err) {
+          console.log(err);
+        } else {
+          trans.sendMail({
+            from: 'HeartBars <heartbarsmailer@gmail.com>',
+            to: req.body.email,
+            subject: req.body.reqFromName +' has invited you to join HeartBars ♥',
+            html: html,
+            generateTextFromHTML: true,
+            text: text
+          }, function(err, responseStatus) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.json(200, 'Message sent');
+            }
+          });
         }
       });
-
+    }
+  });
 }
-      // var mailOptions = {
-      //       from: user.name +' has invited you to join Heart Bars ♥ <heartbarsmailer@gmail.com>', // sender address
-      //       to: req.body.email, // list of receivers
-      //       subject: '♥♥♥♥♥', // Subject line
-      //       text: '♥♥♥♥♥', // plaintext body
-      //       html: '<b><a href="http://localhost:9000' + req.body.url + '">signup now</a></b>' // html body
-      //   };
-        // send mail with defined transport object
-        // trans.sendMail(mailOptions, function(error, info){
-        //     if(error){
-        //         console.log(error);
-        //     } else{
-        //         console.log('Message sent: ' + info.response);
-        //         res.json(200, 'Message sent');
-        //     }
-        // });
-        // if(err) { return handleError(res, err); }
-
-
-
 
 
 // Get list of emails
@@ -161,4 +104,45 @@ exports.destroy = function(req, res) {
 
 function handleError(res, err) {
   return res.send(500, err);
+}
+
+exports.sendQuizRequest = function(req, res) {
+  emailTemplates(templatesDir, function(err, template) {
+    if (err) {
+      console.log(err, 'error');
+    } else {
+      // An example users object with formatted email function
+      var locals = {
+        email: 'elaine.trombley3@gmail.com',
+        link: 'http://localhost:9000' + req.body.url,
+        profilePic: req.body.profilePic,
+        name: {
+          first: req.body.reqFromName,
+          last: 'Mia'
+        }
+      };
+
+      // Send a single email
+      template('quizRequest', locals, function(err, html, text) {
+        if (err) {
+          console.log(err);
+        } else {
+          trans.sendMail({
+            from: 'HeartBars <heartbarsmailer@gmail.com>',
+            to: req.body.email,
+            subject: '♥ ' +req.body.reqFromName +' has sent you a HeartBars quiz!',
+            html: html,
+            generateTextFromHTML: true,
+            text: text
+          }, function(err, responseStatus) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.json(200, 'Message sent');
+            }
+          });
+        }
+      });
+    }
+  });
 }
