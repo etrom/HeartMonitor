@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    sequencer = require('../modelUtils/sequencer')(mongoose);
+    sequencer = require('../modelUtils/sequencer');
 
 var QuizSchema = new Schema({
   seq: Number,
