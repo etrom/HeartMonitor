@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('QuizCtrl', function ($scope, Auth, $http) {
+  .controller('QuizCtrl', function ($scope, Auth, $http, quizFactory) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.quiz = [];
     // $scope.message = "When you complete the quiz below, we will send the quiz WITHOUT your answers to {{currentUser.partner.name}}.  Once {{currentUser.partner.name}} guesses your responses, we will share your combined answers with both of you!";
     // $scope.partnersQuizID = $stateParams;
     // // consol.log($stateParams);
     // console.log($scope.partnersQuizID, 'ID');
-
     $scope.currentUser.$promise.then(function(user) {
 
       $http.get('/api/quizs/num/' + user.quizNumber).success(function(data, status, headers, config) {
@@ -26,7 +25,7 @@ angular.module('barsApp')
     })
 
     $scope.save = function(){
-      
+
       $http.post('api/historys/', {user: $scope.currentUser._id, type: 'NW', historyObj: $scope.quiz }).
         success(function(data, status, headers, config) {
           console.log(data);
