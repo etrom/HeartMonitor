@@ -3,14 +3,13 @@
   <div>
     <h3>QUIZ TIME!</h3>
     <p>When you complete the quiz below, we will send the quiz WITHOUT your answers to {{currentUser.partner.name}}.  Once {{currentUser.partner.name}} guesses your responses, we will share your combined answers with both of you!</p>
-    <p>HAVE FUN !</p>
   </div>
   <form name="quizForm" novalidate>
     <div class="form-group" ng-repeat="question in quiz">
-      <label>{{question[0]}}</label>
+      <label>{{ question[0] }}</label>
       <input type="text" class="from-control" name="answer" ng-model="question[1]" required>
     </div>
-    <button ng:click="save()"
-             ng:disabled="quizForm.$invalid">Submit</button>
+    <button ng:click="save()" ng:disabled="quizForm.$invalid">Submit</button>
   </from>
+
 </div>

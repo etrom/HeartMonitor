@@ -10,13 +10,12 @@ angular.module('barsApp')
     // console.log($scope.partnersQuizID, 'ID');
 
     $scope.currentUser.$promise.then(function(user) {
-      $http.get('/api/quizs/num/'+ $scope.currentUser.quizNumber).
-      success(function(data, status, headers, config) {
+
+      $http.get('/api/quizs/num/' + user.quizNumber).success(function(data, status, headers, config) {
         data.questions.forEach(function(question) {
           $scope.quiz.push([question, '']);
         });
-      }).
-      error(function(data, status, headers, config) {
+      }).error(function(data, status, headers, config) {
       });
       if (user.profilePic) {
         $scope.profilePicUrl = user.profilePic;
@@ -31,7 +30,7 @@ angular.module('barsApp')
       $http.post('api/users/' + $scope.currentUser._id + '/quiz/', {quizCurrent: $scope.quiz }).
         success(function(data, status, headers, config) {
           $http.post('api/emails/sendQuizRequest/', {email: $scope.currentUser.partner.email, reqFrom: $scope.currentUser._id,
-                                    reqFromName:$scope.currentUser.name, url: $scope.uniqueUrl, 
+                                    reqFromName:$scope.currentUser.name, url: $scope.uniqueUrl,
                                     profilePic: $scope.currentUser.profilePic }).
             success(function(data, status, headers, config) {
               $scope.message = "request sent";
