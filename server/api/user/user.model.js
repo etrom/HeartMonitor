@@ -22,7 +22,7 @@ var actionRequestSchema = new Schema ({
   instance:{
     type: Schema.Types.ObjectId,
     ref: 'History'
-  }
+  },
   accepted: {
     type: Boolean,
     default: false

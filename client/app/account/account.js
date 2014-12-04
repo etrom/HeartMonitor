@@ -54,11 +54,11 @@ angular.module('barsApp')
         // controller: 'SurveysCtrl',
         // authenticate: true
       })
-      // .state('quiz', {
-      //   url: '/quiz',
-      //   templateUrl: 'app/quiz/quiz.html',
-      //   controller: 'QuizCtrl'
-      // })
+      .state('quiz', {
+        url: '/quiz',
+        templateUrl: 'app/quiz/quiz.html',
+        controller: 'QuizCtrl'
+      })
       // .state('quizResponse', {
       //   url: '/quizResponse/:id',
       //   ,
