@@ -64,7 +64,12 @@ angular.module('barsApp')
                 controller: 'QuizCtrl',
                 templateUrl: 'app/quizzes/quiz/quiz.html',
                 authenticate: true
-              }
+              },
+          'instagram@actionsViaFlirt' : {
+            templateUrl: 'app/instagramQuiz/instagramQuiz.html',
+            controller: 'InstagramquizCtrl',
+            authenticate: true
+          }
         }
       })
       .state('quizResponse', {

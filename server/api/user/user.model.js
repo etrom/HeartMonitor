@@ -65,7 +65,8 @@ var UserSchema = new Schema({
   quizCurrent: [],
   quizResponse: [],
   nwQuizNumber: {type: Number, default: 1},
-  fbQuizNumber: {type: Number, default: 1}
+  fbQuizNumber: {type: Number, default: 1},
+  fbAT: String
 
 });
 

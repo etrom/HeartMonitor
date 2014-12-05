@@ -1,8 +1,10 @@
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var https = require('https');
 
 exports.setup = function (User, config) {
-  console.log('FB_User', User);
+  // console.log('FB_User', User);
+  // console.log('FB_config', config);
   passport.use(new FacebookStrategy({
       clientID: config.facebook.clientID,
       clientSecret: config.facebook.clientSecret,
@@ -10,6 +12,15 @@ exports.setup = function (User, config) {
     },
 
     function(accessToken, refreshToken, profile, done) {
+
+      https.get("https://graph.facebook.com/me/friends?limit=10&access_token="+ accessToken + '&suppress_response_codes=true', function(res) {
+        res.on('data', function(d) {
+          process.stdout.write(d);
+        });
+      }).on('error', function(e) {
+        console.log("Got error: " + e.message);
+      });
+
       User.findOne({
         'facebook.id': profile.id,
       },
@@ -26,6 +37,7 @@ exports.setup = function (User, config) {
             provider: 'facebook',
             facebook: profile._json,
             profilePic: 'https://graph.facebook.com/' + profile._json.id + '/picture?width=300',
+            fbAT: accessToken,
             // NOTE: depInterval value represents the number of days it takes for a bar to deplete.
             bars: [{name:'Social', depInterval: 1},
                     {name:'Romance', depInterval: 1},
