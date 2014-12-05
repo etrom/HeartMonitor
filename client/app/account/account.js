@@ -50,9 +50,43 @@ angular.module('barsApp')
                 authenticate: true
               }
         }
-        // templateUrl: 'app/surveys/surveys.html',
-        // controller: 'SurveysCtrl',
-        // authenticate: true
+      })
+      .state('actionsViaFlirt', {
+        url: '/flirt/survey',
+        views: {
+          "" : {
+                templateUrl: 'app/surveys/surveys.html',
+                controller: 'SurveysCtrl',
+                authenticate : true
+              },
+
+          'nwQuiz@actionsViaFlirt' : {
+                controller: 'QuizCtrl',
+                templateUrl: 'app/quiz/quiz.html',
+                authenticate: true
+              },
+          'instagram@actionsViaFlirt' : {
+            templateUrl: 'app/instagramQuiz/instagramQuiz.html',
+            controller: 'InstagramquizCtrl',
+            authenticate: true
+          }
+        }
+      })
+      .state('quizResponse', {
+        url: '/response',
+        views: {
+          "" : {
+                templateUrl: 'app/surveys/surveys.html',
+                controller: 'SurveysCtrl',
+                authenticate : true
+              },
+
+          'nwQuizResponse@quizResponse' : {
+                controller: 'QuizresponseCtrl',
+                templateUrl: 'app/surveys/surveys.html',
+                authenticate: true
+              }
+        }
       })
       .state('quiz', {
         url: '/quiz',
