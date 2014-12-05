@@ -1,17 +1,15 @@
 
 <div class="container" >
-  <div>
-    <h3>QUIZ TIME!</h3>
-    <p>When you complete the quiz below, we will send the quiz WITHOUT your answers to {{currentUser.partner.name}}.  Once {{currentUser.partner.name}} guesses your responses, we will share your combined answers with both of you!</p>
-  </div>
-  <form name="quizForm" novalidate>
-    <div class="form-group" ng-repeat="question in quiz">
-      <label>{{ question[0] }}</label>
-      <input type="text" class="from-control" name="answer" ng-model="question[1]" required>
+    <h1>How well does your partner know you?</h1>
+    <h4>Take the quiz to find out.</h4>
+  <form class="bar-form nav-stacked" name="quizForm" novalidate>
+    <div class="list-group">
+      <li class="list-group-item active blue">We'll send the same quiz to {{currentUser.partner.name}} and let them guess your answers!</li>
+         <li ng-repeat="question in quiz" class="list-group-item list">{{ question[0] }}<span id="mySpan"><input   type="text" class="form-control input-sm" name="answer" ng-model="question[1]" required></span></li>
     </div>
-    <button ng:click="save()" ng:disabled="quizForm.$invalid">Submit</button>
-  </from>
-
-  {{test}}
-
+  </form>
+  <br>
+ <button class="btn btn-primary" ng-click="save()" ng-click="barPercentRequest(30)"ng-disabled="quizForm.$invalid">Send to {{currentUser.partner.name}} <span class="badge">   + 30pts</span></button>
+  <br>
+  <br>
 </div>

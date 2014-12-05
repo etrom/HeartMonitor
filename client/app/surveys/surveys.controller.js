@@ -1,5 +1,6 @@
 'use strict';
-
+// this page contains the view with the submit
+// button for all surveys/points/quizzes
 angular.module('barsApp')
   .controller('SurveysCtrl', function ($scope, $stateParams, quizFactory, Auth, $http, $window) {
     $scope.currentBar = $stateParams.barName;

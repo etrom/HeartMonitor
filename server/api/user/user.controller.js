@@ -112,9 +112,7 @@ exports.addPartner = function(req,res) {
 
 ////update bar increase request
 exports.updateBarRequest = function(req,res){
-  console.log('body', req.body)
   User.findOne({ _id:req.body.userId}, function(err,user) {
-    console.log(user, 'user')
     var new_req = {
       //add type when it exists
       barName: req.body.barName,
@@ -127,11 +125,6 @@ exports.updateBarRequest = function(req,res){
       if(err) {return res.send(500, err)};
     res.json(200, savedUser);
     });
-// {new_req.barname: req.body.barName, new_req.increment: req.body.increment}
-    // var new_req = new actionRequest();
-    // new_req.barname = 'String here';
-    // new_req.increment = number here;
-    // new_req.save();
 
   })
 };

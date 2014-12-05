@@ -24,24 +24,21 @@ angular.module('barsApp')
       }
     })
 
-    $scope.save = function(){
-
+    $scope.save = function() {
       $http.post('api/historys/', {user: $scope.currentUser._id, type: 'NW', historyObj: $scope.quiz }).
         success(function(data, status, headers, config) {
-          console.log(data);
           $scope.uniqueUrl = '/quizResponse/NW/'+ data.key;
-          $http.post('api/emails/sendQuizRequest/', {email: $scope.currentUser.partner.email, reqFrom: $scope.currentUser._id,
-                                    reqFromName:$scope.currentUser.name, url: $scope.uniqueUrl,
-                                    profilePic: $scope.currentUser.profilePic }).
-            success(function(data, status, headers, config) {
-              $scope.message = "QUIZ has been saved and email has been sent!"
-             }).
-            error(function(data, status, headers, config) {
-            });
-         }).
-        error(function(data, status, headers, config) {
+          //stop sending emails for the time being
+          // $http.post('api/emails/sendQuizRequest/', {
+          //                                             email: $scope.currentUser.partner.email,
+          //                                             reqFrom: $scope.currentUser._id,
+          //                                             reqFromName:$scope.currentUser.name,
+          //                                             url: $scope.uniqueUrl,
+          //                                             profilePic: $scope.currentUser.profilePic
+          //                                            }).success(function(data, status, headers, config) {
+          //   $scope.message = "QUIZ has been saved and email has been sent!"
+          // })
         });
-      };
-  });
+    }
 
-
+});

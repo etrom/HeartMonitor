@@ -78,7 +78,7 @@ angular.module('barsApp')
 
           'nwQuizResponse@quizResponse' : {
                 controller: 'QuizresponseCtrl',
-                templateUrl: 'app/surveys/surveys.html',
+                templateUrl: 'app/quiz/quizResponse/quizResponse.html',
                 authenticate: true
               }
         }
