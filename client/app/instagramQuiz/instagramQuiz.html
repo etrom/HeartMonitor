@@ -1,0 +1,27 @@
+<div class="col-md-12">
+This is the instagramQuiz view.
+<button ng-hide="instagramName" onclick="hello( 'instagram' ).login()"class='fa fa-instagram'> Instagram Log On</button>
+<!-- <button ng-click="logIn()"class='fa fa-instagram'> Instagram Log In</button> -->
+<button ng-show="instagramName" ng-click="loadPictures()"class='fa fa-instagram'> Instagram Get Pictures</button>
+<br>  
+<img src="{{instagramProfilePic}}" /> Hey {{instagramName}}
+<br>
+<form name="quizForm" novalidate>
+  <div class="form-group" ng-repeat="photo in instagramPhotos | startFrom:currentPage*pageSize | limitTo:pageSize">
+    <label><img src="{{photo[0]}}"</label>
+    <input type="text" class="from-control" name="answer" ng-model="question[2]" required>
+  </div>
+  <div ng-hide='noPictures'>
+    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+      Previous
+    </button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <button ng-disabled="currentPage >= instagramPhotos.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+      Next
+    </button>
+    <button ng-click="save()" ng-disabled="quizForm.$invalid">
+      Submit
+    </button>
+  </div>
+  </form>
+</div>
