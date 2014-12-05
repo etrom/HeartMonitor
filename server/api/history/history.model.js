@@ -10,12 +10,13 @@ var HistorySchema = new Schema({
   type: String,
   key: Number,
   historyObj: {},
-  responseObject: {},
-  created: Date
+  responseObj: {},
+  created: Date,
+  responseDate: Date
 });
 
 HistorySchema.pre('save', function(next) {
-  if(this.create === '') {
+  if(this.create ===  undefined) {
     this.created = Date.now();
   }
   next();
