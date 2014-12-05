@@ -20,6 +20,7 @@ angular.module('barsApp')
                 }
             }
 
+
     }
 
   });
