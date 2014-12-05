@@ -39,14 +39,14 @@ angular.module('barsApp')
         url: '/messages/barsSurveyUpdate/:userId/:barName',
         views: {
           "" : {
-                templateUrl: 'app/surveys/surveys.html',
+                templateUrl: 'app/quizzes/surveys/surveys.html',
                 controller: 'SurveysCtrl',
                 authenticate : true
               },
 
           'nwQuiz@barUpdate' : {
                 controller: 'QuizCtrl',
-                templateUrl: 'app/quiz/quiz.html',
+                templateUrl: 'app/quizzes/quiz/quiz.html',
                 authenticate: true
               }
         }
@@ -55,14 +55,14 @@ angular.module('barsApp')
         url: '/flirt/survey',
         views: {
           "" : {
-                templateUrl: 'app/surveys/surveys.html',
+                templateUrl: 'app/quizzes/surveys/surveys.html',
                 controller: 'SurveysCtrl',
                 authenticate : true
               },
 
           'nwQuiz@actionsViaFlirt' : {
                 controller: 'QuizCtrl',
-                templateUrl: 'app/quiz/quiz.html',
+                templateUrl: 'app/quizzes/quiz/quiz.html',
                 authenticate: true
               }
         }
@@ -71,14 +71,14 @@ angular.module('barsApp')
         url: '/response',
         views: {
           "" : {
-                templateUrl: 'app/surveys/surveys.html',
+                templateUrl: 'app/quizzes/surveys/surveys.html',
                 controller: 'SurveysCtrl',
                 authenticate : true
               },
 
           'nwQuizResponse@quizResponse' : {
                 controller: 'QuizresponseCtrl',
-                templateUrl: 'app/quiz/quizResponse/quizResponse.html',
+                templateUrl: 'app/quizzes/quiz/quizResponse/quizResponse.html',
                 authenticate: true
               }
         }
