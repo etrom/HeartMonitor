@@ -2,11 +2,11 @@
 // this page contains the view with the submit
 // button for all surveys/points/quizzes
 angular.module('barsApp')
-  .controller('SurveysCtrl', function ($scope, $stateParams, quizFactory, Auth, $http, $window) {
+  .controller('SurveysCtrl', function ($scope, $stateParams, Auth, $http, $window) {
     $scope.currentBar = $stateParams.barName;
     $scope.currentUser = Auth.getCurrentUser();
 
-    $scope.barPercentRequest = quizFactory.barPercentRequest();
+    // $scope.barPercentRequest = quizFactory.barPercentRequest();
     // $scope.barPercentRequest = function(num){
     //     $scope.updateIncrease = num;
     //     var partner = $scope.currentUser.partner;

@@ -16,13 +16,9 @@ var barSchema = new Schema ({
 });
 
 var actionRequestSchema = new Schema ({
-  barName: String,
   increment: Number,
   actionType: String,
-  instance:{
-    type: Schema.Types.ObjectId,
-    ref: 'History'
-  },
+  historyId: String,
   accepted: {
     type: Boolean,
     default: false
@@ -61,12 +57,8 @@ var UserSchema = new Schema({
     ref: 'User'
   },
   profilePic: String,
-  quizNumber: {type: Number, default: 1},
-  quizCurrent: [],
-  quizResponse: [],
-  nwQuizNumber: {type: Number, default: 1},
-  fbQuizNumber: {type: Number, default: 1},
-  fbAT: String
+  quizNumber: {type: Number, default: 1}
+
 
 });
 
