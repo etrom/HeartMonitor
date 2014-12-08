@@ -58,15 +58,15 @@ angular.module('barsApp')
     $scope.seletedPhotos = [];
     $scope.selectedPhotos = function() {
       $scope.seletedPhotos = [];
-      for (var i=0, i < $scope.photoTotal; i++) {
+      for (var i=0; i < $scope.photoTotal; i++) {
         if ($scope.instagramPhotos[i].selected) {
-          selectedPhotos.push($scope.instagramPhotos[i]);
+          $scope.seletedPhotos.push($scope.instagramPhotos[i]);
         }
       }
-      var myModal = $modal({scope: $scope,
+      var myFinalModal = $modal({scope: $scope,
                           template: "/app/instagramQuiz/finalizeInstagramModal.html",
-                          title: '<img align="top" src="'+$scope.instagramProfilePic+'" /> Range the Order',
+                          title: '<img align="top" src="'+$scope.instagramProfilePic+'" />' +$scope.quizTitle,
                           content: 'temps content value for centent variable'})
-    }
+    };
     
   });
