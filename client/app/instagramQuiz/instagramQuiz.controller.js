@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('InstagramquizCtrl', function ($scope) {
+  .controller('InstagramquizCtrl', function ($scope, $modal) {
 
     $scope.instagramName;
     hello.init({ 
@@ -28,19 +28,45 @@ angular.module('barsApp')
     }
 
     $scope.loadPictures = function(){
+
       hello('instagram').api('/me/photos').then(function(json){
-          
+        console.log(json);
+        $scope.instagramPhotos = [];         
         $scope.photoTotal = json.data.length;
         if ($scope.photoTotal > 0) {
           $scope.noPictures = false;
         }
         // $scope.numberOfPages = $scope.photoTotal / $scope.pageSize;
         for (var i=0; i < $scope.photoTotal; i++) {
-          $scope.instagramPhotos.push([json.data[i].thumbnail, json.data[i].picture, false]);
+          // console.log('i: ',i, 'json: ', json.data[i].caption.created_time);
+          $scope.instagramPhotos.push({selected: false,
+                                      created: Date(json.data[i].created_time),
+                                      label: json.data[i].name, 
+                                      thumbnail: json.data[i].thumbnail, 
+                                      picture: json.data[i].picture});
         }
         $scope.$digest();
+        var myModal = $modal({scope: $scope, 
+                            template: "/app/instagramQuiz/instagramModal.html", 
+                            title: '<img align="top" src="'+$scope.instagramProfilePic+'" /> Create A Quiz!', 
+                            content: 'temps content value for content variable', show: true});
       }, function(e) {
         alert ('Whoops! ' + e.error.message)
       })
     };
+
+    $scope.seletedPhotos = [];
+    $scope.selectedPhotos = function() {
+      $scope.seletedPhotos = [];
+      for (var i=0, i < $scope.photoTotal; i++) {
+        if ($scope.instagramPhotos[i].selected) {
+          selectedPhotos.push($scope.instagramPhotos[i]);
+        }
+      }
+      var myModal = $modal({scope: $scope,
+                          template: "/app/instagramQuiz/finalizeInstagramModal.html",
+                          title: '<img align="top" src="'+$scope.instagramProfilePic+'" /> Range the Order',
+                          content: 'temps content value for centent variable'})
+    }
+    
   });
