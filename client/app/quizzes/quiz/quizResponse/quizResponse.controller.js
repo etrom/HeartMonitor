@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('QuizresponseCtrl', function ($scope, Auth, quizFactory, $http) {
+  .controller('QuizresponseCtrl', function ($scope, Auth, $http) {
     $scope.message = 'Hello';
     $scope.currentUser = Auth.getCurrentUser();
     $scope.quiz = [];
