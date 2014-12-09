@@ -6,29 +6,17 @@
         <h3 class="modal-title" ng-bind-html="title"></h3>
       </div>
         <div class="modal-body" ng-show="content">
-          <h4>Arrange order by Drag and Drop for {{currentUser.partner.name}} to guess</h4>
-
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Photo</th>
-                <th>Title</th>
-              </tr>
-            </thead>
-            <tr ng-model="seletedPhotos" ng-repeat="photo in seletedPhotos">
-              <td>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" ng-model='photo.selected'>
-                  </label>
-                </div>
-              </td>
-              <td><img src="{{photo.thumbnail}}"></td>
-              <td>{{photo.label}}</td>
-            </tr>
-          </table> 
+          <h4>Arrange Order of Photos by Drag and Drop</h4>
+      
+          <div id="sortable-container">
+              <div class="sortable-row" as-sortable="sortableOptions" ng-model="selectedPhotos">
+                  <div ng-repeat="photo in selectedPhotos" as-sortable-item>
+                      <div as-sortable-item-handle><img src="{{photo.thumbnail}}"></div>
+                  </div>
+              </div>
+          </div>
           <br>
+          <button ng-click="save(); $hide()" ng-disabled="quizForm.$invalid">Send Quiz to {{currentUser.partner.name}}</button>
       </div>
     </div>
   </div>

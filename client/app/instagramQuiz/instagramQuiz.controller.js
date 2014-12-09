@@ -55,12 +55,12 @@ angular.module('barsApp')
       })
     };
 
-    $scope.seletedPhotos = [];
+    $scope.selectedPhotos = [];
     $scope.selectedPhotos = function() {
-      $scope.seletedPhotos = [];
+      $scope.selectedPhotos = [];
       for (var i=0; i < $scope.photoTotal; i++) {
         if ($scope.instagramPhotos[i].selected) {
-          $scope.seletedPhotos.push($scope.instagramPhotos[i]);
+          $scope.selectedPhotos.push($scope.instagramPhotos[i]);
         }
       }
       var myFinalModal = $modal({scope: $scope,
@@ -68,5 +68,28 @@ angular.module('barsApp')
                           title: '<img align="top" src="'+$scope.instagramProfilePic+'" />' +$scope.quizTitle,
                           content: 'temps content value for centent variable'})
     };
+
+    $scope.dragControlListeners = {
+      containment: '#sortable-container',
+      accept: function (sourceItemHandleScope, destSortableScope) {
+        return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+        // return boolean}//override to determine drag is allowed or not. default is true.
+      }
+      // itemMoved: function (event) {}//Do what you want},
+      // orderChanged: function(event) {}//Do what you want},
+      // containment: '#board'//optional param.
+    };
+
+
+    $scope.dropSuccessHandler = function($event,index,array){
+      console.log('dropSuccessHandler', array);
+      array.splice(index,1);
+    };
+    $scope.onDrop = function($event,$data,array){
+      console.log('drooopppp', $data);
+      array.push($data);
+    };
+
+
     
   });
