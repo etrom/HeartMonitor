@@ -9,7 +9,6 @@ angular.module('barsApp', [
   'ui.bootstrap',
   'ui.bootstrap',
   'mgcrea.ngStrap',
-  'ang-drag-drop',
   'ui.sortable'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

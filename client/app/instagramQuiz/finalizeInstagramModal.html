@@ -9,14 +9,14 @@
           <h4>Arrange Order of Photos by Drag and Drop</h4>
       
           <div id="sortable-container">
-              <div class="sortable-row" as-sortable="sortableOptions" ng-model="selectedPhotos">
+              <div class="sortable-row" as-sortable="sortableOptions" is-enabled='true' ng-model="selectedPhotos">
                   <div ng-repeat="photo in selectedPhotos" as-sortable-item>
                       <div as-sortable-item-handle><img src="{{photo.thumbnail}}"></div>
                   </div>
               </div>
           </div>
           <br>
-          <button ng-click="save(); $hide()" ng-disabled="quizForm.$invalid">Send Quiz to {{currentUser.partner.name}}</button>
+          <!-- <button ng-click="save(); $hide()">Send Quiz to {{currentUser.partner.name}}</button> -->
       </div>
     </div>
   </div>
