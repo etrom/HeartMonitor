@@ -11,7 +11,7 @@ angular.module('barsApp')
     $scope.addFB = function() {
       $scope.clicked = true;
     }
-    
+
 
     $scope.currentUser.$promise.then(function(user) {
       console.log(user, 'userinpartner');
@@ -19,6 +19,11 @@ angular.module('barsApp')
         // $http.get('/api/users/whole/' + user.partner).success(function(partner){
             $scope.partner = user.partner;
             $scope.hasPartner = true;
+            //show only first name for facebook pull in
+            if(user.partner.name.search(' ')){
+              var nameArr = user.partner.name.split(' ');
+              $scope.currentUser.partner.name = nameArr[0];
+            }
         // })
       } else {
         if ($scope.currentUser.facebook.significant_other) {
@@ -26,6 +31,7 @@ angular.module('barsApp')
           var myModal = $modal({scope: $scope, template: "/app/partner/fbModal.html", title: '<i class="fa fa-facebook-square"></i> You have a significant other on Facebook', content: 'Would like to add ' + $scope.currentUser.facebook.significant_other.name + ' as your Heart Bar Partner?', show: true});
         }
       }
+
     })
 
 
@@ -59,6 +65,7 @@ angular.module('barsApp')
             $scope.message = "request sent";
             $scope.invite = false;
             $scope.submitted = true;
+            $scope.partnerEmail = '';
            }).
           error(function(data, status, headers, config) {
           });
