@@ -1,0 +1,23 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h3 class="modal-title" ng-bind-html="title"></h3>
+      </div>
+        <div class="modal-body" ng-show="content">
+          <h4>Arrange Order of Photos by Drag and Drop</h4>
+      
+          <div id="sortable-container">
+              <div class="sortable-row" as-sortable="sortableOptions" is-enabled='true' ng-model="selectedPhotos">
+                  <div ng-repeat="photo in selectedPhotos" as-sortable-item>
+                      <div as-sortable-item-handle><img src="{{photo.thumbnail}}"></div>
+                  </div>
+              </div>
+          </div>
+          <br>
+          <!-- <button ng-click="save(); $hide()">Send Quiz to {{currentUser.partner.name}}</button> -->
+      </div>
+    </div>
+  </div>
+</div>
