@@ -30,7 +30,6 @@ angular.module('barsApp')
     $scope.loadPictures = function(){
 
       hello('instagram').api('/me/photos').then(function(json){
-        console.log(json);
         $scope.instagramPhotos = [];         
         $scope.photoTotal = json.data.length;
         if ($scope.photoTotal > 0) {
@@ -38,7 +37,6 @@ angular.module('barsApp')
         }
         // $scope.numberOfPages = $scope.photoTotal / $scope.pageSize;
         for (var i=0; i < $scope.photoTotal; i++) {
-          // console.log('i: ',i, 'json: ', json.data[i].caption.created_time);
           $scope.instagramPhotos.push({selected: false,
                                       created: Date(json.data[i].created_time),
                                       label: json.data[i].name, 
@@ -54,9 +52,9 @@ angular.module('barsApp')
         alert ('Whoops! ' + e.error.message)
       })
     };
-
     $scope.selectedPhotos = [];
-    $scope.selectedPhotos = function() {
+
+    $scope.saveSelected = function(quizTitle) {
       $scope.selectedPhotos = [];
       for (var i=0; i < $scope.photoTotal; i++) {
         if ($scope.instagramPhotos[i].selected) {
@@ -65,31 +63,14 @@ angular.module('barsApp')
       }
       var myFinalModal = $modal({scope: $scope,
                           template: "/app/instagramQuiz/finalizeInstagramModal.html",
-                          title: '<img align="top" src="'+$scope.instagramProfilePic+'" />' +$scope.quizTitle,
+                          title: '<img align="top" src="'+$scope.instagramProfilePic+'" />' + quizTitle,
                           content: 'temps content value for centent variable'})
     };
 
-    $scope.dragControlListeners = {
-      containment: '#sortable-container',
+    $scope.sortableOptions = {   
       accept: function (sourceItemHandleScope, destSortableScope) {
         return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
-        // return boolean}//override to determine drag is allowed or not. default is true.
       }
-      // itemMoved: function (event) {}//Do what you want},
-      // orderChanged: function(event) {}//Do what you want},
-      // containment: '#board'//optional param.
     };
-
-
-    $scope.dropSuccessHandler = function($event,index,array){
-      console.log('dropSuccessHandler', array);
-      array.splice(index,1);
-    };
-    $scope.onDrop = function($event,$data,array){
-      console.log('drooopppp', $data);
-      array.push($data);
-    };
-
-
     
   });
