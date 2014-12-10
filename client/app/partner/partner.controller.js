@@ -14,7 +14,6 @@ angular.module('barsApp')
 
 
     $scope.currentUser.$promise.then(function(user) {
-      console.log(user, 'userinpartner');
       if (user.partner) {
         // $http.get('/api/users/whole/' + user.partner).success(function(partner){
             $scope.partner = user.partner;
