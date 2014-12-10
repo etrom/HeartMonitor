@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('InstagramresponseCtrl', function ($scope, Auth, $stateParams, $http) {
+  .controller('InstagramresponseCtrl', function ($scope, Auth, $stateParams, $http, $window) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.quiz = [];
     $scope.quizID = $stateParams.id;
@@ -22,7 +22,12 @@ angular.module('barsApp')
     };
 
     $scope.save = function() {
-        $http.put('api/historys/'+ $scope.quizID, {responseObj:$scope.quiz, responseDate: Date.now()}).success(function(data){
-        })
+        $http.put('api/historys/'+ $scope.quizID, {responseObj:$scope.quiz, responseDate: Date.now()}).
+          success(function(data){
+            $http.put('api/users/' + $scope.currentUser._id + '/actiontaken/'+$scope.quizID)
+          }).
+            success(function(data){
+              $window.location.href= '/messages'
+            })
     }
   });

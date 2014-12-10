@@ -31,7 +31,7 @@ angular.module('barsApp')
         success(function(data, status, headers, config) {
           console.log('data._id', data._id)
           $scope.percentReq(30, data._id, 'nwQuiz', 1)
-          $scope.uniqueUrl = '/quizResponse/NW/'+ data.key;
+          $scope.uniqueUrl = '/response/'+ data._id;
           //stop sending emails for the time being
           // $http.post('api/emails/sendQuizRequest/', {
           //                                             email: $scope.currentUser.partner.email,

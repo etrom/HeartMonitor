@@ -150,6 +150,23 @@ exports.updateRequest = function(req,res){
   })
 };
 
+exports.removeAction = function(req,res){
+  if(req.body._id) { delete req.body._id; }
+  User.findById(req.params.id, function (err,user) {
+    // , reqFrom: req.params.
+    var index ='';
+    for (var i = 0, len = user.actionRequests.length; i < len; i++) {
+      if(user.actionRequests[i].historyId == req.params.action) {
+        len = index = i;
+      }
+    }
+    user.actionRequests.splice(index, 1);
+    user.save(function (err) {
+      if (err) {return handleError(res, err); }
+      return res.json(200, user);
+    });
+  });
+};
 
 exports.updateProfilePic = function(req,res){
   User.findOneAndUpdate({ _id:req.params.id},{profilePic: req.body.profilePic}, function(err,user) {
