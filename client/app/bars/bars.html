@@ -5,15 +5,20 @@
             <!-- When you have no photo show blank pic and add a picture button -->
             <a ng-hide="chosenPic" ng-click="editProfilePic()" >
               <span ng-show="showIcon" ng-hide="chosenPic" class="glyphicon glyphicon-pencil"></span>
-              <img ng-hide="chosenPic" class="userImage" src="{{profilePicUrl}}" width="125px" height="125px">
+              <div ng-hide="chosenPic" class="userImage">
+                <img  src="{{profilePicUrl}}" width="125px" height="125px">
+              </div>
             </a>
             <!-- After you have photo show edit picture button -->
-            <!-- <a ng-show="chosenPic" ng-click="launchEditor('image1', '{{profilePicUrl}}')" >
-              <span ng-show="showIcon" ng-show"chosenPic" class="glyphicon glyphicon-pencil"></span>
-              <img ng-show="chosenPic" class="userImage" id='image1' src="{{profilePicUrl}}" width="125px" height="125px"/>
-            </a> -->
+            <a ng-show="chosenPic" ng-click="launchEditor('image1', '{{profilePicUrl}}')" >
+              <span ng-show="showIcon" ng-show="chosenPic" class="glyphicon glyphicon-pencil"></span>
+              <div ng-show="chosenPic" class="userImage">
+                <img  id='image1' src="{{profilePicUrl}}" width="125px" height="125px"/>
+              </div>
+            </a>
           </div>
 <!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
+
 
       <h1 class="page-header">My bars:</h1>
       <div>{{bar}}</div>
@@ -24,6 +29,14 @@
             </div>
           </div>
            <button type="button" class="btn btn-primary" bs-dropdown="dropdown">+</button>
+           <button type="button" class="close" ng-click="deleteBar(bar)">&times;</button>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6" ui-view="partner"></div>
+  </div>
+</div>
+bs-dropdown="dropdown">+</button>
            <button type="button" class="close" ng-click="deleteBar(bar)">&times;</button>
         </li>
       </ul>
