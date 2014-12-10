@@ -5,6 +5,7 @@ angular.module('barsApp')
     $scope.currentUser = Auth.getCurrentUser();
     $scope.quiz = [];
     $scope.quizID = $stateParams.id;
+    $scope.percentReq = quizFactory.barPercentRequest;
 
     $scope.currentUser.$promise.then(function(user) {
       //get history to load questions
@@ -26,7 +27,8 @@ angular.module('barsApp')
             $http.put('api/users/' + $scope.currentUser._id + '/actiontaken/'+$scope.quizID)
           }).
             success(function(data){
-              $window.location.href= '/messages'
+              $scope.percentReq(0, data._id, 'nwResults');
+              $window.location.href= '/quizResult/' + $scope.quizID;
             })
     };
 //put to history to save answers
