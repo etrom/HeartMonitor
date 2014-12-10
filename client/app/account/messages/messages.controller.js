@@ -20,6 +20,7 @@ angular.module('barsApp')
         console.log($scope.actionRequests);
         if($scope.actionRequests.length > 0){
             $scope.actionRequests.forEach(function(request) {
+                console.log('request', request);
                 $scope.requests.push(request);
                 // if(request.actionType == "nwQuiz"){
                 //     console.log('nwQuiz');
@@ -36,7 +37,10 @@ angular.module('barsApp')
         }
 });
     $scope.goToQuiz = function(){
-        $window.location.href= '/response';
+        $window.location.href= '/response' + historyId;
+    }
+    $scope.goToinQuiz = function(historyId){
+        $window.location.href= '/instagramResponse/' + historyId;
     }
     // click accept or deny to add partner
     $scope.partnerDecision = function(decision) {

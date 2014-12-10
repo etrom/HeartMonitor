@@ -8,7 +8,7 @@
         <div id="sortable-container">
           <div class="sortable-row" as-sortable="sortableOptions" is-enabled='true' ng-model="quiz">
             <div ng-repeat="question in quiz" as-sortable-item>
-              <li as-sortable-item-handle class="list-group-item list"><img src="{{question.thumbnail}}"></li>
+              <li as-sortable-item-handle class="list-group-item list"><img src="{{question.thumbnail}}"> {{question.label}}</li>
             </div>
           </div>
        </div>
