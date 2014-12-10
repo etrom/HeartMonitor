@@ -1,0 +1,21 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="container" >
+  <h1>How well do you know your partner?</h1>
+  <h4>See how well you know {{currentUser.partner.name}}!</h4>
+  <form class="bar-form nav-stacked" name="quizForm" novalidate>
+    <div class="list-group">
+      <li class="list-group-item active blue">{{currentUser.partner.name}} asks: {{iqTitle}}</li>
+        <div id="sortable-container">
+          <div class="sortable-row" as-sortable="sortableOptions" is-enabled='true' ng-model="quiz">
+            <div ng-repeat="question in quiz" as-sortable-item>
+              <li as-sortable-item-handle class="list-group-item list"><img src="{{question.thumbnail}}"></li>
+            </div>
+          </div>
+       </div>
+    </div>
+  </form>
+  <br>
+  <button class="btn btn-primary" ng-click="save()" ng-disabled="quizForm.$invalid">See your results   <span class="badge">   + 10pts</span></button>
+  <br>
+  <br>
+</div>

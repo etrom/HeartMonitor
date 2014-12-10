@@ -83,7 +83,7 @@ angular.module('barsApp')
         success(function(data, status, headers, config) {
           console.log('data._id', data._id)
           $scope.percentReq(30, data._id, 'inQuiz')
-          $scope.uniqueUrl = '/quizResponse/IQ/'+ data.key;
+          $scope.uniqueUrl = '/instagramResponse/'+ data.key;
           //stop sending emails for the time being
           // $http.post('api/emails/sendQuizRequest/', {
           //                                             email: $scope.currentUser.partner.email,
