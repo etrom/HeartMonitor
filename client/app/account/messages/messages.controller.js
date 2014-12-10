@@ -9,6 +9,7 @@ angular.module('barsApp')
 
 
     $scope.currentUser.$promise.then(function(user) {
+        console.log($scope.currentUser);
         //get the request froms name
         if ($scope.currentUser.reqFrom) {
             $http.get('/api/users/'+ $scope.currentUser.reqFrom).success(function(reqFrom) {
@@ -16,12 +17,11 @@ angular.module('barsApp')
 
             });
         }
-
-        console.log($scope.actionRequests);
         if($scope.actionRequests.length > 0){
             $scope.actionRequests.forEach(function(request) {
-                console.log('request', request);
-                $scope.requests.push(request);
+                if(!request.active){
+                  $scope.requests.push(request);
+                }
                 // if(request.actionType == "nwQuiz"){
                 //     console.log('nwQuiz');
                 // }
@@ -36,8 +36,8 @@ angular.module('barsApp')
           // })
         }
 });
-    $scope.goToQuiz = function(){
-        $window.location.href= '/response' + historyId;
+    $scope.goToQuiz = function(historyId){
+        $window.location.href= '/response/' + historyId;
     }
     $scope.goToinQuiz = function(historyId){
         $window.location.href= '/instagramResponse/' + historyId;
@@ -49,7 +49,6 @@ angular.module('barsApp')
         success(function(data) {
             $http.get('/api/users/' + data._id).success(function(user){
                 $scope.currentUser = user;
-                console.log(user, 'messages controller user')
                 $window.location.href= '/home';
             })
         }).
