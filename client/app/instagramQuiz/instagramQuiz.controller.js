@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('InstagramquizCtrl', function ($scope, $modal, $http) {
+  .controller('InstagramquizCtrl', function ($scope, $modal, $http, quizFactory, $window) {
 
     $scope.instagramName;
     hello.init({ 
@@ -22,6 +22,8 @@ angular.module('barsApp')
     $scope.pageSize = 2;
     $scope.instagramPhotos = [];
     $scope.noPictures = true;
+
+    $scope.percentReq = quizFactory.barPercentRequest;
 
     $scope.numberOfPages=function(){
         return Math.ceil($scope.instagramPhotos.length/$scope.pageSize);                
@@ -53,9 +55,11 @@ angular.module('barsApp')
       })
     };
     $scope.selectedPhotos = [];
+    $scope.quizTitle = '';
 
     $scope.saveSelected = function(quizTitle) {
       $scope.selectedPhotos = [];
+      $scope.quizTitle = quizTitle;
       for (var i=0; i < $scope.photoTotal; i++) {
         if ($scope.instagramPhotos[i].selected) {
           $scope.selectedPhotos.push($scope.instagramPhotos[i]);
@@ -72,5 +76,28 @@ angular.module('barsApp')
         return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
       }
     };
+
+
+    $scope.save = function() {
+      $http.post('api/historys/', {user: $scope.currentUser._id, type: 'IQ', historyObj: $scope.selectedPhotos, iqTitle: $scope.quizTitle }).
+        success(function(data, status, headers, config) {
+          console.log('data._id', data._id)
+          $scope.percentReq(30, data._id, 'inQuiz')
+          $scope.uniqueUrl = '/quizResponse/IQ/'+ data.key;
+          //stop sending emails for the time being
+          // $http.post('api/emails/sendQuizRequest/', {
+          //                                             email: $scope.currentUser.partner.email,
+          //                                             reqFrom: $scope.currentUser._id,
+          //                                             reqFromName:$scope.currentUser.name,
+          //                                             url: $scope.uniqueUrl,
+          //                                             profilePic: $scope.currentUser.profilePic
+          //                                            }).success(function(data, status, headers, config) {
+          //   $scope.message = "QUIZ has been saved and email has been sent!"
+          // })
+          $window.location.href = '/home';
+
+        });
+
+    }
     
   });
