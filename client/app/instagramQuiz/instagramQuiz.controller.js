@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('InstagramquizCtrl', function ($scope, $modal) {
+  .controller('InstagramquizCtrl', function ($scope, $modal, $http) {
 
     $scope.instagramName;
     hello.init({ 
@@ -46,7 +46,7 @@ angular.module('barsApp')
         $scope.$digest();
         var myModal = $modal({scope: $scope, 
                             template: "/app/instagramQuiz/instagramModal.html", 
-                            title: '<img align="top" src="'+$scope.instagramProfilePic+'" /> Create A Quiz!', 
+                            title: '<i class="fa fa-instagram fa-3x"></i> Create A Quiz!', 
                             content: 'temps content value for content variable', show: true});
       }, function(e) {
         alert ('Whoops! ' + e.error.message)
@@ -63,7 +63,7 @@ angular.module('barsApp')
       }
       var myFinalModal = $modal({scope: $scope,
                           template: "/app/instagramQuiz/finalizeInstagramModal.html",
-                          title: '<img align="top" src="'+$scope.instagramProfilePic+'" />' + quizTitle,
+                          title: '<i class="fa fa-instagram fa-3x"></i> ' + quizTitle,
                           content: 'temps content value for centent variable'})
     };
 

@@ -17,6 +17,7 @@
           </div>
           <br>
           <!-- <button ng-click="save(); $hide()">Send Quiz to {{currentUser.partner.name}}</button> -->
+          <button class="btn btn-primary" ng-click="save($modal.title)" ng-disabled="quizForm.$invalid">Send to {{currentUser.partner.name}} <span class="badge">   + 30pts</span></button>
       </div>
     </div>
   </div>
