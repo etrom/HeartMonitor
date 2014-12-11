@@ -36,6 +36,7 @@ color: white;
 
 .goal, .points {
     padding: 15px;
+    vertical-align: top;
 }
 
 
@@ -63,11 +64,14 @@ color: white;
 .svg{
  margin: 0 auto;
 }
-.glyphicon-plus{
+.glyphicon-plus,
+.glyphicon-chevron-left,
+.glyphicon-ok,
+.glyphicon-remove{
     position: relative;
     margin-top: 5px;
     padding: 9px 5px 5px 7px;
-    font-size: 2em;
+    // font-size: 2em;
 }
 .heart{
     margin: 23px 66px 12px 0;
@@ -98,8 +102,8 @@ color: white;
 
 .glyphicon-pencil {
     float: right;
-    top: -11px;
-    right: 89px;
+    top: -1px;
+    right: 166px;
     color: white;
     font-size: 3em;
     &:hover {
@@ -160,5 +164,20 @@ hr {
 }
 
 .rule {
+    margin-bottom: 30px;
+}
+
+.dropdowns {
+    width: 46%
+}
+
+.goalOpts {
+    display:inline;
+    vertical-align: top;
+    font-size: 1.3em;
+    text-align: left !important;
+}
+
+.addGoal{
     margin-bottom: 30px;
 }

@@ -16,8 +16,15 @@ angular.module('barsApp')
   .controller('BarCtrl', function ($scope, Auth, $http, $log) {
     $scope.currentUser = Auth.getCurrentUser();
     // $scope.bars = $scope.currentUser.bars;
+    $scope.clicked = false;
     $scope.achievements = 0;
     $scope.goals = 0;
+    $scope.currentGoal = false;
+
+    $scope.nowClicked = function(){
+      $scope.clicked = true;
+
+    }
     $scope.currentUser.$promise.then(function(user) {
       $scope.points = $scope.currentUser.points
 
@@ -39,7 +46,9 @@ angular.module('barsApp')
 
     ];
 
-
+    $scope.setGoal = function(string){
+      $scope.currentGoal = string;
+    }
     // increase fulfillment #'s
     $scope.addPercent = function(num, barName){
       $scope.barClicked = barName;

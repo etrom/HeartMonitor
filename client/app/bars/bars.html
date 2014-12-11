@@ -4,6 +4,8 @@
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <!-- points achievements goals completed -->
+<!--
+        ng-mouseenter="myclass = 'glyphicon glyphicon-pencil'" ng-mouseleave="myclass = 'lowlight'" -->
         <div class="imgContainer" ng-mouseenter="showIcon = true" ng-mouseleave="showIcon = false" >
           <!-- When you have no photo show blank pic and add a picture button -->
           <a ng-hide="chosenPic" ng-click="editProfilePic()" >
@@ -36,18 +38,38 @@
     <div class="row">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
-        <div class="goal" bs-dropdown="dropdown" >
-          <i class="fa fa-road fa-5x"></i>
-          <h3 id="achieve">goals</h3>
-          <hr class="rule">
-          <br><span class="circle glyphicon glyphicon-plus"></span>
-        </div>
+        <div class="goal" >
+          <div ng-hide="clicked" ng-click="nowClicked()">
+            <i class="fa fa-road fa-5x"></i>
+            <h3 id="achieve">goals
+            <hr class="rule">
+            <br><span class="circle glyphicon glyphicon-plus"></span>
+            </h3>
+          </div>
+            <div class="list-group" ng-hide="currentGoal || !clicked"   >
+              <p class="list-group-item purple">Choose a goal to work on in your relationship</p>
+              <li class="list-group-item" ng-click="setGoal('romance')"><i class="fa fa-heart"></i><p class="goalOpts"> romance</p></li>
+              <li class="list-group-item" ng-click="setGoal('communication')"><i class="fa fa-quote-left"></i><p class="goalOpts"> communication</p></li>
+              <li class="list-group-item" ng-click="setGoal('compliments')"><i class="fa fa-thumbs-o-up"></i><p class="goalOpts"> compliments</p></li>
+              <li class="list-group-item" ng-click="setGoal('affection')"><i class="fa fa-plus"></i><p class="goalOpts"> affection</p></li>
+            </div>
+
+            <div ng-show="currentGoal"><h3 id="addGoal">
+              Would you like to set {{currentGoal}} as your goal?<br>
+              <span class="circle glyphicon glyphicon-chevron-left"></span>
+              <span class="circle glyphicon glyphicon-ok"></span>
+              <span class="circle glyphicon glyphicon-remove"></span>
+            </h3>
+            </div>
+          </div>
+
         <a href="/games">
           <div class="points">
             <i class="fa fa-gamepad fa-5x"></i>
-            <h3 id="achieve">games</h3>
+            <h3 id="achieve">games
              <hr class="rule">
            <br><span class="circle glyphicon glyphicon-plus">
+           </h3>
           </div>
 
 
@@ -64,10 +86,10 @@
           <h3 id="achieve">achievements</h3>
           <hr>
           <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-              60%
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+              20%
             </div>
-            <p id="perLeft">40% to go!</p>
+            <p id="perLeft">4 quizzes to go!</p>
           </div>
         </div>
       </div>
