@@ -1,0 +1,28 @@
+<div class="col-md-12">
+<h1><i class="fa fa-heart"> The Results!</i></h1>
+<h5>
+</div>
+
+<div class="col-sm-6" >   
+    <h4>{{quizMaker}}'s Quiz!</h4>
+  <form class="bar-form nav-stacked" name="quizForm" novalidate>
+    <div class="list-group">
+      <li class="list-group-item active blue">Quetion and Answer Key</li>
+         <li ng-repeat="question in quiz.historyObj" class="list-group-item list">{{$index + 1}}) {{ question[0] }}
+          
+          <div style='background-color:lightblue'>{{question[1]}} </div>
+          </li>
+    </div>
+  </form>
+</div>
+
+<div class="col-sm-6" >
+    <h4>{{responder}}'s Response! </h4>
+  <form class="bar-form nav-stacked" name="quizForm" novalidate>
+    <div class="list-group">
+      <li class="list-group-item active blue">How well does {{responder}} know {{quizMaker}}</li>
+         <li ng-repeat="question in quiz.responseObj" class="list-group-item list">{{$index + 1}}) {{ question }}</li>
+    </div>
+  </form>
+  <br>
+</div>
