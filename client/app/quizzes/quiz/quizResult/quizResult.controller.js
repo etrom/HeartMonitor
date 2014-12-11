@@ -23,9 +23,6 @@ angular.module('barsApp')
           $scope.quizMaker = $scope.currentUser.partner.name;
           $scope.responder = $scope.currentUser.name;
         }
-        console.log(data);
-        // $scope.quiz = data.historyObj;
-        // $scope.quizResponse = data.responseObj;
       });
     })
   });
