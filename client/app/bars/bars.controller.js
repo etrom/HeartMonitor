@@ -32,9 +32,11 @@ angular.module('barsApp')
 
     // values for the points dropdown button
     $scope.dropdown = [
-      {text: '<i class="fa fa-plus"></i>&nbsp;10', click: 'addPercent(10, bar.name)'},
-      {text: '<i class="fa fa-plus"></i>&nbsp;20', click: 'addPercent(20, bar.name)'},
-      {text: '<i class="fa fa-plus"></i>&nbsp;30', click: 'addPercent(30, bar.name)'}
+      {text: '<i class="fa fa-heart"></i><p>romance</p>&nbsp;10', click: 'addgoal(10, bar.name)'},
+      {text: '<i class="fa fa-quote-left"></i><p>communication</p>&nbsp;20', click: 'addPercent(20, bar.name)'},
+      {text: '<i class="fa fa-thumbs-o-up"></i><p>compliments</p>&nbsp;30', click: 'addPercent(30, bar.name)'},
+      {text: '<i class="fa fa-plus"></i><p>affection</p>&nbsp;30', click: 'addPercent(30, bar.name)'}
+
     ];
 
 
