@@ -22,6 +22,8 @@ angular.module('barsApp')
         // $http.get('/api/users/whole/' + user.partner).success(function(partner){
         $scope.partner = user.partner;
         $scope.hasPartner = true;
+        $scope.points = $scope.currentUser.partner.points;
+
         //show only first name for facebook pull in
         if(user.partner.name.search(' ')){
           var nameArr = user.partner.name.split(' ');

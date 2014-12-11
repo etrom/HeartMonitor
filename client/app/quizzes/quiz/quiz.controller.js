@@ -30,7 +30,7 @@ angular.module('barsApp')
       $http.post('api/historys/', {user: $scope.currentUser._id, type: 'NW', historyObj: $scope.quiz }).
         success(function(data, status, headers, config) {
           console.log('data._id', data._id)
-          $scope.percentReq(30, data._id, 'nwQuiz', 1)
+          $scope.percentReq(10, data._id, 'nwQuiz', 1)
           $scope.uniqueUrl = '/quizResponse/NW/'+ data.key;
           //stop sending emails for the time being
           // $http.post('api/emails/sendQuizRequest/', {

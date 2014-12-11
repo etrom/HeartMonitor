@@ -16,8 +16,9 @@ angular.module('barsApp')
   .controller('BarCtrl', function ($scope, Auth, $http, $log) {
     $scope.currentUser = Auth.getCurrentUser();
     // $scope.bars = $scope.currentUser.bars;
-    $scope.points = $scope.currentUser.points
     $scope.currentUser.$promise.then(function(user) {
+      $scope.points = $scope.currentUser.points
+
       if (user.profilePic) {
         $scope.profilePicUrl = user.profilePic;
       }

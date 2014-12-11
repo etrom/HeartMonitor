@@ -22,7 +22,7 @@ angular.module('barsApp')
         $scope.quiz.forEach(function(question) {
             answers.push(question[1]);
         })
-        $http.put('api/historys/'+ $scope.currentUser.partner._id, {responseObj:answers, responseDate: Date.now()}).success(function(data){
+        $http.put('api/historys/'+ $scope.currentUser.partner._id, {responseObj:answers, points: 10, responseDate: Date.now()}).success(function(data){
             console.log(data, 'new data')
         })
     }

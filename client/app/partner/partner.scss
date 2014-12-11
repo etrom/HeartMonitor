@@ -1,6 +1,6 @@
 .partnerImage {
     border-radius: 100%;
-    margin:-50px 20px 0px -10px;
+    margin: 6px 20px 0px 36px;
 
 }
 
@@ -12,21 +12,23 @@
 
 #partnerHeart {
     position: absolute;
-    top: 175px;
+    top: 165px;
     left: 180px;
 }
 
 .partnerPts{
-    position: relative;
-    bottom: 49px;
-    left: 67px;
+    // top: -49px;
+    // right: 68px;
+    position: absolute;
+top: 185px;
+right: 399px;
     color: white;
     font-size: 2em;
 }
 
 #partnerBucket{
 
-    margin: 20px 0px 0px 0px;
+    margin: 8px 0px 0px 0px;
 }
 
 .name {
