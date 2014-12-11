@@ -13,7 +13,8 @@ color: white;
 
 .userImage {
     border-radius: 100%;
-    margin-top: -40%;
+    margin-left: -38%;
+    margin-top: -45px;
     &:hover {
         background:#000;
         opacity:0.5;
@@ -24,12 +25,17 @@ color: white;
     vertical-align: top;
 }
 
-.imgContainer, .partner, .goal, .points{
+.imgContainer, .partner, .goal, .points, .hearts, .progressB {
     display: inline-block;
 }
 
-.goal, .points, .partner{
-    margin: 0 20px 0 0;
+
+.progressB {
+    position: relative;
+}
+
+.goal, .points, .partner, .progressB {
+    margin: 20px 20px 0 0;
     padding: 75px;
     border: 3px solid rgba(224, 221, 221, .5);
     background: white;
@@ -41,6 +47,7 @@ color: white;
 
 .partner{
     margin-top: 23px;
+    vertical-align: top;
 }
 
 .little-partner{
@@ -56,7 +63,7 @@ color: white;
     padding: 9px 5px 5px 7px;
 }
 .heart{
-    margin: 0 30px 0 0;
+    margin: 23px 66px 12px 0;
     display:inline-block;
     text-align: center;
     text-decoration: italic;
@@ -91,5 +98,9 @@ color: white;
     &:hover {
         cursor: pointer;
     }
+}
+
+.hearts{
+    margin-left: -65px;
 }
 

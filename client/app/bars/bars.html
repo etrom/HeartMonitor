@@ -16,17 +16,19 @@
           <!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
           <a ng-show="chosenPic" ng-click="launchEditor('image1', '{{profilePicUrl}}')" >
             <span ng-show="showIcon" ng-show="chosenPic" class="glyphicon glyphicon-pencil"></span>
-            <img ng-show="chosenPic" class="userImage" id='image1' src="{{profilePicUrl}}" width="150px" height="150px"/>
+            <img ng-show="chosenPic" class="userImage" id='image1' src="{{profilePicUrl}}" width="160px" height="160px"/>
           </a>
         </div>
-        <div class="heart">
-          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{points}}</span><p>points</p>
-        </div>
-        <div class="heart">
-          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{points}}</span><p>achievements</p>
-        </div>
-        <div class="heart">
-          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{points}}</span><p>goals</p>
+        <div class="hearts">
+          <div class="heart">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{points}}</span><p>points</p>
+          </div>
+          <div class="heart">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{points}}</span><p>achievements</p>
+          </div>
+          <div class="heart">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{points}}</span><p>goals</p>
+          </div>
         </div>
       </div>
       <div class="col-sm-2"></div>
@@ -41,6 +43,8 @@
           <div class="points">
             <h3>new game<br><span class="circle glyphicon glyphicon-plus"></h3>
           </div>
+
+
         </a>
       </div>
       <div class="col-sm-2"></div>
@@ -48,8 +52,13 @@
     <div class="row">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
-        <div ui-view="partner">
+        <div class="partner" ui-view="partner"></div>
+        <div class="progressB">
+          <!-- <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+            <span class="sr-only">60% Complete (warning)</span>
+          </div> -->
         </div>
+
       </div>
       <div class="col-sm-2"></div>
     </div>
