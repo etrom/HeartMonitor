@@ -10,13 +10,10 @@ angular.module('barsApp')
     $scope.responder = '';
 
     $scope.currentUser.$promise.then(function(user) {
-      console.log($scope.currentUser);
       //get history to load questions
       $http.get('api/historys/' + $scope.quizID).success(function(data, status, headers, config) {
         $scope.quiz = data;
-        console.log(data.user[0]);
         if ($scope.currentUser._id == data.user[0]) {
-          console.log(data.user[0]);
           $scope.quizMaker = $scope.currentUser.name;
           $scope.responder = $scope.currentUser.partner.name;
         } else {

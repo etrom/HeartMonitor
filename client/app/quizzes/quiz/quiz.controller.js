@@ -4,11 +4,6 @@ angular.module('barsApp')
   .controller('QuizCtrl', function ($scope, Auth, $http, quizFactory, $window) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.quiz = [];
-    // $scope.message = "When you complete the quiz below, we will send the quiz WITHOUT your answers to {{currentUser.partner.name}}.  Once {{currentUser.partner.name}} guesses your responses, we will share your combined answers with both of you!";
-    // $scope.partnersQuizID = $stateParams;
-    // // consol.log($stateParams);
-    // console.log($scope.partnersQuizID, 'ID');
-
     $scope.percentReq = quizFactory.barPercentRequest;
     $scope.currentUser.$promise.then(function(user) {
 
@@ -29,7 +24,6 @@ angular.module('barsApp')
     $scope.save = function() {
       $http.post('api/historys/', {user: $scope.currentUser._id, type: 'NW', historyObj: $scope.quiz }).
         success(function(data, status, headers, config) {
-          console.log('data._id', data._id)
           $scope.percentReq(30, data._id, 'nwQuiz', 1)
           $scope.uniqueUrl = '/response/'+ data._id;
           //stop sending emails for the time being

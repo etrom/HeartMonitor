@@ -44,6 +44,10 @@ angular.module('barsApp')
     $scope.goToQuizResult = function(historyId){
         $window.location.href= '/quizResult/' + historyId;
     }
+    $scope.goToIqResult = function(historyId){
+        $window.location.href= '/instagramResults/' + historyId;
+    }
+    
     // click accept or deny to add partner
     $scope.partnerDecision = function(decision) {
         $scope.decision = decision;
