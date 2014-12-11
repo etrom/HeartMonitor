@@ -27,6 +27,12 @@ angular.module('barsApp')
       else {
         $scope.profilePicUrl = "http://bandarito.ph/assets/uploads/profile_image/default.jpg";
       }
+
+      $http.get('/api/historys/user/' + $scope.currentUser._id).
+        success(function(data) {
+
+          console.log(data);
+        });
     })
 
 
@@ -91,6 +97,43 @@ angular.module('barsApp')
      });
       return false;
    }
+
+   $scope.highchartsNG = {
+        options: {
+            chart: {
+              type: 'line',
+              width: 250,
+              height: 250
+            }
+        },
+        series: [{
+            name: 'Points This Week',
+            data: [30, 10, 15, 60, 70, 0, 0]
+        }],
+        title: {
+            text: null
+        },
+        xAxis: {
+          startOfWeek: 0,
+          allowDecimals: false,
+          categories: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat',
+                'Sun']
+          // gridZIndex: 0,
+
+        },
+        yAxis: {
+          allowDecimals: false,
+          title: {
+            text: false
+    
+          }
+        },
+        pane: {
+          size: '20px'
+        },
+        loading: false,
+        minRange: 0
+    }
 
    // achievement to display- 5 quizzes
   //if history.type === any quiztype
