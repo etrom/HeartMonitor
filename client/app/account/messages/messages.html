@@ -23,6 +23,10 @@
               <button class="btn btn-lg btn-danger" ng-click="updateBarPercent(false)">Ignore</span></button>
             </li>
 
+            <li ng-repeat="request in requests" class="messages list-group-item" ng-class-even="'requestBackground'" ng-if="request.actionType === 'nwResults'" > <p>{{currentUser.partner.name}} has completed your <span class="knowMe">How Well Do They Know You</span> quiz</p>
+              <button class="btn btn-lg btn-success" ng-click="goToQuizResult(request.historyId)" >View Reponses</button>
+            </li>
+
         </div>
 
 

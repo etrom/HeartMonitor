@@ -9,7 +9,6 @@ angular.module('barsApp')
 
 
     $scope.currentUser.$promise.then(function(user) {
-        console.log($scope.currentUser);
         //get the request froms name
         if ($scope.currentUser.reqFrom) {
             $http.get('/api/users/'+ $scope.currentUser.reqFrom).success(function(reqFrom) {
@@ -41,6 +40,9 @@ angular.module('barsApp')
     }
     $scope.goToinQuiz = function(historyId){
         $window.location.href= '/instagramResponse/' + historyId;
+    }
+    $scope.goToQuizResult = function(historyId){
+        $window.location.href= '/quizResult/' + historyId;
     }
     // click accept or deny to add partner
     $scope.partnerDecision = function(decision) {
