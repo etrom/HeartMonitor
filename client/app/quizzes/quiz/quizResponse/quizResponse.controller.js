@@ -25,11 +25,12 @@ angular.module('barsApp')
 
         $http.put('api/historys/'+ $scope.quizID, {responseObj:answers, points: 10, responseDate: Date.now()}).
           success(function(data){
+            console.log(data, 'points')
             $http.put('api/users/' + $scope.currentUser._id + '/actiontaken/'+$scope.quizID)
           }).
             success(function(data){
               $scope.percentReq(10, data._id, 'nwResults');
-              $window.location.href= '/quizResult/' + $scope.quizID;
+              // $window.location.href= '/quizResult/' + $scope.quizID;
             })
     };
 //put to history to save answers

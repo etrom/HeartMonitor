@@ -162,6 +162,7 @@ exports.removeAction = function(req,res){
       }
     }
     user.actionRequests.splice(index, 1);
+    user.points += 10;
     user.save(function (err) {
       if (err) {return handleError(res, err); }
       return res.json(200, user);

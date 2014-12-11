@@ -3,6 +3,7 @@ angular.module('barsApp')
             return {
                 barPercentRequest: function(num, historyId, actionType, quizNum) {
                     var updateIncrease = num;
+                    console.log(updateIncrease, 'updateIncrease')
                     var user = Auth.getCurrentUser();
                     var partner = user.partner;
                     var history = historyId;

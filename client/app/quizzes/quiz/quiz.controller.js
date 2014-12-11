@@ -22,7 +22,7 @@ angular.module('barsApp')
     })
 
     $scope.save = function() {
-      $http.post('api/historys/', {user: $scope.currentUser._id, type: 'NW', historyObj: $scope.quiz }).
+      $http.post('api/historys/', {user: $scope.currentUser._id, points: 30, type: 'nwQuiz', historyObj: $scope.quiz }).
         success(function(data, status, headers, config) {
           $scope.percentReq(30, data._id, 'nwQuiz', 1)
           $scope.uniqueUrl = '/response/'+ data._id;

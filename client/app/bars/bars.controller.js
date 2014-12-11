@@ -88,5 +88,8 @@ angular.module('barsApp')
       return false;
    }
 
-   //
+  //if history.type === any quiztype
+   // count = count + 1
+   //for each count increase bar by 20%
+   // display graph
   });

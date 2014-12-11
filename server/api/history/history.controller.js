@@ -42,7 +42,7 @@ exports.create = function(req, res) {
 
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-    History.findOneAndUpdate({ _id:req.params.id},{responseObj: req.body.responseObj, responseDate: req.body.responseDate, active: false}, function(err,history) {
+    History.findOneAndUpdate({ _id:req.params.id},{responseObj: req.body.responseObj, points:req.body.points, responseDate: req.body.responseDate, active: false}, function(err,history) {
       console.log(history)
      if(err) {return res.send(500, err)};
     res.json(200, history);

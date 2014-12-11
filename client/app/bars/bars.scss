@@ -34,9 +34,15 @@ color: white;
     position: relative;
 }
 
+.goal, .points {
+    padding: 15px;
+}
+
+
+
 .goal, .points, .partner, .progressB {
     margin: 20px 20px 0 0;
-    padding: 75px;
+    // padding: 75px;
     border: 3px solid rgba(224, 221, 221, .5);
     background: white;
     border-radius: 5px;
@@ -61,6 +67,7 @@ color: white;
     position: relative;
     margin-top: 5px;
     padding: 9px 5px 5px 7px;
+    font-size: 2em;
 }
 .heart{
     margin: 23px 66px 12px 0;
@@ -82,7 +89,7 @@ color: white;
 .circle {
     border-radius: 100%;
     color: white;
-    background: #604788;
+    background: #5CB85C;
     width: 45px;
     height: 45px;
     text-align: center;
@@ -105,12 +112,33 @@ color: white;
 }
 
 .fa-5x {
-color: #F0AD4E;
+// color: #F0AD4E;
+color: #604788;
+
+
+}
+.fa-gamepad {
+// color: #4393B9;
+color: #604788;
+
+
+}
+
+a{
+    color: #333333;
+    &:hover {
+        color: #333333;
+    }
+}
+.fa-dot-circle-o {
+// color: #E57056;
+color: #604788;
 
 }
 
 #perLeft {
     color: #787879;
+
 }
 
 #achieve {
@@ -131,3 +159,6 @@ hr {
     padding: 20px;
 }
 
+.rule {
+    margin-bottom: 30px;
+}
