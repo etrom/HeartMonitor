@@ -79,7 +79,7 @@ angular.module('barsApp')
         }
       })
       .state('quizResponse', {
-        url: '/response',
+        url: '/response/:id',
         views: {
           "" : {
                 templateUrl: 'app/quizzes/surveys/surveys.html',
