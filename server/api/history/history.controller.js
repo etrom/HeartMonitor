@@ -13,7 +13,9 @@ exports.index = function(req, res) {
 
 // Get a single history
 exports.show = function(req, res) {
-  History.find({ user:req.params.id }, function (err, history) {
+  // History.find({ user:req.params.id }, function (err, history) {
+  History.findById(req.params.id, function (err, history) {
+    console.log('ding');
     if(err) { return handleError(res, err); }
     if(!history) { return res.send(404); }
     return res.json(history);
@@ -29,14 +31,24 @@ exports.create = function(req, res) {
 };
 
 // updates with response data and makes inactive
+// exports.update = function(req, res) {
+//   console.log(req.body.responseObj, 'here');
+//     History.findOneAndUpdate({ user:req.params.id},{responseObj: req.body.responseObj, responseDate: req.body.responseDate, active: false}, function(err,history) {
+//       console.log(history)
+//      if(err) {return res.send(500, err)};
+//     res.json(200, history);
+//   })
+// };
+
 exports.update = function(req, res) {
-  console.log(req.body.responseObj, 'here');
-    History.findOneAndUpdate({ user:req.params.id},{responseObj: req.body.responseObj, responseDate: req.body.responseDate, active: false}, function(err,history) {
+  if(req.body._id) { delete req.body._id; }
+    History.findOneAndUpdate({ _id:req.params.id},{responseObj: req.body.responseObj, responseDate: req.body.responseDate, active: false}, function(err,history) {
       console.log(history)
      if(err) {return res.send(500, err)};
     res.json(200, history);
   })
 };
+
 
 // Deletes a history from the DB.
 exports.destroy = function(req, res) {

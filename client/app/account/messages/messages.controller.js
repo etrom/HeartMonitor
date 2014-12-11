@@ -16,11 +16,11 @@ angular.module('barsApp')
 
             });
         }
-
-        console.log($scope.actionRequests);
         if($scope.actionRequests.length > 0){
             $scope.actionRequests.forEach(function(request) {
-                $scope.requests.push(request);
+                if(!request.active){
+                  $scope.requests.push(request);
+                }
                 // if(request.actionType == "nwQuiz"){
                 //     console.log('nwQuiz');
                 // }
@@ -35,9 +35,19 @@ angular.module('barsApp')
           // })
         }
 });
-    $scope.goToQuiz = function(){
-        $window.location.href= '/response';
+    $scope.goToQuiz = function(historyId){
+        $window.location.href= '/response/' + historyId;
     }
+    $scope.goToinQuiz = function(historyId){
+        $window.location.href= '/instagramResponse/' + historyId;
+    }
+    $scope.goToQuizResult = function(historyId){
+        $window.location.href= '/quizResult/' + historyId;
+    }
+    $scope.goToIqResult = function(historyId){
+        $window.location.href= '/instagramResults/' + historyId;
+    }
+    
     // click accept or deny to add partner
     $scope.partnerDecision = function(decision) {
         $scope.decision = decision;
@@ -45,7 +55,6 @@ angular.module('barsApp')
         success(function(data) {
             $http.get('/api/users/' + data._id).success(function(user){
                 $scope.currentUser = user;
-                console.log(user, 'messages controller user')
                 $window.location.href= '/home';
             })
         }).
