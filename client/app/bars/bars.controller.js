@@ -16,6 +16,8 @@ angular.module('barsApp')
   .controller('BarCtrl', function ($scope, Auth, $http, $log) {
     $scope.currentUser = Auth.getCurrentUser();
     // $scope.bars = $scope.currentUser.bars;
+    $scope.achievements = 0;
+    $scope.goals = 0;
     $scope.currentUser.$promise.then(function(user) {
       $scope.points = $scope.currentUser.points
 
@@ -88,6 +90,7 @@ angular.module('barsApp')
       return false;
    }
 
+   // achievement to display- 5 quizzes
   //if history.type === any quiztype
    // count = count + 1
    //for each count increase bar by 20%

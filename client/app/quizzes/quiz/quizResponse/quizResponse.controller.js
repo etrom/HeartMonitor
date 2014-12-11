@@ -30,7 +30,7 @@ angular.module('barsApp')
           }).
             success(function(data){
               $scope.percentReq(10, data._id, 'nwResults');
-              // $window.location.href= '/quizResult/' + $scope.quizID;
+              $window.location.href= '/quizResult/' + $scope.quizID;
             })
     };
 //put to history to save answers
