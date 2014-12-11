@@ -1,12 +1,38 @@
 .partnerImage {
     border-radius: 100%;
-    margin-top: 5%;
-    margin-left: 35%;
+    margin: 6px 20px 0px 36px;
 
 }
 
-.glyphicon-pencil {
-    display: inline;
-    float: right;
+// .glyphicon-pencil {
+//     float: right;
+//     right: 94px;
+//     top: -13px;
+// }
+
+#partnerHeart {
+    position: absolute;
+    top: 165px;
+    left: 180px;
+}
+
+.partnerPts{
+    // top: -49px;
+    // right: 68px;
+    position: absolute;
+top: 185px;
+right: 399px;
+    color: white;
+    font-size: 2em;
+}
+
+#partnerBucket{
+
+    margin: 8px 0px 0px 0px;
+}
+
+.name {
+    margin: 0px 0px -11px 0px;
+    font-size: 2em;
 }
 

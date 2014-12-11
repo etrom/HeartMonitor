@@ -16,9 +16,11 @@ angular.module('barsApp')
   .controller('BarCtrl', function ($scope, Auth, $http, $log) {
     $scope.currentUser = Auth.getCurrentUser();
     // $scope.bars = $scope.currentUser.bars;
-
+    $scope.achievements = 0;
+    $scope.goals = 0;
     $scope.currentUser.$promise.then(function(user) {
-    $scope.bars = user.bars;
+      $scope.points = $scope.currentUser.points
+
       if (user.profilePic) {
         $scope.profilePicUrl = user.profilePic;
       }
@@ -27,22 +29,14 @@ angular.module('barsApp')
       }
     })
 
-    // refresh the bars (900000 = 15 minutes)
-    setInterval(function(){
-      $http.get('/api/users/bar/' + $scope.currentUser._id)
-        .success(function(data, status, headers, config) {
-          $scope.bars = data;
-      })
-      // for(var i=0, len=$scope.bars.length; i<len; i++) {
-      //   $scope.bars[i].fulfillment += 0;
-      // };
-    },900000)
 
     // values for the points dropdown button
     $scope.dropdown = [
-      {text: '<i class="fa fa-plus"></i>&nbsp;10', click: 'addPercent(10, bar.name)'},
-      {text: '<i class="fa fa-plus"></i>&nbsp;20', click: 'addPercent(20, bar.name)'},
-      {text: '<i class="fa fa-plus"></i>&nbsp;30', click: 'addPercent(30, bar.name)'}
+      {text: '<i class="fa fa-heart"></i><p>romance</p>&nbsp;10', click: 'addgoal(10, bar.name)'},
+      {text: '<i class="fa fa-quote-left"></i><p>communication</p>&nbsp;20', click: 'addPercent(20, bar.name)'},
+      {text: '<i class="fa fa-thumbs-o-up"></i><p>compliments</p>&nbsp;30', click: 'addPercent(30, bar.name)'},
+      {text: '<i class="fa fa-plus"></i><p>affection</p>&nbsp;30', click: 'addPercent(30, bar.name)'}
+
     ];
 
 
@@ -98,5 +92,9 @@ angular.module('barsApp')
       return false;
    }
 
-   //
+   // achievement to display- 5 quizzes
+  //if history.type === any quiztype
+   // count = count + 1
+   //for each count increase bar by 20%
+   // display graph
   });

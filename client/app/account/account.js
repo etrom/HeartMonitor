@@ -51,8 +51,14 @@ angular.module('barsApp')
               }
         }
       })
+      .state('games', {
+        url: '/games',
+        templateUrl: 'app/quizzes/games.html',
+        // controller: 'MessagesCtrl',
+        authenticate: true
+      })
       .state('actionsViaFlirt', {
-        url: '/flirt/survey',
+        url: '/games/play',
         views: {
           "" : {
                 templateUrl: 'app/quizzes/surveys/surveys.html',

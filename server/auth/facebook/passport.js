@@ -36,14 +36,7 @@ exports.setup = function (User, config) {
             username: profile.username,
             provider: 'facebook',
             facebook: profile._json,
-            profilePic: 'https://graph.facebook.com/' + profile._json.id + '/picture?width=300',
-            fbAT: accessToken,
-            // NOTE: depInterval value represents the number of days it takes for a bar to deplete.
-            bars: [{name:'Social', depInterval: 1},
-                    {name:'Romance', depInterval: 1},
-                    {name:'Entertainment', depInterval: 7},
-                    {name:'Intimacy', depInterval: 14},
-                    {name:'Alone Time', depInterval: 14}]
+            profilePic: 'https://graph.facebook.com/' + profile._json.id + '/picture?width=300'
           });
           user.save(function(err) {
             if (err) done(err);

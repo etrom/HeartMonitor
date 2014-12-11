@@ -1,34 +1,25 @@
-<p>
 
-<div class="col-sm-12">
 
-  <p class="alert alert-success" role="alert" width="20%" ng-show="message">{{message}}</br>
-    <button class="btn btn primary" ng-show="invite" ng-click="sendInvite()"> Invite {{partnerEmail}} </button>
-  </p>
-  <div class="col-lg-6 pull-right" ng-hide="submitted">
 
-    <button class="btn btn-success pull-right" ng-hide="hasPartner" type="button"  ng-click=" clicked = !clicked ">add a partner + </button>
+  <p class="alert alert-success" role="alert" width="100%" ng-show="message">{{message}}</br><button class="btn btn primary" ng-show="invite" ng-click="sendInvite()"> Invite {{partnerEmail}} </button></p>
+  <div ng-hide="hasPartner" ng-show="show" ng-click="clicked()">
+    <h3 ng-show="show">add a partner<br><span class="circle glyphicon glyphicon-plus"></h3>
+  </div>
 
-    <div class="procedure-details" ng-show="clicked"  >
-      <form ng-show="clicked">
-        <input type="text" name='partnerEmail' class="form-control pull-right" placeholder="enter your partners email" ng-model="partnerEmail">
+
+
+  <div ng-hide="submitted">
+    <div class="procedure-details" ng-hide="show">
+      <form ng-hide="show" width="80%">
+        <input type="text" name='partnerEmail' class="form-control" placeholder="enter your partners email" ng-model="partnerEmail">
         <button class="btn btn-primary pull-right"  ng-click="requestPartner(partnerEmail)">Submit</button>
       </form>
-
     </div>
   </div>
+  <div id="partnerBucket" ng-show="hasPartner">
+    <p class="name">{{name}}</p>
+    <img ng-hide="chosenPic" class="partnerImage" src="{{picUrl}}" width="145px" height="145px"></a>
 
-  <!--  -->
-  <div ng-show="hasPartner">
-    <img ng-hide="chosenPic" class="partnerImage" src="{{partner.profilePic}}" width="125px" height="125px"></a>
-    <h1 class="page-header">{{partner.name}}'s bars:</h1>
-    <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bar in partner.bars">
-      <li><a href="#">{{bar.name}}</a>
-        <div class="progress">
-           <div ng-mouseenter="show = true" ng-mouseleave="show = false"class="progress-bar progress-bar-success progress-bar-striped " role="progressbar" aria-valuenow="{{bars.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: {{bar.fulfillment}}%"><span ng-show="show">{{bar.fulfillment.toFixed()}}%</span>
-            </div>
-        </div>
-      </li>
-    </ul>
+    <svg version="1.1" id="partnerHeart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z"></path></svg><span class="partnerPts">{{points}}</span>
   </div>
-</div>
+

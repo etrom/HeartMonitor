@@ -38,7 +38,9 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
-  bars: [barSchema],
+  points: { type: Number,
+    default: 0
+  },
   actionRequests: [actionRequestSchema],
   reminded: {
       type: Boolean,

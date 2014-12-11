@@ -117,7 +117,7 @@ exports.updateBarRequest = function(req,res){
       //add type when it exists
       historyId: req.body.historyId,
       actionType: req.body.actionType,
-      increment: req.body.increment,
+      points: req.body.increment,
       dateSent: Date.now()
     };
 
@@ -128,6 +128,7 @@ exports.updateBarRequest = function(req,res){
       if (req.body.quizNum){
         User.findOne(user.partner, function(err,partner){
           console.log(req.body.quizNum);
+          partner.points += 30;
           partner.quizNumber += req.body.quizNum;
           partner.save(function(err, savedUser, numModified){
           })
@@ -161,6 +162,7 @@ exports.removeAction = function(req,res){
       }
     }
     user.actionRequests.splice(index, 1);
+    user.points += 10;
     user.save(function (err) {
       if (err) {return handleError(res, err); }
       return res.json(200, user);

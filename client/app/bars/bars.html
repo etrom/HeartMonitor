@@ -1,35 +1,84 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-          <div class="imgContainer" ng-mouseenter="showIcon = true" ng-mouseleave="showIcon = false" >
-            <!-- When you have no photo show blank pic and add a picture button -->
-            <a ng-hide="chosenPic" ng-click="editProfilePic()" >
-              <span ng-show="showIcon" ng-hide="chosenPic" class="glyphicon glyphicon-pencil"></span>
-              
-                <img ng-hide="chosenPic" class="userImage" src="{{profilePicUrl}}" width="125px" height="125px">
-              
-            </a>
-            <!-- After you have photo show edit picture button -->
-            <a ng-show="chosenPic" ng-click="launchEditor('image1', '{{profilePicUrl}}')" >
-              <span ng-show="showIcon" ng-show="chosenPic" class="glyphicon glyphicon-pencil"></span>
-                <img ng-show="chosenPic" class="userImage" id='image1' src="{{profilePicUrl}}" width="125px" height="125px"/>
-            </a>
-          </div>
-<!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
+  <div class="whole-thing">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <!-- points achievements goals completed -->
+        <div class="imgContainer" ng-mouseenter="showIcon = true" ng-mouseleave="showIcon = false" >
+          <!-- When you have no photo show blank pic and add a picture button -->
+          <a ng-hide="chosenPic" ng-click="editProfilePic()" >
+            <span ng-show="showIcon" ng-hide="chosenPic" class="glyphicon glyphicon-pencil"></span>
 
-      <h1 class="page-header">My bars:</h1>
-      <div>{{bar}}</div>
-      <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bar in bars">
-        <li><a href="#">{{bar.name}}</a>
-          <div class="progress">
-            <div ng-mouseenter="show = true" ng-mouseleave="show = false"class="progress-bar progress-bar-success progress-bar-striped " role="progressbar" aria-valuenow="{{bars.fulfillment}}" aria-valuemin="0" aria-valuemax="100" style="width: {{bar.fulfillment}}%"><span ng-show="show">{{bar.fulfillment.toFixed()}}%</span>
-            </div>
+            <img ng-hide="chosenPic" class="userImage" src="{{profilePicUrl}}" width="150px" height="150px">
+
+          </a>
+          <!-- After you have photo show edit picture button -->
+          <!-- Add an edit button, passing the HTML id of the image and the public URL of the image -->
+          <a ng-show="chosenPic" ng-click="launchEditor('image1', '{{profilePicUrl}}')" >
+            <span ng-show="showIcon" ng-show="chosenPic" class="glyphicon glyphicon-pencil"></span>
+            <img ng-show="chosenPic" class="userImage" id='image1' src="{{profilePicUrl}}" width="160px" height="160px"/>
+          </a>
+        </div>
+        <div class="hearts">
+          <div class="heart">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{points}}</span><p>points</p>
           </div>
-           <button type="button" class="btn btn-primary" bs-dropdown="dropdown">+</button>
-           <button type="button" class="close" ng-click="deleteBar(bar)">&times;</button>
-        </li>
-      </ul>
+          <div class="heart">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{achievements}}</span><p>achievements</p>
+          </div>
+          <div class="heart">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{goals}}</span><p>goals</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
     </div>
-    <div class="col-sm-6" ui-view="partner"></div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <div class="goal" bs-dropdown="dropdown" >
+          <i class="fa fa-road fa-5x"></i>
+          <h3 id="achieve">goals</h3>
+          <hr class="rule">
+          <br><span class="circle glyphicon glyphicon-plus"></span>
+        </div>
+        <a href="/games">
+          <div class="points">
+            <i class="fa fa-gamepad fa-5x"></i>
+            <h3 id="achieve">games</h3>
+             <hr class="rule">
+           <br><span class="circle glyphicon glyphicon-plus">
+          </div>
+
+
+        </a>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <div class="partner" ui-view="partner"></div>
+        <div class="progressB">
+          <i class="fa fa-trophy fa-5x"></i>
+          <h3 id="achieve">achievements</h3>
+          <hr>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+              60%
+            </div>
+            <p id="perLeft">40% to go!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+
+
   </div>
+
+
+
 </div>
+
+

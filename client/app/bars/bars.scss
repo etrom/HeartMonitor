@@ -1,24 +1,105 @@
+.whole-thing{
+    margin: 0 auto;
+}
+
+.row{
+    background: #FAFAFA;
+    padding:0 10% 0 10%;
+}
+.navbar-form {
+border-color: #604788;
+color: white;
+}
+
 .userImage {
     border-radius: 100%;
-    margin-top: 5%;
-    margin-right: auto;
-    margin-left: auto;
+    margin-left: -38%;
+    margin-top: -45px;
     &:hover {
         background:#000;
         opacity:0.5;
     }
 }
-
-.imgContainer{
-    margin-left: 35%;
+.imgContainer {
     border-radius: 100%;
-    margin-top: 5%;
+    vertical-align: top;
 }
-.glyphicon-pencil {
-    display: block;
 
-    top: 75px;
-    right: 75%;
+.imgContainer, .partner, .goal, .points, .hearts, .progressB {
+    display: inline-block;
+}
+
+
+.progressB {
+    position: relative;
+}
+
+.goal, .points {
+    padding: 15px;
+}
+
+
+
+.goal, .points, .partner, .progressB {
+    margin: 20px 20px 0 0;
+    // padding: 75px;
+    border: 3px solid rgba(224, 221, 221, .5);
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+    width: 46%;
+    height:275px;
+}
+
+.partner{
+    margin-top: 23px;
+    vertical-align: top;
+}
+
+.little-partner{
+    position: relative;
+    width: 100%;
+}
+.svg{
+ margin: 0 auto;
+}
+.glyphicon-plus{
+    position: relative;
+    margin-top: 5px;
+    padding: 9px 5px 5px 7px;
+    font-size: 2em;
+}
+.heart{
+    margin: 23px 66px 12px 0;
+    display:inline-block;
+    text-align: center;
+    text-decoration: italic;
+    position: relative;
+}
+
+.heart-points{
+    position: absolute;
+    margin-right:100px;
+    top: 20px;
+    left: 37px;
+    color: white;
+    font-size: 2em;
+}
+
+.circle {
+    border-radius: 100%;
+    color: white;
+    background: #5CB85C;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.glyphicon-pencil {
+    float: right;
+    top: -11px;
+    right: 89px;
     color: white;
     font-size: 3em;
     &:hover {
@@ -26,3 +107,58 @@
     }
 }
 
+.hearts{
+    margin-left: -65px;
+}
+
+.fa-5x, .fa-4x {
+// color: #F0AD4E;
+color: #604788;
+
+
+}
+.fa-gamepad {
+// color: #4393B9;
+color: #604788;
+
+
+}
+
+a{
+    color: #333333;
+    &:hover {
+        color: #333333;
+    }
+}
+.fa-road  {
+// color: #E57056;
+color: #604788;
+
+}
+
+#perLeft {
+    color: #787879;
+
+}
+
+#achieve {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+
+
+.progressB{
+    margin-top:20px;
+}
+.partner, .progressB{
+    padding: 20px;
+}
+
+.rule {
+    margin-bottom: 30px;
+}

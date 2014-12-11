@@ -1,3 +1,7 @@
+body {
+    background-color: #FAFAFA;
+}
+
 .thing-form {
     margin: 20px 0;
 }
@@ -20,6 +24,14 @@
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     background: #4393B9;
+}
+
+.hero-unit-home {
+    position: relative;
+    padding: 50px 15px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background: #604788;
 }
 
 .footer {

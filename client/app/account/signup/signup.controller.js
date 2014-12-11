@@ -17,11 +17,6 @@ angular.module('barsApp')
           password: $scope.user.password,
           partner: $stateParams.signUpId,
           // NOTE: depInterval value represents the number of days it takes for a bar to deplete.
-          bars: [{name:'Social', depInterval: 1},
-                  {name:'Romance', depInterval: 1},
-                  {name:'Entertainment', depInterval: 7},
-                  {name:'Intimacy', depInterval: 14},
-                  {name:'Alone Time', depInterval: 14}]
         }).
         then(function() {
           Auth.getCurrentUser().$promise.then(function(data) {

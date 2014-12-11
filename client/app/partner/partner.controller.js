@@ -6,41 +6,55 @@ angular.module('barsApp')
     $scope.partnerEmail = '';
     $scope.invite = false;
     $scope.hasPartner = false;
-    $scope.clicked= false;
+    $scope.show= true;
+    $scope.clicked= function() {
+      $scope.show = false;
+    };
+
 
     $scope.addFB = function() {
-      $scope.clicked = true;
+      $scope.show = false;
     }
 
 
     $scope.currentUser.$promise.then(function(user) {
       if (user.partner) {
         // $http.get('/api/users/whole/' + user.partner).success(function(partner){
-            $scope.partner = user.partner;
-            $scope.hasPartner = true;
-            //show only first name for facebook pull in
-            if(user.partner.name.search(' ')){
-              var nameArr = user.partner.name.split(' ');
-              $scope.currentUser.partner.name = nameArr[0];
-            }
+        $scope.partner = user.partner;
+        $scope.hasPartner = true;
+        $scope.points = $scope.currentUser.partner.points;
+
+        //show only first name for facebook pull in
+        if(user.partner.name.search(' ')){
+          var nameArr = user.partner.name.split(' ');
+          $scope.name = nameArr[0];
+        }
         // })
       } else {
-        if ($scope.currentUser.facebook.significant_other) {
           $scope.fbPartnerPic = 'https://graph.facebook.com/' + $scope.currentUser.facebook.significant_other.id + '/picture?width=200';
           var myModal = $modal({scope: $scope, template: "/app/partner/fbModal.html", title: '<i class="fa fa-facebook-square"></i> You have a significant other on Facebook', content: 'Would like to add ' + $scope.currentUser.facebook.significant_other.name + ' as your Heart Bar Partner?', show: true});
         }
+
+      if ($scope.partner.profilePic) {
+        $scope.picUrl = user.partner.profilePic;
+      }
+      else {
+        $scope.picUrl = "http://bandarito.ph/assets/uploads/profile_image/default.jpg";
       }
 
     })
 
 
+
+
     $scope.requestPartner = function(){
+        $scope.show = false;
         $http.post('/api/users/findExisting/'+ $scope.currentUser._id, {email: $scope.partnerEmail}).
         success(function(data, status, headers, config) {
 
           //if they exist in the database send the request
           if(data[0]) {
-            $scope.message = "request sent";
+            $scope.message = "request sent, waiting for acceptance";
           } else {
             $scope.invite = true;
             //if they do not tell them the user does not exist
