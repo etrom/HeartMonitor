@@ -9,7 +9,8 @@ angular.module('barsApp', [
   'ui.bootstrap',
   'ui.bootstrap',
   'mgcrea.ngStrap',
-  'ui.sortable'
+  'ui.sortable',
+  'highcharts-ng'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
