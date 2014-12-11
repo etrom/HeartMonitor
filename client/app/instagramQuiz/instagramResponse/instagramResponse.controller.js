@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('barsApp')
-  .controller('InstagramresponseCtrl', function ($scope, Auth, $stateParams, $http, $window) {
+  .controller('InstagramresponseCtrl', function ($scope, Auth, $stateParams, $http, $window, quizFactory) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.quiz = [];
     $scope.quizID = $stateParams.id;
     $scope.iqTitle ='';
+    $scope.percentReq = quizFactory.barPercentRequest;
 
 
     $scope.currentUser.$promise.then(function(user) {
@@ -27,7 +28,8 @@ angular.module('barsApp')
             $http.put('api/users/' + $scope.currentUser._id + '/actiontaken/'+$scope.quizID)
           }).
             success(function(data){
-              $window.location.href= '/messages'
+              $scope.percentReq(0, data._id, 'iqResults');
+              $window.location.href= '/instagramResults/' + $scope.quizID;
             })
     }
   });
