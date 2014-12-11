@@ -16,9 +16,8 @@ angular.module('barsApp')
   .controller('BarCtrl', function ($scope, Auth, $http, $log) {
     $scope.currentUser = Auth.getCurrentUser();
     // $scope.bars = $scope.currentUser.bars;
-
+    $scope.points = $scope.currentUser.points
     $scope.currentUser.$promise.then(function(user) {
-    $scope.bars = user.bars;
       if (user.profilePic) {
         $scope.profilePicUrl = user.profilePic;
       }
@@ -27,16 +26,6 @@ angular.module('barsApp')
       }
     })
 
-    // refresh the bars (900000 = 15 minutes)
-    setInterval(function(){
-      $http.get('/api/users/bar/' + $scope.currentUser._id)
-        .success(function(data, status, headers, config) {
-          $scope.bars = data;
-      })
-      // for(var i=0, len=$scope.bars.length; i<len; i++) {
-      //   $scope.bars[i].fulfillment += 0;
-      // };
-    },900000)
 
     // values for the points dropdown button
     $scope.dropdown = [
