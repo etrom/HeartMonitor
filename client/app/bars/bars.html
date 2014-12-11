@@ -44,10 +44,15 @@
         </div>
         <a href="/games">
           <div class="points">
-            <i class="fa fa-gamepad fa-5x"></i>
-            <h3 id="achieve">games</h3>
-             <hr class="rule">
-           <br><span class="circle glyphicon glyphicon-plus">
+            <div ng-show="true">
+              <highchart id="chart1" config="highchartsNG"></highchart>
+            </div>
+            <div ng-show='fasle'>
+              <i class="fa fa-gamepad fa-5x"></i>
+              <h3 id="achieve">games</h3>
+               <hr class="rule">
+             <br><span class="circle glyphicon glyphicon-plus">
+          </div>
           </div>
 
 

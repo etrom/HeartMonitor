@@ -22,6 +22,18 @@ exports.show = function(req, res) {
   });
 };
 
+exports.getUserHistory = function(req, res) {
+  // History.find({ user:req.params.id }, function (err, history) {
+  History.find(req.params.id, function (err, history) {
+    console.log('ding');
+    if(err) { return handleError(res, err); }
+    if(!history) { return res.send(404); }
+    return res.json(history);
+  });
+};
+
+
+
 // Creates a new history in the DB.
 exports.create = function(req, res) {
   History.create(req.body, function(err, history) {
