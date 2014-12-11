@@ -11,6 +11,15 @@ angular.module('barsApp')
 
     $scope.currentUser.$promise.then(function(user) {
       $http.get('api/historys/' + $scope.quizID).success(function(data, status, headers, config) {
+        var currentIndex = data.historyObj.length, temporaryValue, randomIndex ;
+        // randomize the order of the pictures for partner to guess
+        while (0 !== currentIndex) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+          temporaryValue = data.historyObj[currentIndex];
+          data.historyObj[currentIndex] = data.historyObj[randomIndex];
+          data.historyObj[randomIndex] = temporaryValue;
+        }
         $scope.iqTitle = data.iqTitle;
         $scope.quiz = data.historyObj;
       });
