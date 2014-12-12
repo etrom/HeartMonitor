@@ -58,6 +58,7 @@ angular.module('barsApp')
     $scope.quizTitle = '';
 
     $scope.saveSelected = function(quizTitle) {
+      $scope.sortPics = true;
       $scope.selectedPhotos = [];
       $scope.quizTitle = quizTitle;
       for (var i=0; i < $scope.photoTotal; i++) {
@@ -65,10 +66,10 @@ angular.module('barsApp')
           $scope.selectedPhotos.push($scope.instagramPhotos[i]);
         }
       }
-      var myFinalModal = $modal({scope: $scope,
-                          template: "/app/instagramQuiz/finalizeInstagramModal.html",
-                          title: '<i class="fa fa-instagram fa-3x"></i> ' + quizTitle,
-                          content: 'temps content value for centent variable'})
+      // var myFinalModal = $modal({scope: $scope,
+      //                     template: "/app/instagramQuiz/finalizeInstagramModal.html",
+      //                     title: '<i class="fa fa-instagram fa-3x"></i> ' + quizTitle,
+      //                     content: 'temps content value for centent variable'})
     };
 
     $scope.sortableOptions = {   
