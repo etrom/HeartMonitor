@@ -7,3 +7,9 @@ li:hover {
 .blue:hover {
     cursor: default;
 }
+
+input[type="checkbox"] {
+box-sizing: border-box;
+padding: 10px;
+height: 10px;
+}

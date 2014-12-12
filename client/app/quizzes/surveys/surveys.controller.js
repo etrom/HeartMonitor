@@ -3,9 +3,8 @@
 // button for all surveys/points/quizzes
 angular.module('barsApp')
   .controller('SurveysCtrl', function ($scope, $stateParams, Auth, $http, $window) {
-    $scope.currentBar = $stateParams.barName;
     $scope.currentUser = Auth.getCurrentUser();
-
+    $scope.params = $stateParams.id;
     // $scope.barPercentRequest = quizFactory.barPercentRequest();
     // $scope.barPercentRequest = function(num){
     //     $scope.updateIncrease = num;

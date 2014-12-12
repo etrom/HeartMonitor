@@ -38,6 +38,9 @@
     <div class="row">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
+        <div ng-show="noPartner" class="alert alert-success" role="alert" width="100%" >
+            <p>You must have a partner to do that</p>
+          </div>
         <div class="goal" >
           <div ng-hide='reminderSet'>
             <div ng-hide="clicked" ng-show="cancel" ng-click="nowClicked()">
@@ -75,27 +78,25 @@
                 <h3 id="achieve">goals</h3>
                 <hr class="rule">
                 <br>
-                <p class="goalPts" >Your current goal is: <br>
+                <p class="goalPts">Your current goal is: <br>
                 {{currentGoal}}</p>
 
               </div>
             </div>
           </div>
-
-        <a href="/games">
+        <a href ng-click="hasPartner()" >
           <div class="points">
 
-            <div ng-show="true">
+            <div ng-show="history">
               <highchart id="chart1" config="highchartsNG"></highchart>
             </div>
-            <div ng-show='false'>
+            <div ng-hide="history">
               <i class="fa fa-gamepad fa-5x"></i>
               <h3 id="achieve">games</h3>
                <hr class="rule">
              <br><span class="circle glyphicon glyphicon-plus">
+            </div>
           </div>
-          </div>
-
 
         </a>
       </div>

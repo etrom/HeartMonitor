@@ -5,12 +5,12 @@
     <div class="col-sm-12">
 
         <!--newly wed type quiz-->
-        <div ui-view="nwQuiz"></div>
+        <div ng-show="params == 'nwQuiz'" ui-view="nwQuiz"></div>
         <!--newly wed response -->
         <div ui-view="nwQuizResponse"></div>
 
         <!--instagram quiz-->
-        <div ui-view="instagram"</div>
+        <div ng-show="params == 'instagram'" ui-view="instagram"</div>
         <!--instagram response-->
 
 

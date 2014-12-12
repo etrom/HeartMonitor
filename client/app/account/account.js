@@ -58,7 +58,7 @@ angular.module('barsApp')
         authenticate: true
       })
       .state('actionsViaFlirt', {
-        url: '/games/play',
+        url: '/games/play/:id',
         views: {
           "" : {
                 templateUrl: 'app/quizzes/surveys/surveys.html',
