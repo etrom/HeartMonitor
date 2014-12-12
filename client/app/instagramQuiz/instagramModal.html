@@ -19,7 +19,7 @@
             </thead>
             <tr ng-model="instagramPhotos" ng-repeat="photo in instagramPhotos | startFrom:currentPage*pageSize | limitTo:pageSize">
               <td>
-                <div class="checkbox">
+                <div class="checkbox checks">
                   <label>
                     <input type="checkbox" ng-model='photo.selected'>
                   </label>
@@ -28,12 +28,12 @@
               <td><img src="{{photo.thumbnail}}"></td>
               <td>{{photo.label}}</td>
             </tr>
-          </table> 
+          </table>
           <br>
           <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">Previous</button>
             {{currentPage+1}}/{{numberOfPages()}}
           <button ng-disabled="currentPage >= instagramPhotos.length/pageSize - 1" ng-click="currentPage=currentPage+1">Next </button>
-          <button ng-click="saveSelected(quizTitle); $hide()" ng-disabled="quizForm.$invalid">Submit</button>
+          <button ng-click="saveSelected(quizTitle); $hide()" >Submit</button>
       </div>
     </div>
   </div>
