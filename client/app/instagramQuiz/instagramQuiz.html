@@ -15,9 +15,9 @@
     <div class="list-group">
       <li class="list-group-item active blue"><i class="fa fa-instagram fa-3x"></i> {{quizTitle}}</li>
         <div id="sortable-container">
-          <div class="sortable-row" as-sortable="sortableOptions" is-enabled='true' ng-model="quiz">
+          <div class="sortable-row" as-sortable="sortableOptions" is-enabled='true' ng-model="selectedPhotos">
             <div ng-repeat="photo in selectedPhotos" as-sortable-item>
-              <li as-sortable-item-handle class="list-group-item list"><img src="{{photo.thumbnail}}"> {{question.label}}</li>
+              <li as-sortable-item-handle class="list-group-item list"><img src="{{photo.thumbnail}}"> {{photo.label}}</li>
             </div>
           </div>
        </div>
