@@ -86,11 +86,10 @@
           </div>
         <a href ng-click="hasPartner()" >
           <div class="points">
-
-            <div ng-show="history">
+            <div ng-show="history" ng-mouseenter="history=false">
               <highchart id="chart1" config="highchartsNG"></highchart>
             </div>
-            <div ng-hide="history">
+            <div ng-hide="history" ng-mouseleave="hasHistory()">
               <i class="fa fa-gamepad fa-5x"></i>
               <h3 id="achieve">games</h3>
                <hr class="rule">
