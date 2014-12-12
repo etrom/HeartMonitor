@@ -20,10 +20,10 @@
       <ul class="nav navbar-nav navbar-right">
         <!-- <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
         <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li> -->
-        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
-        <li ng-show="isLoggedIn()" class style="width:53px;"><a href="/messages">
-        <img src="assets/images/hearbars_logo_gray.png" ng-hide="hasMessage" width="70%" alt="lovebar">
-        <img src="assets/images/hearbars_logo_alert.png" ng-show="hasMessage" width="85%" alt="lovebar">
+        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ currentUser.name }}</p> </li>
+        <li ng-show="isLoggedIn()" class style="width:53px;  "><a href="/messages">
+          <img src="assets/images/hearbars_logo_gray.png" ng-hide="hasMessage" ng-click="clicked()" width="80%" alt="lovebar">
+          <img src="assets/images/hearbars_logo_alert.png" ng-show="hasMessage" width="90%" alt="lovebar">
         </a></li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
         <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
