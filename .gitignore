@@ -8,3 +8,4 @@ dist
 /server/config/local.env.js
 /server/api/email/passwords.js
 /server/Quiz
+.DS_store
