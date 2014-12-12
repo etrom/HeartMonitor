@@ -20,6 +20,7 @@ angular.module('barsApp')
     $scope.achievements = 0;
     $scope.goals = 0;
     $scope.currentGoal = false;
+    var userHasHistory = false;
 
 
     $scope.nowClicked = function(){
@@ -44,10 +45,16 @@ angular.module('barsApp')
         success(function(data) {
           if(data.length > 0) {
             $scope.history = true;
+            userHasHistory = true;
           }
           console.log(data);
         });
     })
+    $scope.hasHistory = function() {
+      if(userHasHistory) {
+        $scope.history = true;
+      }
+    }
 
     $scope.hasPartner= function() {
       if ($scope.currentUser.partner){
