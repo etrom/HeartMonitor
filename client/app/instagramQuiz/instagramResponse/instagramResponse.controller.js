@@ -32,7 +32,7 @@ angular.module('barsApp')
     };
 
     $scope.save = function() {
-        $http.put('api/historys/'+ $scope.quizID, {responseObj:$scope.quiz, responseDate: Date.now()}).
+        $http.put('api/historys/'+ $scope.quizID, {responseObj:$scope.quiz, points: 10, responseDate: Date.now()}).
           success(function(data){
             $http.put('api/users/' + $scope.currentUser._id + '/actiontaken/'+$scope.quizID)
           }).
