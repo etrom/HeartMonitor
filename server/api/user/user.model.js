@@ -33,6 +33,11 @@ var UserSchema = new Schema({
   name: String,
   reqFrom: String,
   requests: Boolean,
+  currentGoal: String,
+  goalsCompleted: {
+    type: Number,
+    default: 0
+  },
   email: { type: String, lowercase: true },
   role: {
     type: String,

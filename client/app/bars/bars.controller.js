@@ -27,7 +27,11 @@ angular.module('barsApp')
     }
     $scope.currentUser.$promise.then(function(user) {
       $scope.points = $scope.currentUser.points
-
+      if (user.currentGoal){
+        $scope.reminderSet = true;
+        // $scope.clicked = true;
+        $scope.currentGoal = user.currentGoal;
+      }
       if (user.profilePic) {
         $scope.profilePicUrl = user.profilePic;
       }
@@ -52,8 +56,14 @@ angular.module('barsApp')
 
     ];
 
+    $scope.cancel = false;
     $scope.setGoal = function(string){
       $scope.currentGoal = string;
+    }
+     $scope.saveGoal = function(currentGoal){
+      $http.put('/api/users/'+ $scope.currentUser._id, {currentGoal: currentGoal});
+      $scope.currentGoalReminder = true;
+      $scope.currentGoalSet = true;
     }
     // increase fulfillment #'s
     $scope.addPercent = function(num, barName){
@@ -134,7 +144,7 @@ angular.module('barsApp')
           allowDecimals: false,
           title: {
             text: false
-    
+
           }
         },
         pane: {

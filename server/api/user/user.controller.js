@@ -20,6 +20,23 @@ exports.index = function(req, res) {
   });
 };
 
+
+//updates a user
+exports.update = function(req, res) {
+  User.findById(req.params.id, function(err,user) {
+    if(err) {return res.send(500, err)};
+      user.points += 15;
+      user.currentGoal = req.body.currentGoal;
+      user.save(function(err, user){
+        res.json(200, user);
+      })
+
+
+  })
+};
+
+
+
 /**
  * Creates a new user
  */

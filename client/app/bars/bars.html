@@ -39,27 +39,46 @@
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <div class="goal" >
-          <div ng-hide="clicked" ng-click="nowClicked()">
-            <i class="fa fa-road fa-5x"></i>
-            <h3 id="achieve">goals
-            <hr class="rule">
-            <br><span class="circle glyphicon glyphicon-plus"></span>
-            </h3>
-          </div>
-            <div class="list-group" ng-hide="currentGoal || !clicked"   >
-              <p class="list-group-item purple">Choose a goal to work on in your relationship</p>
-              <li class="list-group-item" ng-click="setGoal('romance')"><i class="fa fa-heart"></i><p class="goalOpts"> romance</p></li>
-              <li class="list-group-item" ng-click="setGoal('communication')"><i class="fa fa-quote-left"></i><p class="goalOpts"> communication</p></li>
-              <li class="list-group-item" ng-click="setGoal('compliments')"><i class="fa fa-thumbs-o-up"></i><p class="goalOpts"> compliments</p></li>
-              <li class="list-group-item" ng-click="setGoal('affection')"><i class="fa fa-plus"></i><p class="goalOpts"> affection</p></li>
+          <div ng-hide='reminderSet'>
+            <div ng-hide="clicked" ng-show="cancel" ng-click="nowClicked()">
+              <i class="fa fa-road fa-5x"></i>
+              <h3 id="achieve">goals
+              <hr class="rule">
+              <br><span class="circle glyphicon glyphicon-plus"></span>
+              </h3>
             </div>
+              <div class="list-group" ng-hide="currentGoal || !clicked"   >
+                <p class="list-group-item purple">Choose a goal to work on in your relationship</p>
+                <li class="list-group-item" ng-click="setGoal('romance')"><i class="fa fa-heart"></i><p class="goalPts"> romance</p></li>
+                <li class="list-group-item" ng-click="setGoal('communication')"><i class="fa fa-quote-left"></i><p class="goalPts"> communication</p></li>
+                <li class="list-group-item" ng-click="setGoal('compliments')"><i class="fa fa-thumbs-o-up"></i><p class="goalPts"> compliments</p></li>
+                <li class="list-group-item" ng-click="setGoal('affection')"><i class="fa fa-plus"></i><p class="goalPts"> affection</p></li>
+              </div>
 
-            <div ng-show="currentGoal"><h3 id="addGoal">
-              Would you like to set {{currentGoal}} as your goal?<br>
-              <span class="circle glyphicon glyphicon-chevron-left"></span>
-              <span class="circle glyphicon glyphicon-ok"></span>
-              <span class="circle glyphicon glyphicon-remove"></span>
-            </h3>
+              <div ng-show="currentGoal && !currentGoalSet" ><h3 id="addGoal">
+                Would you like to set {{currentGoal}} as your goal?<br>
+                <span class="circle glyphicon glyphicon-chevron-left" ng-click="currentGoal = false"></span>
+                <span class="circle glyphicon glyphicon-ok" ng-click="saveGoal(currentGoal)"></span>
+                <span class="circle glyphicon glyphicon-remove" ng-click="currentGoal = false; clicked= false"></span>
+              </h3>
+              </div>
+               <div class="list-group" ng-show="currentGoalReminder && !reminderSet">
+                <p class="list-group-item purple">Would you like a {{currentGoal}} goal reminder</p>
+                <li class="list-group-item" ng-click="reminderSet= true"><p class="goalPts">daily</p></li>
+                <li class="list-group-item" ng-click="reminderSet= true"><p class="goalPts">weekly</p></li>
+                <li class="list-group-item" ng-click="reminderSet= true"><p class="goalPts">no thanks</p></li>
+              </div>
+            </div>
+            <div ng-show="reminderSet">
+              <div ng-show="reminderSet" >
+                <i class="fa fa-road fa-5x"></i>
+                <h3 id="achieve">goals</h3>
+                <hr class="rule">
+                <br>
+                <p class="goalPts" >Your current goal is: <br>
+                {{currentGoal}}</p>
+
+              </div>
             </div>
           </div>
 

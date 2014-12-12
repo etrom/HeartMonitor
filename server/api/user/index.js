@@ -6,6 +6,7 @@ var config = require('../../config/environment');
 var auth = require('../../auth/auth.service');
 
 var router = express.Router();
+router.put('/:id', auth.isAuthenticated(), controller.update)
 router.post('/bar/:id', auth.isAuthenticated(), controller.addPercent)
 router.get('/bar/:id', auth.isAuthenticated(), controller.getBars)
 router.post('/findExisting/:id', auth.isAuthenticated(), controller.findExisting)
