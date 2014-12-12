@@ -25,7 +25,9 @@ angular.module('barsApp')
       });
     })
 
-    $scope.sortableOptions = {   
+    $scope.sortableOptions = { 
+    'ui-floating': true, 
+      containment: '#sortable-container', 
       accept: function (sourceItemHandleScope, destSortableScope) {
         return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
       }

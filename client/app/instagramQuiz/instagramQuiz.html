@@ -1,4 +1,4 @@
-<div class="container" >
+<div class="container" ng-hide="sortPics" >
     <h1>Take the instagram Quiz</h1>
     <h4>Sign in to your account to play the game!</h4>
 
@@ -7,4 +7,24 @@
 <button ng-hide="instagramName" onclick="hello( 'instagram' ).login()"class='btn btn-danger fa fa-instagram fa-2x'> Login</button>
 <!-- <button ng-click="logIn()"class='fa fa-instagram'> Instagram Log In</button> -->
 <button ng-show="instagramName" ng-click="loadPictures()" class='btn btn-success fa fa-instagram fa-2x'> Start game!</button>
+</div>
+
+<div class="container" ng-show="sortPics">
+  <h4>Arrange Order of Photos by Drag and Drop</h4>
+  <form class="bar-form nav-stacked" name="quizForm" novalidate>
+    <div class="list-group">
+      <li class="list-group-item active blue"><i class="fa fa-instagram fa-3x"></i> {{quizTitle}}</li>
+        <div id="sortable-container">
+          <div class="sortable-row" as-sortable="sortableOptions" is-enabled='true' ng-model="quiz">
+            <div ng-repeat="photo in selectedPhotos" as-sortable-item>
+              <li as-sortable-item-handle class="list-group-item list"><img src="{{photo.thumbnail}}"> {{question.label}}</li>
+            </div>
+          </div>
+       </div>
+    </div>
+  </form>
+  <br>
+  <button class="btn btn-primary" ng-click="save($modal.title)" ng-disabled="quizForm.$invalid">Send to {{currentUser.partner.name}} <span class="badge">   + 30pts</span></button>
+  <br>
+  <br>
 </div>
