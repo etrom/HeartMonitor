@@ -25,8 +25,8 @@ angular.module('barsApp')
 
     $scope.nowClicked = function(){
       $scope.clicked = true;
-
     }
+
     $scope.currentUser.$promise.then(function(user) {
       $scope.points = $scope.currentUser.points
       if (user.currentGoal){
