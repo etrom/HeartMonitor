@@ -26,9 +26,15 @@ exports.getUserHistory = function(req, res) {
   // History.find({ user:req.params.id }, function (err, history) {
   History.find(req.params.id, function (err, history) {
     console.log('ding');
+    var userHistory = [];
+    history.forEach(function (obj) {
+      if(obj.user[0] == req.params.id){
+        userHistory.push(obj);
+      }
+    });
     if(err) { return handleError(res, err); }
     if(!history) { return res.send(404); }
-    return res.json(history);
+    return res.json(userHistory);
   });
 };
 
