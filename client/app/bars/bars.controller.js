@@ -13,13 +13,14 @@ angular.module('barsApp')
     });
   })
 
-  .controller('BarCtrl', function ($scope, Auth, $http, $log) {
+  .controller('BarCtrl', function ($scope, Auth, $http, $log, $window) {
     $scope.currentUser = Auth.getCurrentUser();
     // $scope.bars = $scope.currentUser.bars;
     $scope.clicked = false;
     $scope.achievements = 0;
     $scope.goals = 0;
     $scope.currentGoal = false;
+
 
     $scope.nowClicked = function(){
       $scope.clicked = true;
@@ -41,12 +42,20 @@ angular.module('barsApp')
 
       $http.get('/api/historys/user/' + $scope.currentUser._id).
         success(function(data) {
-
+          if(data.length > 0) {
+            $scope.history = true;
+          }
           console.log(data);
         });
     })
 
-
+    $scope.hasPartner= function() {
+      if ($scope.currentUser.partner){
+        $window.location.href = '/games';
+      } else {
+        $scope.noPartner= true;
+      }
+    }
     // values for the points dropdown button
     $scope.dropdown = [
       {text: '<i class="fa fa-heart"></i><p>romance</p>&nbsp;10', click: 'addgoal(10, bar.name)'},
