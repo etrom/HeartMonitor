@@ -131,7 +131,12 @@ angular.module('barsApp')
             chart: {
               type: 'line',
               width: 250,
-              height: 250
+              height: 250,
+              events: {
+                click: function(e) {
+                  console.log('click on chart');
+                }
+              }
             }
         },
         series: [{
@@ -144,13 +149,13 @@ angular.module('barsApp')
         xAxis: {
           startOfWeek: 0,
           allowDecimals: false,
-          categories: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat',
-                'Sun']
+          categories: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
           // gridZIndex: 0,
 
         },
         yAxis: {
           allowDecimals: false,
+          min: 0,
           title: {
             text: false
 
@@ -160,7 +165,14 @@ angular.module('barsApp')
           size: '20px'
         },
         loading: false,
-        minRange: 0
+        minRange: 0,
+        // chart: {
+        //   events: {
+        //     click: function(e) {
+        //       console.log('click on chart');
+        //     }
+        //   }
+        // }
     }
 
    // achievement to display- 5 quizzes
