@@ -23,13 +23,15 @@
         </div>
         <div class="hearts">
           <div class="heart">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{points}}</span><p>points</p>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve"  fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path><text x="24" y="30" style=" fill:white; font-size:1.2em;" text-anchor="middle">{{points}}</text></svg>
+<!--             <span class="heart-points">{{points}}</span>
+ -->            <p>points</p>
           </div>
           <div class="heart">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{achievements}}</span><p>achievements</p>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path><text x="24" y="30" style=" fill:white; font-size:1.2em;" text-anchor="middle">{{achievements}}</text></svg><p>achievements</p>
           </div>
           <div class="heart">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path></svg><span class="heart-points">{{goals}}</span><p>goals</p>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#604788"> <path d="M 44.463,23.787L 24.00,45.00L 3.537,23.787c-4.686-4.686-4.686-12.285,0.00-16.971 c 4.686-4.686, 12.285-4.686, 16.971,0.00L 24.00,11.061l 3.492-4.242c 4.686-4.686, 12.285-4.686, 16.971,0.00C 49.149,11.502, 49.149,19.101, 44.463,23.787z" ></path><text x="24" y="30" style=" fill:white; font-size:1.2em;" text-anchor="middle">{{goals}}</text></svg><p>goals</p>
           </div>
         </div>
       </div>
@@ -39,7 +41,7 @@
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <div ng-show="noPartner" class="alert alert-success" role="alert" width="100%" >
-            <p>You must have a partner to do that</p>
+            <p class="alertMes">Oops! You must have a partner to do that.</p>
           </div>
         <div class="goal" >
           <div ng-hide='reminderSet'>
@@ -60,9 +62,9 @@
 
               <div ng-show="currentGoal && !currentGoalSet" ><h3 id="addGoal">
                 Would you like to set {{currentGoal}} as your goal?<br>
-                <span class="circle glyphicon glyphicon-chevron-left" ng-click="currentGoal = false"></span>
+                <span class="circle glyphicon glyphicon-chevron-left" id="blue" ng-click="currentGoal = false"></span>
                 <span class="circle glyphicon glyphicon-ok" ng-click="saveGoal(currentGoal)"></span>
-                <span class="circle glyphicon glyphicon-remove" ng-click="currentGoal = false; clicked= false"></span>
+                <span class="circle glyphicon glyphicon-remove" id="red"ng-click="currentGoal = false; clicked= false"></span>
               </h3>
               </div>
                <div class="list-group" ng-show="currentGoalReminder && !reminderSet">
@@ -86,15 +88,14 @@
           </div>
         <a href ng-click="hasPartner()" >
           <div class="points">
-
-            <div ng-show="history">
+            <div ng-show="history" ng-mouseenter="history=false">
               <highchart id="chart1" config="highchartsNG"></highchart>
             </div>
-            <div ng-hide="history">
+            <div ng-hide="history" ng-mouseleave="hasHistory()">
               <i class="fa fa-gamepad fa-5x"></i>
-              <h3 id="achieve">games</h3>
+              <h3 id="achieve">games
                <hr class="rule">
-             <br><span class="circle glyphicon glyphicon-plus">
+             <br><span class="circle glyphicon glyphicon-plus"></span></h3>
             </div>
           </div>
 

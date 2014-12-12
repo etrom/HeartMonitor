@@ -7,10 +7,24 @@ angular.module('barsApp')
       'link': '/home'
     }];
 
+
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
-    $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.currentUser = Auth.getCurrentUser();
+    $scope.hasMessage = false;
+
+if($scope.isLoggedIn()){
+  $scope.currentUser.$promise.then(function(user) {
+    if (user.actionRequests.length > 0 || user.requests == true && $scope.iWasClicked == false) {
+      $scope.hasMessage = true;
+    }
+  })
+}
+
+  $scope.clicked = function(){
+    $scope.iWasClicked = true;
+  }
 
     $scope.logout = function() {
       Auth.logout();

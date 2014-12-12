@@ -98,6 +98,9 @@ color: white;
     height: 45px;
     text-align: center;
     vertical-align: middle;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .glyphicon-pencil {
@@ -180,4 +183,24 @@ hr {
 
 .addGoal{
     margin-bottom: 30px;
+}
+
+#blue {
+    background-color: #428bca ;
+}
+
+#red {
+    background-color:#d9534f ;
+}
+
+.alertMes {
+    font-size: 1.3em;
+}
+
+#partnerForm{
+    margin-top: 75px;
+}
+
+#addPartner {
+    margin-top: 89px;
 }

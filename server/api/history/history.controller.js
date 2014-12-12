@@ -26,9 +26,15 @@ exports.getUserHistory = function(req, res) {
   // History.find({ user:req.params.id }, function (err, history) {
   History.find(req.params.id, function (err, history) {
     console.log('ding');
+    var userHistory = [];
+    history.forEach(function (obj) {
+      if(obj.user[0] == req.params.id){
+        userHistory.push(obj);
+      }
+    });
     if(err) { return handleError(res, err); }
     if(!history) { return res.send(404); }
-    return res.json(history);
+    return res.json(userHistory);
   });
 };
 
@@ -55,12 +61,10 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
     History.findOneAndUpdate({ _id:req.params.id},{responseObj: req.body.responseObj, points:req.body.points, responseDate: req.body.responseDate, active: false}, function(err,history) {
-      console.log(history)
      if(err) {return res.send(500, err)};
     res.json(200, history);
   })
 };
-
 
 // Deletes a history from the DB.
 exports.destroy = function(req, res) {
