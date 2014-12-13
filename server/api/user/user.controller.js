@@ -130,11 +130,12 @@ exports.addPartner = function(req,res) {
 ////update bar increase request
 exports.updateBarRequest = function(req,res){
   User.findOne({ _id:req.body.userId}, function(err,user) {
+    console.log(req.body, 'req.body')
     var new_req = {
       //add type when it exists
       historyId: req.body.historyId,
       actionType: req.body.actionType,
-      points: req.body.increment,
+      points: req.body.points,
       dateSent: Date.now()
     };
 

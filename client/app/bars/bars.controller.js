@@ -47,7 +47,6 @@ angular.module('barsApp')
             $scope.history = true;
             userHasHistory = true;
           }
-          console.log(data);
         });
     })
     $scope.hasHistory = function() {
