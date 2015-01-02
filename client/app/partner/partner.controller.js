@@ -6,7 +6,7 @@ angular.module('barsApp')
     $scope.partnerEmail = '';
     $scope.invite = false;
     $scope.hasPartner = false;
-    $scope.show= true;
+    $scope.show = true;
     $scope.clicked= function() {
       $scope.show = false;
     };
