@@ -83,7 +83,7 @@ angular.module('barsApp')
       $http.post('api/historys/', {user: $scope.currentUser._id, type: 'IQ', points: 30, historyObj: $scope.selectedPhotos, iqTitle: $scope.quizTitle }).
         success(function(data, status, headers, config) {
           console.log('data')
-          $scope.percentReq(30, data._id, 'inQuiz',1)
+          $scope.percentReq(30, data._id, 'inQuiz', 1)
           $scope.uniqueUrl = '/instagramResponse/'+ data._id;
           //stop sending emails for the time being
           // $http.post('api/emails/sendQuizRequest/', {
