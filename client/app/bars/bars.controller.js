@@ -15,7 +15,6 @@ angular.module('barsApp')
 
   .controller('BarCtrl', function ($scope, Auth, $http, $log, $window) {
     $scope.currentUser = Auth.getCurrentUser();
-    // $scope.bars = $scope.currentUser.bars;
     $scope.clicked = false;
     $scope.achievements = 0;
     $scope.goals = 0;
@@ -44,8 +43,17 @@ angular.module('barsApp')
       $http.get('/api/historys/user/' + $scope.currentUser._id).
         success(function(data) {
           if(data.length > 0) {
-            $scope.history = true;
             userHasHistory = true;
+          } else {
+              $http.get('/api/historys/user/' + $scope.currentUser.partner._id)
+                .success(function(data) {
+                  if(data.length >= 1) {
+                    userHasHistory = true;
+                  } else {
+                    userHasHistory = false;
+                  }
+
+                })
           }
         });
     })
