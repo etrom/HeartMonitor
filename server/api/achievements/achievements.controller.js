@@ -13,7 +13,8 @@ exports.index = function(req, res) {
 
 // Get a single achievements
 exports.show = function(req, res) {
-  Achievements.findById(req.params.id, function (err, achievements) {
+  //pass in user id
+  Achievements.findById(req.params.userId, function (err, achievements) {
     if(err) { return handleError(res, err); }
     if(!achievements) { return res.send(404); }
     return res.json(achievements);

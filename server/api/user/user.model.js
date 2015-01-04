@@ -3,17 +3,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
+var achievements = require('../achievements')
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
-var barSchema = new Schema ({
-    name: String,
-    // NOTE: depInterval value represents the number of days it takes for a bar to deplete.
-    depInterval: Number,
-    fulfillment: {
-      type: Number,
-      default: 100
-    }
-});
 
 var actionRequestSchema = new Schema ({
   increment: Number,
@@ -47,6 +39,7 @@ var UserSchema = new Schema({
     default: 0
   },
   actionRequests: [actionRequestSchema],
+  achievements: [achievements.achievementsSchema],
   reminded: {
       type: Boolean,
       default: false

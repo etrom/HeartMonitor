@@ -128,9 +128,8 @@ exports.addPartner = function(req,res) {
 };
 
 ////update bar increase request
-exports.updateBarRequest = function(req,res){
+exports.updateBarRequest = function(req,res) {
   User.findOne({ _id:req.body.userId}, function(err,user) {
-    console.log(req.body, 'req.body')
     var new_req = {
       //add type when it exists
       historyId: req.body.historyId,
@@ -138,8 +137,6 @@ exports.updateBarRequest = function(req,res){
       points: req.body.points,
       dateSent: Date.now()
     };
-
-    console.log(new_req)
     user.actionRequests.push(new_req);
     user.save(function(err, savedUser, numModified) {
       if(err) {return res.send(500, err)};
@@ -269,7 +266,7 @@ exports.me = function(req, res, next) {
   var userId = req.user._id;
   User.findOne({
     _id: userId
-  }, '-salt -hashedPassword').populate('partner').populate('actionRequests').exec(function(err, user) { // don't ever give out the password or salt
+  }, '-salt -hashedPassword').populate('partner').populate('achievements').populate('actionRequests').exec(function(err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.json(401);
     res.json(user);

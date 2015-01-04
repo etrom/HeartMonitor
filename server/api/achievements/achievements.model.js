@@ -5,10 +5,11 @@ var mongoose = require('mongoose'),
 
 var AchievementsSchema = new Schema({
   title: String,
-  number: Number,
-  achieved: Boolean,
+  achieved: {type: Boolean, default: false},
   criteria: {},
-  achievedDate: Date
+  achievedDate: Date,
+  points: Number,
+  actionType: String
 
 });
 
