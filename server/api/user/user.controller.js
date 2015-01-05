@@ -140,15 +140,16 @@ exports.updateBarRequest = function(req,res) {
     user.actionRequests.push(new_req);
     user.save(function(err, savedUser, numModified) {
       if(err) {return res.send(500, err)};
-      if (req.body.quizNum){
+      
         User.findOne(user.partner, function(err,partner){
           console.log(req.body.quizNum);
           partner.points += 30;
-          partner.quizNumber += req.body.quizNum;
+          if (req.body.quizNum){
+            partner.quizNumber += req.body.quizNum;
+          }
           partner.save(function(err, savedUser, numModified){
           })
         })
-      }
       res.json(200, savedUser);
     });
 
