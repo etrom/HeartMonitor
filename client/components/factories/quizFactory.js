@@ -10,7 +10,7 @@ angular.module('barsApp')
                     var actionType = actionType;
                     var quizNum = quizNum;
                     console.log(history, 'history')
-                        $http.post('/api/users/requests/', { userId: partner._id, actionType: actionType, points: updateIncrease, historyId: history, quizNum: quizNum}).success(function(user){
+                        $http.post('/api/users/requests/', { userId: partner._id, actionType: actionType, increment: updateIncrease, historyId: history, quizNum: quizNum}).success(function(user){
                             console.log(user, "new request")
                         });
                 }
