@@ -56,6 +56,10 @@ angular.module('barsApp')
                 })
           }
         });
+      $http.get('/api/historys/points5days/' + $scope.currentUser._id + '/' + $scope.currentUser.partner._id).
+        success(function(data) {
+          console.log(data, 'data from points call')
+        });
     })
     $scope.hasHistory = function() {
       if(userHasHistory) {
@@ -149,7 +153,7 @@ angular.module('barsApp')
             }
         },
         series: [{
-            name: 'Points This Week',
+            name: 'Points Last 5 Days',
             data: [30, 10, 15, 60, 70, 0, 0]
         }],
         title: {

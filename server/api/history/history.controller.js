@@ -36,7 +36,41 @@ exports.getUserHistory = function(req, res) {
   });
 };
 
+exports.getPoints5days = function(req, res) {
+  // History.find({ user:req.params.id }, function (err, history) {
+  var d = new Date();
+  d.setDate(d.getDate()+1);
+  var end = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  d.setDate(d.getDate()-6);
+  var start = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
+  var pointsData = {};
+
+  History.find({created: {$gte: start, $lt: end}}, function (err, history) {
+    history.forEach(function (obj) {
+      if(obj.user[0] == req.params.id) { 
+        var createDate = obj.created.getFullYear() + ("0" + obj.created.getMonth()).slice(-2) + ("0" + obj.created.getDate()).slice(-2);
+        if (!pointsData.hasOwnProperty(createDate)) {
+          pointsData[createDate] = obj.points;
+        } else {
+          var addPoints = pointsData[createDate] + obj.points;
+          pointsData[createDate] = addPoints;
+        }
+      } else if (obj.user[0] == req.params.partnerid && obj.responseDate !== undefined) {
+        var createDate = obj.responseDate.getFullYear() + ("0" + obj.responseDate.getMonth()).slice(-2) + ("0" + obj.responseDate.getDate()).slice(-2);
+        if (!pointsData.hasOwnProperty(createDate)) {
+          pointsData[createDate] = obj.partnerPoints;
+        } else {
+          var addPoints = pointsData[createDate] + obj.partnerPoints;
+          pointsData[createDate] = addPoints;
+        }
+      }
+    })
+    if(err) { return handleError(res, err); }
+    if(!history) { return res.send(404); }
+    return res.json(201);
+  });
+};
 
 // Creates a new history in the DB.
 exports.create = function(req, res) {

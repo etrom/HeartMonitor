@@ -12,5 +12,6 @@ router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 router.get('/user/:id', controller.getUserHistory);
+router.get('/points5days/:id/:partnerid', controller.getPoints5days);
 
 module.exports = router;
