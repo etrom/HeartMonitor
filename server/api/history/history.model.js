@@ -10,6 +10,7 @@ var HistorySchema = new Schema({
   type: String,
   key: Number,
   points: Number,
+  partnerPoints: Number,
   iqTitle: String, // for instagram photo quiz
   historyObj: {},
   responseObj: {},

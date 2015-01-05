@@ -15,7 +15,6 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   // History.find({ user:req.params.id }, function (err, history) {
   History.findById(req.params.id, function (err, history) {
-    console.log('ding');
     if(err) { return handleError(res, err); }
     if(!history) { return res.send(404); }
     return res.json(history);
@@ -25,7 +24,6 @@ exports.show = function(req, res) {
 exports.getUserHistory = function(req, res) {
   // History.find({ user:req.params.id }, function (err, history) {
   History.find(req.params.id, function (err, history) {
-    console.log('ding');
     var userHistory = [];
     history.forEach(function (obj) {
       if(obj.user[0] == req.params.id){
@@ -60,9 +58,7 @@ exports.create = function(req, res) {
 
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  console.log(req.body, 'body')
-    History.findOneAndUpdate({ _id:req.params.id},{responseObj: req.body.responseObj, points:req.body.points, responseDate: req.body.responseDate, active: false}, function(err,history) {
-      console.log (history, 'history')
+    History.findOneAndUpdate({ _id:req.params.id},{responseObj: req.body.responseObj, partnerPoints:req.body.partnerPoints, responseDate: req.body.responseDate, active: false}, function(err,history) {
      if(err) {return res.send(500, err)};
     res.json(200, history);
   })
