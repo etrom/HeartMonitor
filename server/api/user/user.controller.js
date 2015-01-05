@@ -142,8 +142,7 @@ exports.updateBarRequest = function(req,res) {
       if(err) {return res.send(500, err)};
       
         User.findOne(user.partner, function(err,partner){
-          console.log(req.body.quizNum);
-          partner.points += 30;
+          partner.points += new_req.points;
           if (req.body.quizNum){
             partner.quizNumber += req.body.quizNum;
           }
