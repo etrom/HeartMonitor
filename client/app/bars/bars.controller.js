@@ -145,7 +145,6 @@ angular.module('barsApp')
        apiKey: 'ece8de92a9848cc1',
        apiVersion: 3,
        theme: 'light', // Check out our new 'light' and 'dark' themes!
-       tools: 'crop',
        appendTo: '',
        onSave: function(imageID, newURL) {
            var img = document.getElementById(imageID);
@@ -160,6 +159,8 @@ angular.module('barsApp')
     featherEditor.launch({
       image: id,
       url: $scope.profilePicUrl,
+      forceCropPreset: ['Square', '1:1'],
+      forceCropMessage: 'Please crop your photo'
      });
       return false;
    }
