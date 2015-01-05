@@ -23,13 +23,14 @@ angular.module('barsApp')
             answers.push(question[1]);
         })
 
-        $http.put('api/historys/'+ $scope.quizID, {responseObj:answers, points: 10, responseDate: Date.now()}).
+
+        $http.put('api/historys/'+ $scope.quizID, {responseObj:answers, partnerPoints: 10, responseDate: Date.now()}).
           success(function(data){
             console.log(data, 'points')
             $http.put('api/users/' + $scope.currentUser._id + '/actiontaken/'+$scope.quizID)
           }).
             success(function(data){
-              $scope.percentReq(10, data._id, 'nwResults');
+              $scope.percentReq(0, data._id, 'nwResults');
               $window.location.href= '/quizResult/' + $scope.quizID;
             })
     };
