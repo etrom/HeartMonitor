@@ -38,14 +38,22 @@ exports.getUserHistory = function(req, res) {
 
 exports.getPoints5days = function(req, res) {
   // History.find({ user:req.params.id }, function (err, history) {
+  // create date range to search history documents
   var d = new Date();
   d.setDate(d.getDate()+1);
+  // end date moved forward to midnight
   var end = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  d.setDate(d.getDate()-6);
+  var dateRange = 5;
+  // start date will be equal to end minus dateRange - 1
+  // the minus 1 accounts for moving the setDate to midnight
+  // for example:
+  //   5 day range: subtract 6
+  //   30 day range: subtract 30
+  d.setDate(d.getDate()-dateRange+1);
   var start = new Date(d.getFullYear(), d.getMonth(), d.getDate());
   var pointsData = {};
 
-  for (var i=0; i<5; i++){
+  for (var i=0; i<dateRange; i++){
     d.setDate(d.getDate()+1);
     pointsData[d.getFullYear() + ("0" + d.getMonth()).slice(-2) + ("0" + d.getDate()).slice(-2)] = 0;    
   }
@@ -65,6 +73,26 @@ exports.getPoints5days = function(req, res) {
     if(err) { return handleError(res, err); }
     if(!history) { return res.send(404); }
     return res.json(201, pointsData);
+  });
+};
+
+
+exports.getAchievements = function(req, res) {
+  // History.find({ user:req.params.id }, function (err, history) {
+  var numAchieved = 0;
+  History.find(function (err, historys) {
+    // console.log(historys, 'historys')
+    historys.forEach(function (obj) {
+      if(obj.user[0] === req.params.id) {
+        numAchieved +=1;
+      } else if (obj.user[0] === req.params.partnerid && obj.responseDate){
+        numAchieved +=1;
+      }
+
+    })
+    if(err) { return handleError(res, err); }
+    console.log(numAchieved, 'num');
+    return res.json(201, historys);
   });
 };
 

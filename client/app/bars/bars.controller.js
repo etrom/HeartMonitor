@@ -13,7 +13,7 @@ angular.module('barsApp')
     });
   })
 
-  .controller('BarCtrl', function ($scope, Auth, $http, $log, $window) {
+  .controller('BarCtrl', function ($scope, Auth, $http, $log, $window, $timeout) {
     $scope.currentUser = Auth.getCurrentUser();
     $scope.clicked = false;
     $scope.achievements = 0;
@@ -30,6 +30,8 @@ angular.module('barsApp')
       weekday[4] = "Thu";
       weekday[5] = "Fri";
       weekday[6] = "Sat";
+    $scope.numAchieved = 0;
+    $scope.goalSet=false;
 
 
     $scope.nowClicked = function(){
@@ -55,19 +57,20 @@ angular.module('barsApp')
           if(data.length > 0) {
             userHasHistory = true;
           } else {
-              $http.get('/api/historys/user/' + $scope.currentUser.partner._id)
-                .success(function(data) {
-                  if(data.length >= 1) {
-                    userHasHistory = true;
-                  } else {
-                    userHasHistory = false;
-                  }
+            $http.get('/api/historys/user/' + $scope.currentUser.partner._id)
+              .success(function(data) {
+                if(data.length >= 1) {
+                  userHasHistory = true;
+                } else {
+                  userHasHistory = false;
+                }
 
-                })
+              })
           }
         });
       $http.get('/api/historys/points5days/' + $scope.currentUser._id + '/' + $scope.currentUser.partner._id).
         success(function(data) {
+          console.log(data);
           var prevTotal = 0;
           Object.keys(data).forEach(function (key) {
             var d = new Date();
@@ -79,6 +82,17 @@ angular.module('barsApp')
             chartPoints.push(total);
             prevTotal = total;
           });
+
+        });
+        $http.get('/api/historys/achievements/' + $scope.currentUser._id + '/' + $scope.currentUser.partner._id).
+        success(function(achievements) {
+          achievements.forEach(function (obj) {
+            if(obj.user[0] === $scope.currentUser._id) {
+              $scope.numAchieved +=1;
+            } else if (obj.user[0] === $scope.currentUser.partner._id && obj.responseDate){
+              $scope.numAchieved +=1;
+            }            
+          })          
         });
     })
     $scope.hasHistory = function() {
@@ -109,8 +123,15 @@ angular.module('barsApp')
     }
      $scope.saveGoal = function(currentGoal){
       $http.put('/api/users/'+ $scope.currentUser._id, {currentGoal: currentGoal});
+      $scope.points +=15;
       $scope.currentGoalReminder = true;
       $scope.currentGoalSet = true;
+      $scope.onTimeout = function(){
+        $scope.goalSet = false;
+      }
+      $scope.goalSet = true;
+      var mytimeout = $timeout($scope.onTimeout,5000);
+       
     }
     // increase fulfillment #'s
     $scope.addPercent = function(num, barName){
@@ -164,7 +185,7 @@ angular.module('barsApp')
      });
       return false;
    }
-
+   console.log(chartPoints);
    $scope.highchartsNG = {
         options: {
             chart: {
@@ -175,7 +196,7 @@ angular.module('barsApp')
         },
         series: [{
             name: 'Points Last 5 Days',
-            data: chartPoints //[20, 40, 80, 120, 140]
+            data: chartPoints // [10, 40, 70] // chartPoints
         }],
         title: {
             text: null
@@ -183,7 +204,7 @@ angular.module('barsApp')
         xAxis: {
           startOfWeek: 0,
           allowDecimals: false,
-          categories: chartDays // ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          categories: chartDays
 
         },
         yAxis: {
