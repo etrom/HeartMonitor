@@ -4,7 +4,7 @@ angular.module('barsApp')
   .controller('InstagramquizCtrl', function ($scope, $modal, $http, quizFactory, $window) {
 
     $scope.instagramName;
-    hello.init({ 
+    hello.init({
       instagram: 'b97e7a4601ba4829866835ea9ae18613'
     },{redirect_uri:'redirect.html'});
 
@@ -12,10 +12,10 @@ angular.module('barsApp')
       // call user information, for the given network
       hello( auth.network ).api( '/me' ).then( function(r){
         // Inject it into the container
-        $scope.instagramProfilePic = r.thumbnail 
+        $scope.instagramProfilePic = r.thumbnail
         $scope.instagramName = r.name;
         $scope.$digest();
-        
+
       });
     });
     $scope.currentPage = 0;
@@ -26,13 +26,13 @@ angular.module('barsApp')
     $scope.percentReq = quizFactory.barPercentRequest;
 
     $scope.numberOfPages=function(){
-        return Math.ceil($scope.instagramPhotos.length/$scope.pageSize);                
+        return Math.ceil($scope.instagramPhotos.length/$scope.pageSize);
     }
 
     $scope.loadPictures = function(){
 
       hello('instagram').api('/me/photos').then(function(json){
-        $scope.instagramPhotos = [];         
+        $scope.instagramPhotos = [];
         $scope.photoTotal = json.data.length;
         if ($scope.photoTotal > 0) {
           $scope.noPictures = false;
@@ -41,14 +41,14 @@ angular.module('barsApp')
         for (var i=0; i < $scope.photoTotal; i++) {
           $scope.instagramPhotos.push({selected: false,
                                       created: Date(json.data[i].created_time),
-                                      label: json.data[i].name, 
-                                      thumbnail: json.data[i].thumbnail, 
+                                      label: json.data[i].name,
+                                      thumbnail: json.data[i].thumbnail,
                                       picture: json.data[i].picture});
         }
         $scope.$digest();
-        var myModal = $modal({scope: $scope, 
-                            template: "/app/instagramQuiz/instagramModal.html", 
-                            title: '<i class="fa fa-instagram fa-3x"></i> Create A Quiz!', 
+        var myModal = $modal({scope: $scope,
+                            template: "/app/instagramQuiz/instagramModal.html",
+                            title: '<i class="fa fa-instagram fa-3x"></i> Create A Quiz!',
                             content: 'temps content value for content variable', show: true});
       }, function(e) {
         alert ('Whoops! ' + e.error.message)
@@ -72,7 +72,7 @@ angular.module('barsApp')
       //                     content: 'temps content value for centent variable'})
     };
 
-    $scope.sortableOptions = {   
+    $scope.sortableOptions = {
       accept: function (sourceItemHandleScope, destSortableScope) {
         return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
       }
@@ -80,9 +80,10 @@ angular.module('barsApp')
 
 
     $scope.save = function() {
-      $http.post('api/historys/', {user: $scope.currentUser._id, type: 'IQ', historyObj: $scope.selectedPhotos, iqTitle: $scope.quizTitle }).
+      $http.post('api/historys/', {user: $scope.currentUser._id, type: 'IQ', points: 30, historyObj: $scope.selectedPhotos, iqTitle: $scope.quizTitle }).
         success(function(data, status, headers, config) {
-          $scope.percentReq(30, data._id, 'inQuiz')
+          console.log('data')
+          $scope.percentReq(30, data._id, 'inQuiz', 1)
           $scope.uniqueUrl = '/instagramResponse/'+ data._id;
           //stop sending emails for the time being
           // $http.post('api/emails/sendQuizRequest/', {
@@ -99,5 +100,5 @@ angular.module('barsApp')
         });
 
     }
-    
+
   });
