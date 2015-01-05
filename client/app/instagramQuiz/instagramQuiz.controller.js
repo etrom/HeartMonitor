@@ -46,10 +46,12 @@ angular.module('barsApp')
                                       picture: json.data[i].picture});
         }
         $scope.$digest();
+
         var myModal = $modal({scope: $scope,
-                            template: "/app/instagramQuiz/instagramModal.html",
+                            template: "app/instagramQuiz/instagramModal.html",
                             title: '<i class="fa fa-instagram fa-3x"></i> Create A Quiz!',
                             content: 'temps content value for content variable', show: true});
+
       }, function(e) {
         alert ('Whoops! ' + e.error.message)
       })
@@ -66,10 +68,6 @@ angular.module('barsApp')
           $scope.selectedPhotos.push($scope.instagramPhotos[i]);
         }
       }
-      // var myFinalModal = $modal({scope: $scope,
-      //                     template: "/app/instagramQuiz/finalizeInstagramModal.html",
-      //                     title: '<i class="fa fa-instagram fa-3x"></i> ' + quizTitle,
-      //                     content: 'temps content value for centent variable'})
     };
 
     $scope.sortableOptions = {

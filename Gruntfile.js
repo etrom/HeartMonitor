@@ -8,7 +8,8 @@ module.exports = function (grunt) {
   } catch(e) {
     localConfig = {};
   }
-
+  //html2js
+  grunt.loadNpmTasks('grunt-html2js');
   // Load grunt tasks automatically, when needed
   require('jit-grunt')(grunt, {
     express: 'grunt-express-server',
