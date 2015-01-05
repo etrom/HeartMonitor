@@ -20,6 +20,16 @@ angular.module('barsApp')
     $scope.goals = 0;
     $scope.currentGoal = false;
     var userHasHistory = false;
+    var chartDays = [];
+    var chartPoints = [];
+    var weekday = new Array(7);
+      weekday[0]=  "Sun";
+      weekday[1] = "Mon";
+      weekday[2] = "Tue";
+      weekday[3] = "Wed";
+      weekday[4] = "Thu";
+      weekday[5] = "Fri";
+      weekday[6] = "Sat";
 
 
     $scope.nowClicked = function(){
@@ -58,7 +68,17 @@ angular.module('barsApp')
         });
       $http.get('/api/historys/points5days/' + $scope.currentUser._id + '/' + $scope.currentUser.partner._id).
         success(function(data) {
-          console.log(data, 'data from points call')
+          var prevTotal = 0;
+          Object.keys(data).forEach(function (key) {
+            var d = new Date();
+            d.setFullYear(key.substring(4, 0));
+            d.setMonth(key.substring(4, 6));
+            d.setDate(key.substring(6, 8));
+            chartDays.push(weekday[d.getDay()]);
+            var total = prevTotal + parseInt(data[key]);
+            chartPoints.push(total);
+            prevTotal = total;
+          });
         });
     })
     $scope.hasHistory = function() {
@@ -154,7 +174,7 @@ angular.module('barsApp')
         },
         series: [{
             name: 'Points Last 5 Days',
-            data: [30, 10, 15, 60, 70, 0, 0]
+            data: chartPoints //[20, 40, 80, 120, 140]
         }],
         title: {
             text: null
@@ -162,14 +182,14 @@ angular.module('barsApp')
         xAxis: {
           startOfWeek: 0,
           allowDecimals: false,
-          categories: ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          categories: chartDays // ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
         },
         yAxis: {
           allowDecimals: false,
           min: 0,
           title: {
-            text: false
+            text: null
 
           }
         },
