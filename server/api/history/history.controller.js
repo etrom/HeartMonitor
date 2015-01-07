@@ -49,18 +49,18 @@ exports.getPoints5days = function(req, res) {
   // for example:
   //   5 day range: subtract 6
   //   30 day range: subtract 30
-  d.setDate(d.getDate()-dateRange+1);
+  d.setDate(d.getDate()-(dateRange+1));
   var start = new Date(d.getFullYear(), d.getMonth(), d.getDate());
   var pointsData = {};
 
   for (var i=0; i<dateRange; i++){
     d.setDate(d.getDate()+1);
-    pointsData[d.getFullYear() + ("0" + d.getMonth()).slice(-2) + ("0" + d.getDate()).slice(-2)] = 0;    
+    pointsData[d.getFullYear() + ("0" + d.getMonth()).slice(-2) + ("0" + d.getDate()).slice(-2)] = 0;
   }
 
   History.find({created: {$gte: start, $lt: end}}, function (err, history) {
     history.forEach(function (obj) {
-      if(obj.user[0] == req.params.id) { 
+      if(obj.user[0] == req.params.id) {
         var createDate = obj.created.getFullYear() + ("0" + obj.created.getMonth()).slice(-2) + ("0" + obj.created.getDate()).slice(-2);
         var addPoints = pointsData[createDate] + obj.points;
         pointsData[createDate] = addPoints;

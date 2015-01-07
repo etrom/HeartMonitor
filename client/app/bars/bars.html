@@ -43,13 +43,14 @@
         <div ng-show="noPartner" class="alert alert-success" role="alert" width="100%" >
             <p class="alertMes">Oops! You must have a partner to do that.</p>
           </div>
-          <!-- <div 
-          data-template="alert/docs/alert.tpl.demo.html" data-placement="top" data-duration="10" data-animation="am-fade-and-slide-top" data-container="body" data-keyboard="true" bs-alert="alert" 
+          <!-- <div
+          data-template="alert/docs/alert.tpl.demo.html" data-placement="top" data-duration="10" data-animation="am-fade-and-slide-top" data-container="body" data-keyboard="true" bs-alert="alert"
           data-show="goalSet"
           data-title='hello'
           data-content="Congrats! You earned 15 points for adding a goal.">
-            
+
           </div> -->
+
           <div ng-show="goalSet" class="alert alert-success" role="alert" width="100%" >
             <p class="alertMes">Congrats! You earned 15 points for adding a goal.</p>
           </div>
@@ -95,6 +96,8 @@
               </div>
             </div>
           </div>
+
+
         <a href ng-click="hasPartner()" >
           <div class="points">
             <div ng-show="history" ng-mouseenter="history=false">

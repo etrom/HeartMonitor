@@ -32,7 +32,7 @@ angular.module('barsApp')
         // })
       } else {
           $scope.fbPartnerPic = 'https://graph.facebook.com/' + $scope.currentUser.facebook.significant_other.id + '/picture?width=200';
-          var myModal = $modal({scope: $scope, template: "/app/partner/fbModal.html", title: '<i class="fa fa-facebook-square"></i> You have a significant other on Facebook', content: 'Would like to add ' + $scope.currentUser.facebook.significant_other.name + ' as your Heart Bar Partner?', show: true});
+          var myModal = $modal({scope: $scope, template: "app/partner/fbModal.html", title: '<i class="fa fa-facebook-square"></i> You have a significant other on Facebook', content: 'Would like to add ' + $scope.currentUser.facebook.significant_other.name + ' as your Heart Bar Partner?', show: true});
         }
 
       if ($scope.partner.profilePic) {

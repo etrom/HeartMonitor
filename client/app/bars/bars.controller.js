@@ -91,8 +91,8 @@ angular.module('barsApp')
               $scope.numAchieved +=1;
             } else if (obj.user[0] === $scope.currentUser.partner._id && obj.responseDate){
               $scope.numAchieved +=1;
-            }            
-          })          
+            }
+          })
         });
     })
     $scope.hasHistory = function() {
@@ -102,10 +102,16 @@ angular.module('barsApp')
     }
 
     $scope.hasPartner= function() {
-      if ($scope.currentUser.partner){
+      if ($scope.currentUser.partner) {
         $window.location.href = '/games';
       } else {
-        $scope.noPartner= true;
+        console.log('else');
+        $scope.timesOut = function() {
+          console.log('time');
+        $scope.noPartner = false;
+      }
+      $scope.noPartner = true;
+      var newTime = $timeout($scope.timesOut,5000);
       }
     }
     // values for the points dropdown button
@@ -131,7 +137,7 @@ angular.module('barsApp')
       }
       $scope.goalSet = true;
       var mytimeout = $timeout($scope.onTimeout,5000);
-       
+
     }
     // increase fulfillment #'s
     $scope.addPercent = function(num, barName){
