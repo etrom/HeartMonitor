@@ -21,6 +21,7 @@ exports.setup = function (User, config) {
         console.log("Got error: " + e.message);
       });
 
+      // suiteproductivity@gmail.com
       User.findOne({
         'facebook.id': profile.id,
       },
@@ -29,19 +30,27 @@ exports.setup = function (User, config) {
           return done(err);
         }
         if (!user) {
-          user = new User({
-            name: profile.displayName,
-            email: profile.emails[0].value,
-            role: 'user',
-            username: profile.username,
-            provider: 'facebook',
-            facebook: profile._json,
-            profilePic: 'https://graph.facebook.com/' + profile._json.id + '/picture?width=300'
-          });
-          user.save(function(err) {
-            if (err) done(err);
-            return done(err, user);
-          });
+          var partnerObj
+          User.findOne({partnerEmail: profile.emails[0].value}, function(err, partner) {
+            user = new User({
+              name: profile.displayName,
+              email: profile.emails[0].value,
+              role: 'user',
+              username: profile.username,
+              provider: 'facebook',
+              facebook: profile._json,
+              profilePic: 'https://graph.facebook.com/' + profile._json.id + '/picture?width=300',
+              partner: partner._id
+            });
+            user.save(function(err) {
+              if (err) done(err);
+              partner.partner = user._id;
+              partner.save(function(err) {
+                if (err) done(err);
+              })
+              return done(err, user);
+            });
+          })
         } else {
           return done(err, user);
         }

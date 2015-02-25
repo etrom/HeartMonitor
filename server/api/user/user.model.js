@@ -57,7 +57,8 @@ var UserSchema = new Schema({
     ref: 'User'
   },
   profilePic: String,
-  quizNumber: {type: Number, default: 1}
+  quizNumber: {type: Number, default: 1},
+  partnerEmail: String
 
 
 });

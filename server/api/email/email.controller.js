@@ -24,7 +24,6 @@ exports.sendRequest = function(req, res) {
           last: 'Mia'
         }
       };
-
       // Send a single email
       template('welcome', locals, function(err, html, text) {
         if (err) {
@@ -47,6 +46,15 @@ exports.sendRequest = function(req, res) {
         }
       });
     }
+    User.findById(req.body.reqFrom, function (err, user) {
+      if (err) { return handleError(res, err); }
+      if(!user) { return res.send(404); }
+      user.partnerEmail = req.body.email;
+      user.save(function (err) {
+        if (err) { return handleError(res, err); }
+        return res.json(200, user);
+      });
+    });
   });
 }
 
@@ -121,7 +129,6 @@ exports.sendQuizRequest = function(req, res) {
           last: 'Mia'
         }
       };
-
       // Send a single email
       template('quizRequest', locals, function(err, html, text) {
         if (err) {
