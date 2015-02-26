@@ -19,6 +19,9 @@ if($scope.isLoggedIn()){
     if (user.actionRequests.length > 0 || user.requests == true && $scope.iWasClicked == false) {
       $scope.hasMessage = true;
     }
+    if (user.partner === undefined && user.reqFrom) {
+      $scope.hasMessage = true;
+    }
   })
 }
 
