@@ -30,7 +30,6 @@ exports.setup = function (User, config) {
           return done(err);
         }
         if (!user) {
-          var partnerObj
           User.findOne({partnerEmail: profile.emails[0].value}, function(err, partner) {
             user = new User({
               name: profile.displayName,
@@ -40,14 +39,18 @@ exports.setup = function (User, config) {
               provider: 'facebook',
               facebook: profile._json,
               profilePic: 'https://graph.facebook.com/' + profile._json.id + '/picture?width=300',
-              partner: partner._id
             });
+            if(partner !== null) {
+              user.partner = partner._id;
+            }
             user.save(function(err) {
               if (err) done(err);
-              partner.partner = user._id;
-              partner.save(function(err) {
-                if (err) done(err);
-              })
+              if (partner !== null) {
+                partner.partner = user._id;
+                partner.save(function(err) {
+                  if (err) done(err);
+                })
+              }
               return done(err, user);
             });
           })
